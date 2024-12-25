@@ -3,6 +3,7 @@ import 'package:itax/presentation/screens/more-screens/more-screen.dart';
 import 'package:itax/presentation/screens/auth/sign_in_screen.dart';
 import 'package:itax/presentation/screens/auth/signup_screen.dart';
 import 'package:itax/presentation/screens/dashboard/dashboard_screen.dart';
+import 'package:itax/presentation/screens/more-screens/my-companies-page.dart';
 import 'package:itax/presentation/screens/profile/profile-screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -15,7 +16,7 @@ class _BottomNavBarExampleState extends State<BottomNavBarExample> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    SignInScreen(),
+    MyCompaniesPage(),
     SignUpScreen(),
     DashboardScreen(),
     MoreScreen(),

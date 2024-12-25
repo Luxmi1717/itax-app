@@ -16,31 +16,46 @@ class MoreScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              color: Colors.blue,
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Title',
-                      style: TextStyle(color: Colors.white, fontSize: 24)),
-                  Text('Subtitle',
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
-                ],
+            SizedBox(height: 20,),
+            Center(
+              child: Container(
+                
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: Color.fromRGBO(76, 176, 80, 1),
+                ),
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Premium Membership',
+                        style: TextStyle(color: Colors.white, fontSize: 24)),
+                    Text('Upgrade for more features',
+                        style: TextStyle(color: Colors.white, fontSize: 16)),
+                  ],
+                ),
               ),
             ),
+            SizedBox(height: 20,),
             ListTile(
               leading: Icon(Icons.business),
               title: Text('My Companies'),
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {},
             ),
+                        Divider(color: Colors.grey,  thickness: 0.1,),
+
             ListTile(
               leading: Icon(Icons.person),
               title: Text('Manage User'),
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {},
             ),
+                                    Divider(
+              color: Colors.grey,
+              thickness: 0.1,
+            ),
+
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('GSP Setup'),
@@ -59,18 +74,33 @@ class MoreScreen extends StatelessWidget {
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {},
             ),
+                                    Divider(
+              color: Colors.grey,
+              thickness: 0.1,
+            ),
+
             ListTile(
               leading: Icon(Icons.privacy_tip),
               title: Text('Privacy Policy'),
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {},
             ),
+                                    Divider(
+              color: Colors.grey,
+              thickness: 0.1,
+            ),
+
             ListTile(
               leading: Icon(Icons.info),
               title: Text('About Us'),
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {},
             ),
+                                    Divider(
+              color: Colors.grey,
+              thickness: 0.1,
+            ),
+
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Logout'),
