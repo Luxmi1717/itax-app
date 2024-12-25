@@ -9,7 +9,7 @@ class CustomTextInput extends StatefulWidget {
     Key? key,
     required this.controller,
     required this.hintText,
-    required this.ifPasswordField,
+    required this.ifPasswordField, required String? Function(dynamic value) validator,
   }) : super(key: key);
 
   @override
@@ -27,16 +27,16 @@ class _CustomTextInputState extends State<CustomTextInput> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.0), // Updated radius
+          borderRadius: BorderRadius.circular(14.0), // Updated radius
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.0), // Updated radius
+          borderRadius: BorderRadius.circular(14.0), // Updated radius
           borderSide: BorderSide(
             color: Colors.grey, // Color for the border when not focused
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16.0), // Updated radius
+          borderRadius: BorderRadius.circular(14.0), // Updated radius
           borderSide: BorderSide(
             color: Colors.blue, // Color for the border when focused
             width: 2.0,

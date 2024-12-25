@@ -3,15 +3,18 @@ import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
+import 'package:itax/repositories/auth_repository.dart';
+import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class SignInScreen extends StatelessWidget {
-
   const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailOrPhoneController = TextEditingController();
+    final TextEditingController emailOrPhoneController =
+        TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     return Scaffold(
       appBar: GradientAppBar(
@@ -69,12 +72,14 @@ class SignInScreen extends StatelessWidget {
                       controller: emailOrPhoneController,
                       hintText: 'Email or Phone Number',
                       ifPasswordField: false,
+                      validator: (value) {},
                     ),
                     const SizedBox(height: 20),
                     CustomTextInput(
                       controller: passwordController,
                       hintText: 'Password',
                       ifPasswordField: true,
+                      validator: (value) {},
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -100,7 +105,35 @@ class SignInScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     BlueButton(
                       title: 'Login',
-                      onPressed: () {},
+                      onPressed: () async {
+                        final email = emailOrPhoneController.text.trim();
+                        final password = passwordController.text.trim();
+
+                        if (email.isEmpty || password.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Please enter both email and password'),
+                            ),
+                          );
+                          return;
+                        }
+
+                        final authProvider =
+                            Provider.of<AuthProvider>(context, listen: false);
+                        await authProvider.login(email, password);
+
+                        if (authProvider.errorMessage != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(authProvider.errorMessage!),
+                            ),
+                          );
+                        } else {
+                          // Navigate to the next screen
+                          Navigator.pushNamed(context, '/dashboard');
+                        }
+                      },
                     ),
                     SizedBox(height: 5.h),
                     Row(
@@ -178,13 +211,13 @@ class SignInScreen extends StatelessWidget {
 }
 
 class ForgotPasswordStep1 extends StatelessWidget {
-
   const ForgotPasswordStep1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController phoneController =  TextEditingController();
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
+    final TextEditingController phoneController = TextEditingController();
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
@@ -192,7 +225,7 @@ class ForgotPasswordStep1 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-           Text(
+          Text(
             'Forgot Password',
             style: TextStyle(
               fontSize: 18.px,
@@ -202,17 +235,24 @@ class ForgotPasswordStep1 extends StatelessWidget {
           ),
           SizedBox(
             height: 1.h,
-
           ),
           Text('Enter your mobile number or email for verification purposes'),
-
-          SizedBox(height: 4.h,),
-          CustomTextInput(controller: phoneController, hintText: "Mobile Number or Email", ifPasswordField: false),
-           SizedBox(height: 4.h),
+          SizedBox(
+            height: 4.h,
+          ),
+          CustomTextInput(
+            controller: phoneController,
+            hintText: "Mobile Number or Email",
+            ifPasswordField: false,
+            validator: (value) {},
+          ),
+          SizedBox(height: 4.h),
           BlueButton(
             title: 'Send OTP',
             onPressed: () {
               Navigator.pop(context);
+              authProvider.generateForgotPasswordOTP(phoneController.text);
+
               _showForgotPasswordStep2(context);
             },
           ),
@@ -236,6 +276,8 @@ class ForgotPasswordStep2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     TextEditingController otpController = TextEditingController();
 
     return Padding(
@@ -255,16 +297,27 @@ class ForgotPasswordStep2 extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter the 4 digits code that you received on your Mobile Number or email.'),
+          Text(
+              'Enter the 4 digits code that you received on your Mobile Number or email.'),
           SizedBox(
             height: 4.h,
           ),
-          
+          Pinput(
+            length: 4,
+            controller: otpController,
+            defaultPinTheme: PinTheme(
+              width: 40.w,
+              height: 10.h,
+              textStyle: TextStyle(fontSize: 20.px, color: blackColor),
+            ),
+          ),
           SizedBox(height: 4.h),
           BlueButton(
             title: 'Verify OTP',
             onPressed: () {
               Navigator.pop(context);
+              authProvider.verifyOTP(otpController.text);
+
               _showForgotPasswordStep3(context);
             },
           ),
@@ -289,10 +342,10 @@ class ForgotPasswordStep3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController newPasswordController = TextEditingController();
-        TextEditingController ConfirmNewPasswordController = TextEditingController();
+    TextEditingController ConfirmNewPasswordController =
+        TextEditingController();
 
-
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,18 +367,21 @@ class ForgotPasswordStep3 extends StatelessWidget {
           SizedBox(
             height: 2.h,
           ),
-                    CustomTextInput(
-              controller: newPasswordController,
-              hintText: "New Password",
-              ifPasswordField: false),
-              SizedBox(height: 2.h,),
-                        CustomTextInput(
-              controller: ConfirmNewPasswordController,
-              hintText: "Confirm New Password",
-              ifPasswordField: false),
-
-
-
+          CustomTextInput(
+            controller: newPasswordController,
+            hintText: "New Password",
+            ifPasswordField: false,
+            validator: (value) {},
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
+          CustomTextInput(
+            controller: ConfirmNewPasswordController,
+            hintText: "Confirm New Password",
+            ifPasswordField: false,
+            validator: (value) {},
+          ),
           SizedBox(height: 2.h),
           BlueButton(
             title: 'Reset Password',
@@ -371,18 +427,25 @@ class ForgotPasswordStep4 extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text(
-              'Your password has been updated'),
+          Text('Your password has been updated'),
           SizedBox(
             height: 2.h,
           ),
-Row(mainAxisAlignment: MainAxisAlignment.center, children: [          Image.asset('assets/images/success.png', width: 40.w, height: 20.h),
-],)         ,
-          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/success.png',
+                  width: 40.w, height: 20.h),
+            ],
+          ),
           BlueButton(
             title: 'Login',
             onPressed: () {
-              Navigator.pop(context);
+              try {
+                Navigator.pop(context);
+              } catch (e) {
+                print(e);
+              }
             },
           ),
         ],

@@ -329,10 +329,9 @@ import 'package:http/http.dart' as http;
 import 'package:itax/config/user_secure_storage.dart';
 import 'package:itax/models/business_model.dart';
 import 'package:itax/models/new_user_model.dart';
-import '../models/bussiness_model.dart';
 
 class AuthProvider with ChangeNotifier {
-  final String baseUrl = 'https://api.itaxeasy.com';
+  final String baseUrl = 'https:/ /api.itaxeasy.com';
 
   String _otpId = '';
   String _email = '';
@@ -364,7 +363,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> generateOTP(String email, String password) async {
+  Future<void> login(String email, String password) async {
     _setLoading(true);
     try {
       final response = await http.post(
@@ -372,20 +371,49 @@ class AuthProvider with ChangeNotifier {
         body: json.encode({"email": email, "password": password}),
         headers: {'Content-Type': 'application/json'},
       );
+      print(response);
 
       final jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
       if (response.statusCode == 200) {
-        _otpId = jsonResponse['results']['data']['id'].toString();
-        _email = email;
-        _password = password;
+        final userData = jsonResponse['data']['user'];
+        _otpId = userData['id'].toString();
+        _email = userData['email'];
+        _token = jsonResponse['data']['token'];
+        
+        // Store other user details as needed
       } else {
         throw Exception(jsonResponse['message']);
       }
+      
     } catch (e) {
       _setError(e.toString());
     } finally {
       _setLoading(false);
     }
+  }
+  Future<http.Response> generateForgotPasswordOTP(String email) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/user/forgot-password'),
+      body: json.encode({'email': email}),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    final jsonResponse = jsonDecode(response.body);
+
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw http.ClientException(
+          'Could not generate OTP: ${jsonResponse['message']}');
+    }
+
+    final otpId = jsonResponse['otp_key'].toString();
+    _otpId = otpId;
+    _email = email;
+
+    return response;
   }
 
   Future<void> verifyOTP(String otp) async {
@@ -414,13 +442,26 @@ class AuthProvider with ChangeNotifier {
   Future<void> signUp(NewUserModel user) async {
     _setLoading(true);
     try {
+      print('sign up started');
       final response = await http.post(
         Uri.parse('$baseUrl/user/sign-up'),
-        body: json.encode(user.toJSON()),
+       body: json.encode({
+          "firstName": user.firstName ?? '',
+          "lastName": user.lastName ?? '',
+          "phone": user.phone ?? '',
+          "email": user.email ?? '',
+          "password": user.password ?? '',
+          "pin": user.pincode ?? '',
+          "gender": user.gender ?? 'male',
+          "aadhar": user.aadhaar ?? '',
+          "pan": user.pan ?? '',
+          "address": user.address ?? '',
+        }),
         headers: {'Content-Type': 'application/json'},
       );
 
       final jsonResponse = jsonDecode(response.body);
+      print(jsonResponse);
       if (response.statusCode == 200 && jsonResponse['success'] == true) {
         _otpId = jsonResponse['data']['otp_key']?.toString() ?? '';
         _email = user.email ?? '';
