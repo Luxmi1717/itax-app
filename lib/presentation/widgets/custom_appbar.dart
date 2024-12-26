@@ -6,7 +6,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? trailingWidgets;
 
 
-  GradientAppBar({
+  const GradientAppBar({super.key, 
     this.leadingWidget,
     this.trailingWidgets,
   });

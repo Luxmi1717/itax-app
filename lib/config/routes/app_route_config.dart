@@ -15,14 +15,14 @@ class MyAppRouter {
       name: MyAppRouteConstants.homeRouteName,
       path: '/home',
       pageBuilder: (context, state) {
-        return MaterialPage(child: BottomNavBarExample());
+        return const MaterialPage(child: BottomNavBarExample());
       },
     ),
       GoRoute(
         name:MyAppRouteConstants.dashBoardRouteName,
         path:'/dashboard',
         pageBuilder: (context, state) {
-          return MaterialPage(child: DashboardScreen());
+          return const MaterialPage(child: DashboardScreen());
         },
 
 
@@ -31,14 +31,14 @@ class MyAppRouter {
       name: MyAppRouteConstants.signInRouteName,
       path: '/login',
       pageBuilder: (context, state) {
-        return MaterialPage(child: SignInScreen());
+        return const MaterialPage(child: SignInScreen());
       },
     ),
     GoRoute(
       name: MyAppRouteConstants.signUpRouteName,
       path: '/signup',
       pageBuilder: (context, state) {
-        return MaterialPage(child: SignUpScreen());
+        return const MaterialPage(child: SignUpScreen());
       },
     )
     ]

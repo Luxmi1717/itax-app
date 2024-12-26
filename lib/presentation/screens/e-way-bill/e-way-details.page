@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+class EWayDetailsPage extends StatefulWidget {
+    @override
+    _EWayDetailsPageState createState() => _EWayDetailsPageState();
+}
+
+class _EWayDetailsPageState extends State<EWayDetailsPage> {
+    int _selectedOption = 0;
+    final TextEditingController _field1Controller = TextEditingController();
+    final TextEditingController _field2Controller = TextEditingController();
+    final TextEditingController _field3Controller = TextEditingController();
+
+    @override
+    Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+                title: Text('E-Way Details'),
+            ),
+            body: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                    children: [
+                        Row(
+                            children: [
+                                Radio(
+                                    value: 0,
+                                    groupValue: _selectedOption,
+                                    onChanged: (int? value) {
+                                        setState(() {
+                                            _selectedOption = value!;
+                                        });
+                                    },
+                                ),
+                                Text('Option 1'),
+                                Radio(
+                                    value: 1,
+                                    groupValue: _selectedOption,
+                                    onChanged: (int? value) {
+                                        setState(() {
+                                            _selectedOption = value!;
+                                        });
+                                    },
+                                ),
+                                Text('Option 2'),
+                            ],
+                        ),
+                      
+                    ],
+                ),
+            ),
+        );
+    }
+}

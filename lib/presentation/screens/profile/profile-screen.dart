@@ -4,17 +4,17 @@ import 'package:itax/presentation/screens/profile/profile-sliders.dart';
 import 'package:sizer/sizer.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context), // Navigate back
         ),
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -26,19 +26,19 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 17.w,
-                    backgroundImage: AssetImage(
+                    backgroundImage: const AssetImage(
                         'assets/dummy_profile.png'), // Replace with your image
                   ),
                   Positioned(
                     bottom: 0,
                     right: 0,
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.grey,
                       ),
                       child: IconButton(
-                        icon: Icon(Icons.camera_alt, color: Colors.white),
+                        icon: const Icon(Icons.camera_alt, color: Colors.white),
                         onPressed: () {
                           // Add camera functionality here
                         },
@@ -48,38 +48,38 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             // User Name
-            Center(
+            const Center(
               child: Text(
                 'John Doe', // Dummy value
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // Personal Info Section
             sectionHeader('Personal Info'),
             infoSection([
-              {'label': 'Name', 'value': 'John Doe', 'action': ChangeEmail()},
-              {'label': 'Mobile Number', 'value': '+1234567890', 'action': ChangeMobileNo()},
-              {'label': 'Email', 'value': 'johndoe@example.com', 'action': ChangeEmail()},
+              {'label': 'Name', 'value': 'John Doe', 'action': const ChangeEmail()},
+              {'label': 'Mobile Number', 'value': '+1234567890', 'action': const ChangeMobileNo()},
+              {'label': 'Email', 'value': 'johndoe@example.com', 'action': const ChangeEmail()},
               {'label': 'Date of Birth', 'value': '01 Jan 2000', 'action': null},
-              {'label': 'PAN Number', 'value': 'ABCDE1234F', 'action': AddPANNumber()},
-              {'label': 'Aadhar Number', 'value': '1234 5678 9012', 'action': AddAadharNumber()},
+              {'label': 'PAN Number', 'value': 'ABCDE1234F', 'action': const AddPANNumber()},
+              {'label': 'Aadhar Number', 'value': '1234 5678 9012', 'action': const AddAadharNumber()},
             ], context),
 
             // Business Info Section
             sectionHeader('Business Info'),
             infoSection([
-              {'label': 'Business Name', 'value': 'John Enterprises', 'action': AddBusinessName()},
-              {'label': 'Business Address', 'value': '123 Main Street, City', 'action': AddAddress()},
-              {'label': 'GST Number', 'value': '22AAAAA0000A1Z5', 'action': AddGSTNumber()},
-              {'label': 'PAN Number', 'value': 'ABCDE1234F', 'action': AddPANNumber()},
+              {'label': 'Business Name', 'value': 'John Enterprises', 'action': const AddBusinessName()},
+              {'label': 'Business Address', 'value': '123 Main Street, City', 'action': const AddAddress()},
+              {'label': 'GST Number', 'value': '22AAAAA0000A1Z5', 'action': const AddGSTNumber()},
+              {'label': 'PAN Number', 'value': 'ABCDE1234F', 'action': const AddPANNumber()},
               {
                 'label': 'Bank Details',
                 'value': 'HDFC Bank, Account: 1234567890',
-                'action': AddBankDetails(),
+                'action': const AddBankDetails(),
 
               },
             ], context),
@@ -92,14 +92,14 @@ class ProfilePage extends StatelessWidget {
                 'label': 'Change Password',
                 'action': () => openBottomSheet(
                       context,
-                      ChangePassword(), // Opens Change Password content
+                      const ChangePassword(), // Opens Change Password content
                     ),
               },
               {
                 'label': 'Logout',
                 'action': () => openBottomSheet(
                       context,
-                      LogoutConfirmationContent(), // Opens Logout confirmation
+                      const LogoutConfirmationContent(), // Opens Logout confirmation
                     ),
               },
             ]),
@@ -115,7 +115,7 @@ class ProfilePage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
       child: Text(
         title,
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -144,13 +144,13 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(item['label']!,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 5),
-                      Text(item['value']!, style: TextStyle(fontSize: 15)),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 5),
+                      Text(item['value']!, style: const TextStyle(fontSize: 15)),
                     ],
                   ),
-                  Spacer(),
-                  Icon(Icons.arrow_forward_ios, size: 20),
+                  const Spacer(),
+                  const Icon(Icons.arrow_forward_ios, size: 20),
                 ],
               ),
             ),
@@ -170,7 +170,7 @@ class ProfilePage extends StatelessWidget {
         children: options.map((option) {
           return ListTile(
             title: Text(option['label']),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: const Icon(Icons.arrow_forward_ios),
             onTap: option['action'], // Trigger the specific action
           );
         }).toList(),
@@ -194,29 +194,31 @@ class ProfilePage extends StatelessWidget {
 
 // Widget for Change Password content
 class ChangePasswordContent extends StatelessWidget {
+  const ChangePasswordContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Change Password',
+        const Text('Change Password',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10),
-        TextField(
+        const SizedBox(height: 10),
+        const TextField(
           decoration: InputDecoration(labelText: 'Current Password'),
         ),
-        TextField(
+        const TextField(
           decoration: InputDecoration(labelText: 'New Password'),
         ),
-        TextField(
+        const TextField(
           decoration: InputDecoration(labelText: 'Confirm Password'),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         ElevatedButton(
           onPressed: () {
             // Implement change password logic
           },
-          child: Text('Submit'),
+          child: const Text('Submit'),
         ),
       ],
     );
@@ -225,14 +227,16 @@ class ChangePasswordContent extends StatelessWidget {
 
 // Widget for Logout Confirmation content
 class LogoutConfirmationContent extends StatelessWidget {
+  const LogoutConfirmationContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('Are you sure you want to logout?',
+        const Text('Are you sure you want to logout?',
             style: TextStyle(fontSize: 18)),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -241,13 +245,13 @@ class LogoutConfirmationContent extends StatelessWidget {
                 // Implement logout logic
                 Navigator.pop(context); // Close the bottom sheet
               },
-              child: Text('Yes'),
+              child: const Text('Yes'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context); // Close the bottom sheet
               },
-              child: Text('No'),
+              child: const Text('No'),
             ),
           ],
         ),

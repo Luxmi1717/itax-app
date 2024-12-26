@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:itax/presentation/screens/more-screens/more-screen.dart';
-import 'package:itax/presentation/screens/auth/sign_in_screen.dart';
-import 'package:itax/presentation/screens/auth/signup_screen.dart';
-import 'package:itax/presentation/screens/dashboard/dashboard_screen.dart';
-import 'package:itax/presentation/screens/more-screens/my-companies-page.dart';
-import 'package:itax/presentation/screens/profile/profile-screen.dart';
-import 'package:sizer/sizer.dart';
+import 'package:itax/presentation/screens/e-way-bill/e-way-login-page.dart';
+import 'package:itax/presentation/screens/more-screens/gsp-setup-page.dart';
+import 'package:itax/presentation/screens/more-screens/manage-user-page.dart';
 
 class BottomNavBarExample extends StatefulWidget {
+  const BottomNavBarExample({super.key});
+
   @override
   _BottomNavBarExampleState createState() => _BottomNavBarExampleState();
 }
@@ -16,10 +14,10 @@ class _BottomNavBarExampleState extends State<BottomNavBarExample> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    MyCompaniesPage(),
-    SignUpScreen(),
-    DashboardScreen(),
-    MoreScreen(),
+    const EWayLogin(),
+    const GSPSetupLoginPage(),
+    const ManageUsersPage(),
+    const EWayLogin(),
   ];
 
   void _onTabTapped(int index) {
@@ -33,7 +31,7 @@ class _BottomNavBarExampleState extends State<BottomNavBarExample> {
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)), // Rounded corners
+          borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)), // Rounded corners
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white, // Background color
@@ -42,14 +40,14 @@ class _BottomNavBarExampleState extends State<BottomNavBarExample> {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 2,
                   blurRadius: 8,
-                  offset: Offset(0, 3), // Position of the shadow
+                  offset: const Offset(0, 3), // Position of the shadow
                 ),
               ],
             ),
             child: BottomNavigationBar(
               currentIndex: _currentIndex,
               onTap: _onTabTapped,
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: 'Home',

@@ -14,25 +14,25 @@ class MyCompaniesPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: IconButton(
-              icon: Icon(Icons.search, color: blackColor),
+              icon: const Icon(Icons.search, color: blackColor),
               onPressed: () {},
             ),
           ),
         ],
         
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: Text('My Companies', style: TextStyle(color: Colors.black, fontSize: 20)),
+        title: const Text('My Companies', style: TextStyle(color: Colors.black, fontSize: 20)),
         
       ),
       
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
   onPressed: () {},
-  label: Text('Add Company', style: TextStyle(color: whiteColor),),
-  icon: Icon(Icons.business, color: whiteColor,),
+  label: const Text('Add Company', style: TextStyle(color: whiteColor),),
+  icon: const Icon(Icons.business, color: whiteColor,),
   backgroundColor: mainBlueColor,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(30),
@@ -44,25 +44,25 @@ class MyCompaniesPage extends StatelessWidget {
           children: [
             ListTile(
               tileColor: whiteColor,
-              leading: Icon(Icons.business, color: mainBlueColor,),
-              title: Text('Demo Company'),
-              trailing: Icon(Icons.delete_forever, color: Colors.red,),
+              leading: const Icon(Icons.business, color: mainBlueColor,),
+              title: const Text('Demo Company'),
+              trailing: const Icon(Icons.delete_forever, color: Colors.red,),
               onTap: () {},
             ),
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 0.1),
              ListTile(
               tileColor: whiteColor,
-              leading: Icon(Icons.business, color: mainBlueColor,),
-              title: Text('Shaiz Enterprises'),
-              trailing: Icon(
+              leading: const Icon(Icons.business, color: mainBlueColor,),
+              title: const Text('Shaiz Enterprises'),
+              trailing: const Icon(
                 Icons.delete_forever,
                 color: Colors.red,
               ),
               onTap: () {},
             ),
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 0.1,)
           ],

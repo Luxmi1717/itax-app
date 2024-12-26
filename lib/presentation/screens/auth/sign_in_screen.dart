@@ -17,8 +17,8 @@ class SignInScreen extends StatelessWidget {
         TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     return Scaffold(
-      appBar: GradientAppBar(
-        leadingWidget: const Padding(
+      appBar: const GradientAppBar(
+        leadingWidget: Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             'Login',
@@ -72,14 +72,18 @@ class SignInScreen extends StatelessWidget {
                       controller: emailOrPhoneController,
                       hintText: 'Email or Phone Number',
                       ifPasswordField: false,
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 20),
                     CustomTextInput(
                       controller: passwordController,
                       hintText: 'Password',
                       ifPasswordField: true,
-                      validator: (value) {},
+                      validator: (value) {
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 10),
                     Row(
@@ -136,9 +140,9 @@ class SignInScreen extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 5.h),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Center(child: Text('or login with')),
                       ],
                     ),
@@ -184,7 +188,7 @@ class SignInScreen extends StatelessWidget {
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Sign Up',
                           style: TextStyle(color: mainBlueColor),
                         ),
@@ -204,14 +208,14 @@ class SignInScreen extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return ForgotPasswordStep1();
+        return const ForgotPasswordStep1();
       },
     );
   }
 }
 
 class ForgotPasswordStep1 extends StatelessWidget {
-  const ForgotPasswordStep1({Key? key}) : super(key: key);
+  const ForgotPasswordStep1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -236,7 +240,7 @@ class ForgotPasswordStep1 extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your mobile number or email for verification purposes'),
+          const Text('Enter your mobile number or email for verification purposes'),
           SizedBox(
             height: 4.h,
           ),
@@ -244,7 +248,9 @@ class ForgotPasswordStep1 extends StatelessWidget {
             controller: phoneController,
             hintText: "Mobile Number or Email",
             ifPasswordField: false,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -265,14 +271,14 @@ class ForgotPasswordStep1 extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return ForgotPasswordStep2();
+        return const ForgotPasswordStep2();
       },
     );
   }
 }
 
 class ForgotPasswordStep2 extends StatelessWidget {
-  const ForgotPasswordStep2({Key? key}) : super(key: key);
+  const ForgotPasswordStep2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -297,7 +303,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text(
+          const Text(
               'Enter the 4 digits code that you received on your Mobile Number or email.'),
           SizedBox(
             height: 4.h,
@@ -330,14 +336,14 @@ class ForgotPasswordStep2 extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return ForgotPasswordStep3();
+        return const ForgotPasswordStep3();
       },
     );
   }
 }
 
 class ForgotPasswordStep3 extends StatelessWidget {
-  const ForgotPasswordStep3({Key? key}) : super(key: key);
+  const ForgotPasswordStep3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -362,7 +368,7 @@ class ForgotPasswordStep3 extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text(
+          const Text(
               'Set the new password for your account so you can login and and access all the features.'),
           SizedBox(
             height: 2.h,
@@ -371,7 +377,9 @@ class ForgotPasswordStep3 extends StatelessWidget {
             controller: newPasswordController,
             hintText: "New Password",
             ifPasswordField: false,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(
             height: 2.h,
@@ -380,7 +388,9 @@ class ForgotPasswordStep3 extends StatelessWidget {
             controller: ConfirmNewPasswordController,
             hintText: "Confirm New Password",
             ifPasswordField: false,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 2.h),
           BlueButton(
@@ -399,14 +409,14 @@ class ForgotPasswordStep3 extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-        return ForgotPasswordStep4();
+        return const ForgotPasswordStep4();
       },
     );
   }
 }
 
 class ForgotPasswordStep4 extends StatelessWidget {
-  const ForgotPasswordStep4({Key? key}) : super(key: key);
+  const ForgotPasswordStep4({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -427,7 +437,7 @@ class ForgotPasswordStep4 extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Your password has been updated'),
+          const Text('Your password has been updated'),
           SizedBox(
             height: 2.h,
           ),

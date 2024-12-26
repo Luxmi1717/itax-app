@@ -338,7 +338,7 @@ class AuthProvider with ChangeNotifier {
   String _password = '';
   String _token = '';
   NewUserModel? _user;
-  String _otp = '';
+  final String _otp = '';
   BusinessModel? _business;
 
   // Getters for the private fields

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class ChangeEmail extends StatelessWidget {
-  const ChangeEmail({Key? key}) : super(key: key);
+  const ChangeEmail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class ChangeEmail extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your Email'),
+          const Text('Enter your Email'),
           SizedBox(
             height: 2.h,
           ),
@@ -40,7 +40,9 @@ class ChangeEmail extends StatelessWidget {
             controller: phoneController,
             hintText: "Email",
             ifPasswordField: false,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -57,7 +59,7 @@ class ChangeEmail extends StatelessWidget {
 }
 
 class ChangePassword extends StatelessWidget {
-  const ChangePassword({Key? key}) : super(key: key);
+  const ChangePassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +87,7 @@ class ChangePassword extends StatelessWidget {
             SizedBox(
               height: 1.h,
             ),
-            Text('Enter your new password'),
+            const Text('Enter your new password'),
             SizedBox(
               height: 2.h,
             ),
@@ -93,7 +95,9 @@ class ChangePassword extends StatelessWidget {
               controller: passwordController,
               hintText: "New Password",
               ifPasswordField: false,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(
               height: 2.h,
@@ -102,7 +106,9 @@ class ChangePassword extends StatelessWidget {
               controller: confirmPasswordController,
               hintText: "Confirm Password",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             BlueButton(
@@ -119,7 +125,7 @@ class ChangePassword extends StatelessWidget {
 }
 
 class ChangeMobileNo extends StatelessWidget {
-  const ChangeMobileNo({Key? key}) : super(key: key);
+  const ChangeMobileNo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +150,7 @@ class ChangeMobileNo extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your Mobile Number'),
+          const Text('Enter your Mobile Number'),
           SizedBox(
             height: 4.h,
           ),
@@ -152,7 +158,9 @@ class ChangeMobileNo extends StatelessWidget {
             controller: mobileController,
             hintText: "Mobile Number",
             ifPasswordField: true,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -168,7 +176,7 @@ class ChangeMobileNo extends StatelessWidget {
 }
 
 class ChangeName extends StatelessWidget {
-  const ChangeName({Key? key}) : super(key: key);
+  const ChangeName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -193,7 +201,7 @@ class ChangeName extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your Name'),
+          const Text('Enter your Name'),
           SizedBox(
             height: 4.h,
           ),
@@ -201,7 +209,9 @@ class ChangeName extends StatelessWidget {
             controller: mobileController,
             hintText: "Name",
             ifPasswordField: true,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -217,7 +227,7 @@ class ChangeName extends StatelessWidget {
 }
 
 class AddPANNumber extends StatelessWidget {
-  const AddPANNumber({Key? key}) : super(key: key);
+  const AddPANNumber({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -242,7 +252,7 @@ class AddPANNumber extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your PAN Number'),
+          const Text('Enter your PAN Number'),
           SizedBox(
             height: 4.h,
           ),
@@ -250,7 +260,9 @@ class AddPANNumber extends StatelessWidget {
             controller: mobileController,
             hintText: "PAN Number",
             ifPasswordField: true,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -266,7 +278,7 @@ class AddPANNumber extends StatelessWidget {
 }
 
 class AddGSTNumber extends StatelessWidget {
-  const AddGSTNumber({Key? key}) : super(key: key);
+  const AddGSTNumber({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -291,7 +303,7 @@ class AddGSTNumber extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your GST Number'),
+          const Text('Enter your GST Number'),
           SizedBox(
             height: 4.h,
           ),
@@ -299,7 +311,9 @@ class AddGSTNumber extends StatelessWidget {
             controller: mobileController,
             hintText: "GST Number",
             ifPasswordField: true,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -315,7 +329,7 @@ class AddGSTNumber extends StatelessWidget {
 }
 
 class AddAadharNumber extends StatelessWidget {
-  const AddAadharNumber({Key? key}) : super(key: key);
+  const AddAadharNumber({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -340,7 +354,7 @@ class AddAadharNumber extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text(' Enter your Aadhar Number'),
+          const Text(' Enter your Aadhar Number'),
           SizedBox(
             height: 4.h,
           ),
@@ -348,7 +362,9 @@ class AddAadharNumber extends StatelessWidget {
             controller: mobileController,
             hintText: "Aadhar Number",
             ifPasswordField: true,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -364,7 +380,7 @@ class AddAadharNumber extends StatelessWidget {
 }
 
 class AddBusinessName extends StatelessWidget {
-  const AddBusinessName({Key? key}) : super(key: key);
+  const AddBusinessName({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -389,7 +405,7 @@ class AddBusinessName extends StatelessWidget {
           SizedBox(
             height: 1.h,
           ),
-          Text('Enter your Business Name'),
+          const Text('Enter your Business Name'),
           SizedBox(
             height: 4.h,
           ),
@@ -397,7 +413,9 @@ class AddBusinessName extends StatelessWidget {
             controller: mobileController,
             hintText: "Business Name",
             ifPasswordField: true,
-            validator: (value) {},
+            validator: (value) {
+              return null;
+            },
           ),
           SizedBox(height: 4.h),
           BlueButton(
@@ -413,7 +431,7 @@ class AddBusinessName extends StatelessWidget {
 }
 
 class AddBankDetails extends StatelessWidget {
-  const AddBankDetails({Key? key}) : super(key: key);
+  const AddBankDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -447,35 +465,45 @@ class AddBankDetails extends StatelessWidget {
               controller: IFSCController,
               hintText: "Enter IFSC",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             CustomTextInput(
               controller: BankNameController,
               hintText: "Bank Name",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             CustomTextInput(
               controller: BranchNameController,
               hintText: "Pincode",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             CustomTextInput(
               controller: AccNumberController,
               hintText: "Bank account Number",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             CustomTextInput(
               controller: confirmAccNumberController,
               hintText: "Confirm Bank account Number",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             BlueButton(
@@ -494,7 +522,7 @@ class AddBankDetails extends StatelessWidget {
 
 
 class AddAddress extends StatelessWidget {
-  const AddAddress({Key? key}) : super(key: key);
+  const AddAddress({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -525,21 +553,27 @@ class AddAddress extends StatelessWidget {
               controller: BusinessAddressController,
               hintText: "Business Address",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             CustomTextInput(
               controller: StateController,
               hintText: "State",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
             SizedBox(height: 4.h),
             CustomTextInput(
               controller: PincodeController,
               hintText: "Bank Branch Name",
               ifPasswordField: true,
-              validator: (value) {},
+              validator: (value) {
+                return null;
+              },
             ),
            
             SizedBox(height: 4.h),

@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/main.dart';
 import 'package:sizer/sizer.dart';
 
 class BlueButton extends StatelessWidget {
@@ -9,10 +8,10 @@ class BlueButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const BlueButton({
-    Key? key,
+    super.key,
     required this.title,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

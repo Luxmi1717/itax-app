@@ -6,11 +6,11 @@ class CustomTextInput extends StatefulWidget {
   final bool ifPasswordField;
 
   const CustomTextInput({
-    Key? key,
+    super.key,
     required this.controller,
     required this.hintText,
     required this.ifPasswordField, required String? Function(dynamic value) validator,
-  }) : super(key: key);
+  });
 
   @override
   _CustomTextInputState createState() => _CustomTextInputState();
@@ -31,13 +31,13 @@ class _CustomTextInputState extends State<CustomTextInput> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.0), // Updated radius
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.grey, // Color for the border when not focused
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.0), // Updated radius
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.blue, // Color for the border when focused
             width: 2.0,
           ),
