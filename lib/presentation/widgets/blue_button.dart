@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
-import 'package:sizer/sizer.dart';
 
 class BlueButton extends StatelessWidget {
   final String title;
@@ -25,7 +25,7 @@ class BlueButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: Text(title, style: TextStyle(color: whiteColor, fontSize: 16.px)),
+        child: Text(title, style: TextStyle(color: whiteColor, fontSize: 16.sp)),
       ),
     );
   }

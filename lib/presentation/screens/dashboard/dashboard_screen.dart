@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/utility/dashboard-services.dart';
-import 'package:sizer/sizer.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -39,12 +39,12 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 9.h,
+                height: 55.h,
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Search...',
@@ -68,7 +68,7 @@ class DashboardScreen extends StatelessWidget {
                   Text(
                     'Services',
                     style: TextStyle(
-                        fontSize: 20.px,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: mainBlueColor),
                   ),
@@ -101,13 +101,13 @@ class DashboardScreen extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      height: 20.h, 
-                      width: 20.w, 
+                      height: 18.h, 
+                      width: 18.w, 
                     ),
                   );
                 }),
               ),
-              SizedBox(height: 4.h),
+              SizedBox(height: 40.h),
               Row(
                 children: [
                   Expanded(
@@ -120,10 +120,11 @@ class DashboardScreen extends StatelessWidget {
                   Text(
                     'Tools',
                     style: TextStyle(
-                        fontSize: 20.px,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
                         color: mainBlueColor),
                   ),
+                  SizedBox(height: 20.h,),
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(left: 4.w),
@@ -152,8 +153,8 @@ class DashboardScreen extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      height: 20.h, 
-                      width: 20.w, 
+                      height: 18.h, 
+                      width: 18.w, 
                     ),
                   );
                 }),

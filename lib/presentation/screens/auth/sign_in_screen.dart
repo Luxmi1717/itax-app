@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
-import 'package:itax/presentation/widgets/custom_appbar.dart';
+import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
 import 'package:itax/repositories/auth_repository.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -53,21 +53,21 @@ class SignInScreen extends StatelessWidget {
                       'Hello there, Login to continue',
                       style: TextStyle(
                           color: Colors.grey,
-                          fontSize: 12.px,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 6.h),
+                    SizedBox(height: 40.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
                           'assets/images/login-image.png',
-                          width: 60.w,
-                          height: 25.h,
+                          width: 150.w,
+                          height: 150.h,
                         ),
                       ],
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 40.h),
                     CustomTextInput(
                       controller: emailOrPhoneController,
                       hintText: 'Email or Phone Number',
@@ -139,20 +139,20 @@ class SignInScreen extends StatelessWidget {
                         }
                       },
                     ),
-                    SizedBox(height: 5.h),
+                    SizedBox(height: 20.h),
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Center(child: Text('or login with')),
                       ],
                     ),
-                    SizedBox(height: 2.h),
+                    SizedBox(height: 10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 30.w,
-                          height: 10.h,
+                          width: 100.w,
+                          height: 70.h,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10),
@@ -164,8 +164,8 @@ class SignInScreen extends StatelessWidget {
                         ),
                         const SizedBox(width: 20),
                         Container(
-                          height: 10.h,
-                          width: 30.w,
+                          height: 70.h,
+                          width: 100.w,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(10),
@@ -232,7 +232,7 @@ class ForgotPasswordStep1 extends StatelessWidget {
           Text(
             'Forgot Password',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -295,7 +295,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
           Text(
             'Enter OTP',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -314,7 +314,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
             defaultPinTheme: PinTheme(
               width: 40.w,
               height: 10.h,
-              textStyle: TextStyle(fontSize: 20.px, color: blackColor),
+              textStyle: TextStyle(fontSize: 20.sp, color: blackColor),
             ),
           ),
           SizedBox(height: 4.h),
@@ -360,7 +360,7 @@ class ForgotPasswordStep3 extends StatelessWidget {
           Text(
             'Reset Password',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -429,7 +429,7 @@ class ForgotPasswordStep4 extends StatelessWidget {
           Text(
             'Password Updated',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),

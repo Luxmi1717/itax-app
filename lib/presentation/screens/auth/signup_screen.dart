@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/models/new_user_model.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
-import 'package:itax/presentation/widgets/custom_appbar.dart';
+import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
 import 'package:itax/repositories/auth_repository.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -34,7 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: GradientAppBar(
         leadingWidget: Padding(
           padding: EdgeInsets.only(left: 2.w, top: 2.h),
-          child: const Text('Sign up', style: TextStyle(color: Colors.white)),
+          child:  Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 20.sp)),
         ),
       ),
       body: Form(
@@ -45,18 +45,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
                   'Welcome to us',
                   style: TextStyle(
                       color: mainBlueColor,
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.bold),
                 ),
                 const Text(
                   'Hello there, Create New Account',
                   style: TextStyle(color: Colors.grey),
                 ),
-                SizedBox(height: 6.h),
+                SizedBox(height: 30.h),
                 CustomTextInput(
                   controller: fullNameController,
                   hintText: 'First Name',
@@ -64,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: (value) =>
                       value!.isEmpty ? 'First Name is required' : null,
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 20.h),
 
                 CustomTextInput(
                   controller: fullNameController,
@@ -73,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: (value) =>
                       value!.isEmpty ? 'Last Name is required' : null,
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 20.h),
                 CustomTextInput(
                   controller: emailController,
                   hintText: 'Email',
@@ -81,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: (value) =>
                       value!.contains('@') ? null : 'Enter a valid email',
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 20.h),
                 CustomTextInput(
                   controller: phoneNumberController,
                   hintText: 'Phone Number',
@@ -89,7 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   validator: (value) =>
                       value!.length == 10 ? null : 'Enter a valid phone number',
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 20.h),
                 CustomTextInput(
                   controller: passwordController,
                   hintText: 'Password',
@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ? null
                       : 'Password must be at least 6 characters',
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 20.h),
                 CustomTextInput(
                   controller: confirmPasswordController,
                   hintText: 'Confirm Password',
@@ -107,6 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ? null
                       : 'Passwords do not match',
                 ),
+                SizedBox(height: 10.h,),
                 Row(
                   children: [
                     Checkbox(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
 import 'package:itax/repositories/auth_repository.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class ChangeEmail extends StatelessWidget {
   const ChangeEmail({super.key});
@@ -24,7 +24,7 @@ class ChangeEmail extends StatelessWidget {
            Text(
             'Change Email',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -79,7 +79,7 @@ class ChangePassword extends StatelessWidget {
             Text(
               'Change Password',
               style: TextStyle(
-                fontSize: 18.px,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -142,7 +142,7 @@ class ChangeMobileNo extends StatelessWidget {
           Text(
             'Change Mobile Number',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -193,7 +193,7 @@ class ChangeName extends StatelessWidget {
           Text(
             'Change Name',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -244,7 +244,7 @@ class AddPANNumber extends StatelessWidget {
           Text(
             'Add PAN Number',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -295,7 +295,7 @@ class AddGSTNumber extends StatelessWidget {
           Text(
             'Add GST Number',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -346,7 +346,7 @@ class AddAadharNumber extends StatelessWidget {
           Text(
             'Add Aadhar Number',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -397,7 +397,7 @@ class AddBusinessName extends StatelessWidget {
           Text(
             'Add Business Name',
             style: TextStyle(
-              fontSize: 18.px,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
               color: blackColor,
             ),
@@ -456,7 +456,7 @@ class AddBankDetails extends StatelessWidget {
             Text(
               ' Bank Details',
               style: TextStyle(
-                fontSize: 18.px,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),
@@ -544,7 +544,7 @@ class AddAddress extends StatelessWidget {
             Text(
               ' Add Address',
               style: TextStyle(
-                fontSize: 18.px,
+                fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
                 color: blackColor,
               ),

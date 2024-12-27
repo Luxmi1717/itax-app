@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/profile/profile-sliders.dart';
-import 'package:sizer/sizer.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,7 +9,9 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       appBar: AppBar(
+        backgroundColor: whiteColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context), // Navigate back
@@ -25,7 +27,7 @@ class ProfilePage extends StatelessWidget {
               child: Stack(
                 children: [
                   CircleAvatar(
-                    radius: 17.w,
+                    radius: 70.r,
                     backgroundImage: const AssetImage(
                         'assets/dummy_profile.png'), // Replace with your image
                   ),

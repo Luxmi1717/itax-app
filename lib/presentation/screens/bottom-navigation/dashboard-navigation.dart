@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:itax/presentation/screens/e-way-bill/e-way-login-page.dart';
-import 'package:itax/presentation/screens/more-screens/gsp-setup-page.dart';
-import 'package:itax/presentation/screens/more-screens/manage-user-page.dart';
+import 'package:itax/presentation/screens/auth/signup_screen.dart';
+import 'package:itax/presentation/screens/bank-and-cash-pages/add-new-bank-screen.dart';
+import 'package:itax/presentation/screens/dashboard/dashboard_screen.dart';
+import 'package:itax/presentation/screens/profile/profile-screen.dart';
 
 class BottomNavBarExample extends StatefulWidget {
   const BottomNavBarExample({super.key});
@@ -14,10 +15,10 @@ class _BottomNavBarExampleState extends State<BottomNavBarExample> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    const EWayLogin(),
-    const GSPSetupLoginPage(),
-    const ManageUsersPage(),
-    const EWayLogin(),
+    const AddNewBankScreen(),
+    const DashboardScreen(),
+    const ProfilePage(),
+    const SignUpScreen(),
   ];
 
   void _onTabTapped(int index) {
