@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/main.dart';
 
 class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leadingWidget;
@@ -24,6 +26,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       
       leading: leadingWidget,
+      leadingWidth: 100.w,
       actions: trailingWidgets,
     );
   }

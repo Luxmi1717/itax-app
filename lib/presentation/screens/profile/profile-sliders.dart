@@ -16,7 +16,7 @@ class ChangeEmail extends StatelessWidget {
     final TextEditingController phoneController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -30,11 +30,11 @@ class ChangeEmail extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your Email'),
           SizedBox(
-            height: 2.h,
+            height: 15.h,
           ),
           CustomTextInput(
             controller: phoneController,
@@ -44,7 +44,7 @@ class ChangeEmail extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -71,7 +71,7 @@ class ChangePassword extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -85,11 +85,11 @@ class ChangePassword extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 1.h,
+              height: 8.h,
             ),
             const Text('Enter your new password'),
             SizedBox(
-              height: 2.h,
+              height: 15.h,
             ),
             CustomTextInput(
               controller: passwordController,
@@ -100,7 +100,7 @@ class ChangePassword extends StatelessWidget {
               },
             ),
             SizedBox(
-              height: 2.h,
+              height: 15.h,
             ),
             CustomTextInput(
               controller: confirmPasswordController,
@@ -110,7 +110,7 @@ class ChangePassword extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             BlueButton(
               title: 'Save',
               onPressed: () {
@@ -134,7 +134,7 @@ class ChangeMobileNo extends StatelessWidget {
     final TextEditingController mobileController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -148,11 +148,11 @@ class ChangeMobileNo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your Mobile Number'),
           SizedBox(
-            height: 4.h,
+            height: 28.h,
           ),
           CustomTextInput(
             controller: mobileController,
@@ -162,7 +162,7 @@ class ChangeMobileNo extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -185,7 +185,7 @@ class ChangeName extends StatelessWidget {
     final TextEditingController mobileController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -199,11 +199,11 @@ class ChangeName extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your Name'),
           SizedBox(
-            height: 4.h,
+            height: 28.h,
           ),
           CustomTextInput(
             controller: mobileController,
@@ -213,7 +213,7 @@ class ChangeName extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -236,7 +236,7 @@ class AddPANNumber extends StatelessWidget {
     final TextEditingController mobileController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -250,11 +250,11 @@ class AddPANNumber extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your PAN Number'),
           SizedBox(
-            height: 4.h,
+            height: 28.h,
           ),
           CustomTextInput(
             controller: mobileController,
@@ -264,7 +264,7 @@ class AddPANNumber extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -287,7 +287,7 @@ class AddGSTNumber extends StatelessWidget {
     final TextEditingController mobileController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -301,11 +301,11 @@ class AddGSTNumber extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your GST Number'),
           SizedBox(
-            height: 4.h,
+            height: 28.h,
           ),
           CustomTextInput(
             controller: mobileController,
@@ -315,7 +315,7 @@ class AddGSTNumber extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -338,7 +338,7 @@ class AddAadharNumber extends StatelessWidget {
     final TextEditingController mobileController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -352,11 +352,11 @@ class AddAadharNumber extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text(' Enter your Aadhar Number'),
           SizedBox(
-            height: 4.h,
+            height: 28.h,
           ),
           CustomTextInput(
             controller: mobileController,
@@ -366,7 +366,7 @@ class AddAadharNumber extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -389,7 +389,7 @@ class AddBusinessName extends StatelessWidget {
     final TextEditingController mobileController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -403,11 +403,11 @@ class AddBusinessName extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your Business Name'),
           SizedBox(
-            height: 4.h,
+            height: 28.h,
           ),
           CustomTextInput(
             controller: mobileController,
@@ -417,7 +417,7 @@ class AddBusinessName extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 28.h),
           BlueButton(
             title: 'Save',
             onPressed: () {
@@ -448,7 +448,7 @@ class AddBankDetails extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -469,7 +469,7 @@ class AddBankDetails extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             CustomTextInput(
               controller: BankNameController,
               hintText: "Bank Name",
@@ -478,7 +478,7 @@ class AddBankDetails extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             CustomTextInput(
               controller: BranchNameController,
               hintText: "Pincode",
@@ -487,7 +487,7 @@ class AddBankDetails extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             CustomTextInput(
               controller: AccNumberController,
               hintText: "Bank account Number",
@@ -496,7 +496,7 @@ class AddBankDetails extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             CustomTextInput(
               controller: confirmAccNumberController,
               hintText: "Confirm Bank account Number",
@@ -505,7 +505,7 @@ class AddBankDetails extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             BlueButton(
               title: 'Save',
               onPressed: () {
@@ -536,7 +536,7 @@ class AddAddress extends StatelessWidget {
 
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 5.w),
+        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 7.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -557,7 +557,7 @@ class AddAddress extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             CustomTextInput(
               controller: StateController,
               hintText: "State",
@@ -566,7 +566,7 @@ class AddAddress extends StatelessWidget {
                 return null;
               },
             ),
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             CustomTextInput(
               controller: PincodeController,
               hintText: "Bank Branch Name",
@@ -576,7 +576,7 @@ class AddAddress extends StatelessWidget {
               },
             ),
            
-            SizedBox(height: 4.h),
+            SizedBox(height: 28.h),
             BlueButton(
               title: 'Save',
               onPressed: () {

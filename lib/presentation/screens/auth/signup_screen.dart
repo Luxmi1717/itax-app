@@ -34,7 +34,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: GradientAppBar(
         leadingWidget: Padding(
           padding: EdgeInsets.only(left: 2.w, top: 2.h),
-          child:  Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 20.sp)),
+          child:  Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 24.sp)),
         ),
       ),
       body: Form(

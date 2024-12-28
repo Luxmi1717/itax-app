@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TileTypeThree extends StatelessWidget {
+class BankTile extends StatelessWidget {
   final String leadingText1;
   final String leadingText2;
   final String leadingText3;
+  final String leadingContainerText;
   final String trailingText;
-  final bool ifTrailingContainer;
-  final bool ifGreen;
-  final String trailingContainerContent;
+  final Color trailingTextColor;
 
-  const TileTypeThree({
+  const BankTile({
     super.key,
     required this.leadingText1,
     required this.leadingText2,
     required this.leadingText3,
+    required this.leadingContainerText,
     required this.trailingText,
-    required this.ifTrailingContainer,
-    required this.trailingContainerContent,
-    required this.ifGreen,
+    required this.trailingTextColor,
   });
 
   @override
@@ -31,9 +29,27 @@ class TileTypeThree extends StatelessWidget {
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                leadingText1,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              Row(
+                children: [
+                  Text(
+                    leadingText1,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(width: 8.0),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      leadingContainerText,
+                      style: TextStyle(fontSize: 12.sp, color: Colors.black),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 4.0),
               Text(
@@ -53,22 +69,11 @@ class TileTypeThree extends StatelessWidget {
             children: [
               Text(
                 trailingText,
-                style:  TextStyle(fontSize: 16.sp, color: Colors.black, fontWeight: FontWeight.w600),
+                style: TextStyle(
+                    fontSize: 16.sp,
+                    color: trailingTextColor,
+                    fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 7.0),
-              ifTrailingContainer ? 
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              decoration: BoxDecoration(
-                color: ifGreen ? Colors.green.withOpacity(0.1): const Color.fromARGB(255, 190, 190, 190),
-                borderRadius: BorderRadius.circular(4),
-              ),
-                child: Text(
-                  trailingContainerContent,
-                  style:  TextStyle(fontSize: 12.sp, color: ifGreen ? Colors.green: Colors.black),
-                ),)
-              : Container(),
-              
             ],
           ),
         ),

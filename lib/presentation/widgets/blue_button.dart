@@ -17,11 +17,12 @@ class BlueButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+      height: 50.h,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: mainBlueColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(16.0),
           ),
         ),
         onPressed: onPressed,

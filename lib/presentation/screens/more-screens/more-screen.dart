@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itax/presentation/screens/more-screens/slider-widgets/help-and-support-slider-widget.dart';
 
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key});
@@ -74,7 +75,10 @@ class MoreScreen extends StatelessWidget {
               leading: const Icon(Icons.help),
               title: const Text('Help and Support'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                openBottomSheet(context, const HelpAndSupportSliderWidget());
+
+              },
             ),
                                     const Divider(
               color: Colors.grey,
@@ -115,3 +119,16 @@ class MoreScreen extends StatelessWidget {
     );
   }
 }
+
+
+void openBottomSheet(BuildContext context, Widget content) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return Container(
+         
+          child: content, 
+        );
+      },
+    );
+  }

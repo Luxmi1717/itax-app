@@ -17,12 +17,12 @@ class SignInScreen extends StatelessWidget {
         TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     return Scaffold(
-      appBar: const GradientAppBar(
+      appBar:  GradientAppBar(
         leadingWidget: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(12.0),
           child: Text(
             'Login',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 24.sp),
           ),
         ),
       ),
@@ -150,31 +150,37 @@ class SignInScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: 100.w,
-                          height: 70.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.mail),
-                            onPressed: () {},
-                          ),
+                      Container(
+                        width: 100.w,
+                        height: 70.h,
+                        decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
                         ),
-                        const SizedBox(width: 20),
-                        Container(
-                          height: 70.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: IconButton(
-                            icon: const Icon(Icons.phone),
-                            onPressed: () {},
-                          ),
+                        child: Center(
+                        child: Image.asset(
+                          'assets/images/google-logo.png',
+                          width: 40.w,
+                          height: 40.h,
                         ),
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Container(
+                        height: 70.h,
+                        width: 100.w,
+                        decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                        child: Image.asset(
+                          'assets/images/facebook-logo.png',
+                          width: 40.w,
+                          height: 40.h,
+                        ),
+                        ),
+                      ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -183,14 +189,14 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: const Text(
+                          child:  Text(
                             "Don't have an account?",
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(color: Colors.black, fontSize: 18.sp),
                           ),
                         ),
-                        const Text(
+                         Text(
                           'Sign Up',
-                          style: TextStyle(color: mainBlueColor),
+                          style: TextStyle(color: mainBlueColor, fontSize: 18.sp),
                         ),
                       ],
                     ),
@@ -224,7 +230,7 @@ class ForgotPasswordStep1 extends StatelessWidget {
     final TextEditingController phoneController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -238,11 +244,11 @@ class ForgotPasswordStep1 extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Enter your mobile number or email for verification purposes'),
           SizedBox(
-            height: 4.h,
+            height: 16.h,
           ),
           CustomTextInput(
             controller: phoneController,
@@ -252,7 +258,7 @@ class ForgotPasswordStep1 extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 4.h),
+          SizedBox(height: 16.h),
           BlueButton(
             title: 'Send OTP',
             onPressed: () {
@@ -287,7 +293,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
     TextEditingController otpController = TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -301,23 +307,31 @@ class ForgotPasswordStep2 extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text(
               'Enter the 4 digits code that you received on your Mobile Number or email.'),
           SizedBox(
-            height: 4.h,
+            height: 16.h,
           ),
           Pinput(
             length: 4,
             controller: otpController,
             defaultPinTheme: PinTheme(
-              width: 40.w,
-              height: 10.h,
-              textStyle: TextStyle(fontSize: 20.sp, color: blackColor),
+              width: 50.w,
+              height: 50.h,
+              textStyle: TextStyle(fontSize: 18.sp, color: blackColor),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(8.r),
+              ),
             ),
+            onCompleted: (pin) {
+              print("Entered OTP: $pin");
+            },
           ),
-          SizedBox(height: 4.h),
+
+          SizedBox(height: 16.h),
           BlueButton(
             title: 'Verify OTP',
             onPressed: () {
@@ -352,7 +366,7 @@ class ForgotPasswordStep3 extends StatelessWidget {
         TextEditingController();
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -366,12 +380,12 @@ class ForgotPasswordStep3 extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text(
               'Set the new password for your account so you can login and and access all the features.'),
           SizedBox(
-            height: 2.h,
+            height: 16.h,
           ),
           CustomTextInput(
             controller: newPasswordController,
@@ -382,7 +396,7 @@ class ForgotPasswordStep3 extends StatelessWidget {
             },
           ),
           SizedBox(
-            height: 2.h,
+            height: 16.h,
           ),
           CustomTextInput(
             controller: ConfirmNewPasswordController,
@@ -392,7 +406,7 @@ class ForgotPasswordStep3 extends StatelessWidget {
               return null;
             },
           ),
-          SizedBox(height: 2.h),
+          SizedBox(height: 16.h),
           BlueButton(
             title: 'Reset Password',
             onPressed: () {
@@ -421,7 +435,7 @@ class ForgotPasswordStep4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 8.w),
+      padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -435,19 +449,20 @@ class ForgotPasswordStep4 extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 1.h,
+            height: 8.h,
           ),
           const Text('Your password has been updated'),
           SizedBox(
-            height: 2.h,
+            height: 16.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/images/success.png',
-                  width: 40.w, height: 20.h),
+                  width: 70.w, height: 40.h),
             ],
           ),
+          SizedBox(height: 20.h,),
           BlueButton(
             title: 'Login',
             onPressed: () {
