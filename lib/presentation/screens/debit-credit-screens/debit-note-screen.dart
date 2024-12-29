@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-1-tile.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-2-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-2-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 
 class DebitPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-3-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-3-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 
 class DebitNotePerDate extends StatefulWidget {

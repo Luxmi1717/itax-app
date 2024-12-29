@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-1-tile.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-2-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-2-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 
 class SalesMonthlyPage extends StatefulWidget {
@@ -37,6 +39,12 @@ class _SalesMonthlyPageState extends State<SalesMonthlyPage> {
         subtitle: 'Total sales',
         pageTitle: 'Sales',
         onBackPressed: () {},
+        onSortPressed: () {
+          openBottomSheet(context, const SortByOptionsSlider());
+        },
+        onMorePressed: () {
+          openBottomSheet(context, const SalesOptionsSlider());
+        },
       ),
       body: Column(
         children: [
@@ -164,4 +172,15 @@ class UnpaidSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Placeholder();
   }
+}
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

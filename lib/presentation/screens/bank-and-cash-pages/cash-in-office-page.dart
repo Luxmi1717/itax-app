@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/bank-tile-widget.dart';
+import 'package:itax/presentation/screens/bank-and-cash-pages/widgets/add-reduce-money-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 
@@ -18,11 +21,20 @@ class _SalesOnDayPageState extends State<CashInOfficePage> {
     return Scaffold(
       bottomNavigationBar: Container(
           padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 24.w),
-          child: BlueButton(title: 'Add/Reduce money', onPressed: () {})),
+          child: BlueButton(title: 'Add/Reduce money', onPressed: () {
+            openBottomSheet(context,  AddReduceMoneySlider());
+          })),
       appBar: CustomAppBar(
           title: '₹ 27,08,015',
           subtitle: 'Total Balance',
-          pageTitle: 'Cash in Office'),
+          pageTitle: 'Cash in Office',
+          onMorePressed: (){
+            openBottomSheet(context, const SalesOptionsSlider());
+          },
+          onSortPressed: (){
+            openBottomSheet(context, const SortByOptionsSlider());
+          },
+          ),
       body: Column(
         children: [
           // Horizontal Scrollable Tags
@@ -84,4 +96,15 @@ class CustomersSection extends StatelessWidget {
       ),
     );
   }
+}
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

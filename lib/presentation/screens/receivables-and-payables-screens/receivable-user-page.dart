@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
 
 class ReceivableUserPage extends StatelessWidget {
   const ReceivableUserPage({super.key});
@@ -90,12 +91,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       IconButton(
                         icon: const Icon(Icons.search, color: Colors.white),
-                        onPressed: onSearchPressed,
+                        onPressed: () {
+                        
+                        },
                       ),
                       IconButton(
                         icon: const Icon(Icons.sort, color: Colors.white),
-                        onPressed: onSortPressed,
+                        onPressed: (){
+                            openBottomSheet(context, SortByOptionsSlider());
+                        },
                       ),
+                      
                     
                     ],
                   ),
@@ -285,4 +291,15 @@ class CustomTile extends StatelessWidget {
       ],
     );
   }
+}
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

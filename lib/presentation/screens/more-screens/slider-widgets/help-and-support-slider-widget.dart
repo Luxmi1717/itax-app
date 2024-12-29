@@ -17,11 +17,12 @@ class HelpAndSupportSliderWidget extends StatelessWidget {
             Row(
               children: [
                 Image.asset('assets/images/whatsapp.png'),
-                SizedBox(width: 6.w),
+                SizedBox(width: 7.w),
                 Text(
                   'WhatsApp Support',
                   style: TextStyle(
                     fontSize: 20.sp,
+                    color: const Color.fromARGB(255, 127, 127, 127)
                   ),
                 ),
               ],
@@ -33,11 +34,11 @@ class HelpAndSupportSliderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Icon(Icons.phone, color: Colors.blue),
-                                SizedBox(width: 6.w),
+                                SizedBox(width: 7.w),
 
                               
       
-                Text('Call for Support', style: TextStyle( fontSize: 20.sp)),
+                Text('Call for Support', style: TextStyle( fontSize: 20.sp, color: Color.fromARGB(255, 127, 127, 127))),
               ],
             ),
           ],

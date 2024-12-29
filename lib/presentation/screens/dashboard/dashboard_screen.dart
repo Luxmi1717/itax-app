@@ -10,8 +10,9 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: 80.w,
         leading: Padding(
-          padding: EdgeInsets.only(left: 4.w),
+          padding: EdgeInsets.only(left: 7.w),
           child: Image.asset(
               'assets/images/itaxlogo.png'), // Replace with your logo asset
         ),
@@ -159,6 +160,92 @@ class DashboardScreen extends StatelessWidget {
                   );
                 }),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10.w),
+                    padding: EdgeInsets.symmetric(horizontal:  10.w,vertical: 5.h),
+                    width: 140.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      color: mainBlueColor.withOpacity(0.1),
+                      border: Border.all(color: mainBlueColor),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'View More',
+                        style: TextStyle(
+                          color: mainBlueColor,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+
+               SizedBox(height: 20.h),
+
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Fill your ITR for free',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 5.h),
+                          Text(
+                            'Fill your Income Tax returns \nfor free in just minutes \n- Completely Free!',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                          SizedBox(height: 10.h),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                            decoration: BoxDecoration(
+                              
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: whiteColor),
+                            ),
+                            
+                            child: Text(
+                              'Apply Now',
+                              style: TextStyle(
+                                color: whiteColor,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 10.w),
+                    CircleAvatar(
+                      radius: 30.w,
+                      backgroundImage: AssetImage('assets/photo.png'), // Replace with your photo asset
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

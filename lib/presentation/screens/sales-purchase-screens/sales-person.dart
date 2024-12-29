@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-4-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-4-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 
 class SalesPerUserPage extends StatefulWidget {
@@ -19,6 +21,12 @@ class _SalesOnDayPageState extends State<SalesPerUserPage> {
         subtitle: 'Total sales',
         pageTitle: 'Monu Pathak',
         onBackPressed: () {},
+        onSortPressed: () {
+          openBottomSheet(context, const SortByOptionsSlider());
+        },
+        onMorePressed: () {
+          openBottomSheet(context, const SalesOptionsSlider());
+        },
       ),
       body: const Column(
         children: [
@@ -74,4 +82,16 @@ class CustomersSection extends StatelessWidget {
       ),
     );
   }
+}
+
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

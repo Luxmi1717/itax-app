@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/receivables-and-payables-screens/widgets/receivable-ageing-tile-widget.dart';
 import 'package:itax/presentation/screens/receivables-and-payables-screens/widgets/receivables-customer-tile-widget.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-1-tile.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-2-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-2-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 
 class ReceivablesPage extends StatefulWidget {
@@ -36,6 +38,12 @@ class _SalesMonthlyPageState extends State<ReceivablesPage> {
         subtitle: 'Total Amount',
         pageTitle: 'Receivables',
         onBackPressed: () {},
+        onSortPressed: () {
+          openBottomSheet(context, const SortByOptionsSlider());
+        },
+        onMorePressed: () {
+          openBottomSheet(context, const SalesOptionsSlider());
+        },
       ),
       body: Column(
         children: [
@@ -152,4 +160,15 @@ class CustomersSection extends StatelessWidget {
       ),
     );
   }
+}
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

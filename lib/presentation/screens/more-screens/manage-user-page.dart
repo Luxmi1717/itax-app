@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/presentation/screens/more-screens/slider-widgets/add-user-slider-widget.dart';
 
 class ManageUsersPage extends StatelessWidget {
   const ManageUsersPage({super.key});
@@ -30,7 +31,9 @@ class ManageUsersPage extends StatelessWidget {
       
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-  onPressed: () {},
+  onPressed: () {
+    openBottomSheet(context, AddUserSlider());
+  },
   label: const Text('Add User', style: TextStyle(color: whiteColor),),
   icon: const Icon(Icons.person_add, color: whiteColor,),
   backgroundColor: mainBlueColor,
@@ -176,4 +179,16 @@ ListTile(
 
     );
   }
+}
+
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

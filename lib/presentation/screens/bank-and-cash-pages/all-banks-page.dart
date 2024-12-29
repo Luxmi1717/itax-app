@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-1-tile.dart';
+import 'package:itax/presentation/screens/bank-and-cash-pages/widgets/add-cash-category.dart';
+import 'package:itax/presentation/screens/more-screens/slider-widgets/add-user-slider-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
 
 class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
   final TabController tabController;
@@ -40,11 +44,15 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
               ),
               IconButton(
                 icon: const Icon(Icons.sort, color: whiteColor),
-                onPressed: () {},
+                onPressed: () {
+                  openBottomSheet(context, SortByOptionsSlider());
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.more_horiz, color: whiteColor),
-                onPressed: () {},
+                onPressed: () {
+                  openBottomSheet(context, SalesOptionsSlider());
+                },
               ),
             ],
           ),
@@ -168,7 +176,9 @@ class _BankCashScreenState extends State<AllBanksPage>
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: mainBlueColor,
-        onPressed: () {},
+        onPressed: () {
+          openBottomSheet(context, AddCashSlider());
+        },
         icon: const Icon(Icons.add, color: whiteColor,),
         label: selectedIndex == 0 ? const Text('Add New Bank', style: TextStyle(color: whiteColor),): const Text('Add Category', style: TextStyle(color: whiteColor),
               ),
@@ -222,4 +232,15 @@ class CashContentWidget extends StatelessWidget {
     );
     
   }
+}
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

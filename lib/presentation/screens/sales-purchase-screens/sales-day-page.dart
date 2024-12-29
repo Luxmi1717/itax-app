@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
-import 'package:itax/presentation/screens/sales-purchase-screens/type-3-tile.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/date-filter-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
+import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-3-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 
 class SalesOnDayPage extends StatefulWidget {
@@ -19,34 +22,49 @@ class _SalesOnDayPageState extends State<SalesOnDayPage> {
         title: 'Rs 50,21,333',
         subtitle: 'Total sales',
         pageTitle: 'Sales',
-        onBackPressed: () {},
+        onBackPressed: () {
+          Navigator.pop(context);
+        },
+        onSortPressed: (){
+          openBottomSheet(context, const SortByOptionsSlider());
+          
+        },
+        onMorePressed: (){
+          openBottomSheet(context, const SalesOptionsSlider());
+
+        },
       ),
-      body: const Column(
+      body:  Column(
         children: [
           // Horizontal Scrollable Tags
          
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.calendar_today,
-                  color: mainBlueColor,
-                ),
-                Text('Financial Year',
-                    style: TextStyle(color: blackColor, fontSize: 14)),
-                Text(' (1Apr 24 to 31 Mar 25)'),
-                Spacer(),
-                Text('Change',
-                    style: TextStyle(color: mainBlueColor, fontSize: 14)),
-              ],
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            child: InkWell(
+              onTap: () {
+                openBottomSheet(context, const DateOptionsSlider());
+              },
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.calendar_today,
+                    color: mainBlueColor,
+                  ),
+                  Text('Financial Year',
+                      style: TextStyle(color: blackColor, fontSize: 14)),
+                  Text(' (1Apr 24 to 31 Mar 25)'),
+                  Spacer(),
+                  Text('Change',
+                      style: TextStyle(color: mainBlueColor, fontSize: 14)),
+                ],
+              ),
             ),
           ),
 
-          Divider(thickness: 3),
+          const Divider(thickness: 3),
 
           // Dynamic Content Area
-          Expanded(
+          const Expanded(
             
               child: CustomersSection(),
             
@@ -72,4 +90,16 @@ class CustomersSection extends StatelessWidget {
       ),
     );
   }
+}
+
+
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }

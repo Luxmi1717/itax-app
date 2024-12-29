@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/presentation/screens/e-way-bill/slider-widgets/gsp-login-slider.dart';
 
 class GSPSetupLoginPage extends StatelessWidget {
   const GSPSetupLoginPage({super.key});
@@ -13,12 +14,17 @@ class GSPSetupLoginPage extends StatelessWidget {
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text('GSP Setup', style: TextStyle(color: Colors.black, fontSize: 18)),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Text(
-              'Login',
-              style: TextStyle(color: mainBlueColor, fontWeight: FontWeight.bold, fontSize: 18),
+        actions:  [
+          InkWell(
+            onTap: (){
+              openBottomSheet(context, GspLoginSlider());
+            },
+            child: Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Text(
+                'Login',
+                style: TextStyle(color: mainBlueColor, fontWeight: FontWeight.bold, fontSize: 18),
+              ),
             ),
           ),
         ],
@@ -34,4 +40,14 @@ class GSPSetupLoginPage extends StatelessWidget {
             ),
       ));
   }
+}
+void openBottomSheet(BuildContext context, Widget content) {
+  showModalBottomSheet(
+    context: context,
+    builder: (_) {
+      return Container(
+        child: content,
+      );
+    },
+  );
 }
