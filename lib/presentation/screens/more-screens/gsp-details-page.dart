@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 
 class GSPSetupPage extends StatelessWidget {
@@ -15,7 +16,8 @@ class GSPSetupPage extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
-              onPressed: () => Navigator.of(context).pop(),
+                       onPressed: () => GoRouter.of(context).go('/home'),
+
             ),
           ),
           actions: const [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
@@ -38,7 +39,9 @@ class _SalesMonthlyPageState extends State<SalesMonthlyPage> {
         title: 'Rs 50,21,333',
         subtitle: 'Total sales',
         pageTitle: 'Sales',
-        onBackPressed: () {},
+        onBackPressed: () {
+          GoRouter.of(context).go('/home');
+        },
         onSortPressed: () {
           openBottomSheet(context, const SortByOptionsSlider());
         },
@@ -121,13 +124,24 @@ class MonthlySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TileTypeOne(leadingText: 'MOney', trailingText: 
-          'Rs 50,21,333'),
-          TileTypeOne(leadingText: 'MOney', trailingText: 'Rs 50,21,333'),
-          TileTypeOne(leadingText: 'MOney', trailingText: 'Rs 50,21,333'),
+          TileTypeOne(leadingText: 'Money', trailingText: 
+          'Rs 50,21,333', onTap: (){
+            GoRouter.of(context).go('/sales-on-day');
+
+          },),
+          TileTypeOne(leadingText: 'Money', trailingText: 'Rs 50,21,333', onTap: (){
+            GoRouter.of(context).go('/sales-on-day');
+
+          },),
+          TileTypeOne(leadingText: 'Money', trailingText: 'Rs 50,21,333', onTap: (){
+            GoRouter.of(context).go('/sales-on-day');
+
+          },),
           
           
         ],
@@ -141,14 +155,19 @@ class CustomersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          TileTypeTwo(leadingText: 'Monu Pathak', subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5', trailingText: '₹ 7,20,200'),
+          TileTypeTwo(leadingText: 'Monu Pathak', subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5', trailingText: '₹ 7,20,200', onTap: (){
+            GoRouter.of(context).go('/sales-per-user');
+          },),
                     TileTypeTwo(
               leadingText: 'Sanjay Sharma',
               subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 28,305')
+              trailingText: '₹ 28,305', onTap: (){
+            GoRouter.of(context).go('/sales-per-user');
+              }),
 
         ],
       ),
@@ -156,23 +175,7 @@ class CustomersSection extends StatelessWidget {
   }
 }
 
-class PaidSection extends StatelessWidget {
-  const PaidSection({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-class UnpaidSection extends StatelessWidget {
-  const UnpaidSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
 
 void openBottomSheet(BuildContext context, Widget content) {
   showModalBottomSheet(

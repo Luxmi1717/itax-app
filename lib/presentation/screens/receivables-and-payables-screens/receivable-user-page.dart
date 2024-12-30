@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
 
@@ -203,6 +204,7 @@ class CustomTile extends StatelessWidget {
   final String amount;
   final VoidCallback onWhatsAppPressed;
   final VoidCallback onPdfPressed;
+  // final void Function() ontap;
 
   const CustomTile({
     Key? key,
@@ -212,6 +214,7 @@ class CustomTile extends StatelessWidget {
     required this.amount,
     required this.onWhatsAppPressed,
     required this.onPdfPressed,
+    // required this.ontap
   }) : super(key: key);
 
   @override
@@ -262,7 +265,10 @@ class CustomTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
-                      onTap: onWhatsAppPressed,
+                      onTap: (){
+                        GoRouter.of(context).go('/user-receivable');
+
+                      },
                       child: Image.asset(
                         'assets/images/whatsapp.png',
                         height: 26.h,

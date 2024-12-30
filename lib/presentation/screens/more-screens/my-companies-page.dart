@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 
 class MyCompaniesPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class MyCompaniesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white60,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         actions: [
@@ -47,11 +48,11 @@ class MyCompaniesPage extends StatelessWidget {
               leading: const Icon(Icons.business, color: mainBlueColor,),
               title: const Text('Demo Company'),
               trailing: const Icon(Icons.delete_forever, color: Colors.red,),
-              onTap: () {},
+              onTap: () {
+                 GoRouter.of(context).go('/company-details-page');
+              },
             ),
-            const Divider(
-              color: Colors.grey,
-              thickness: 0.1),
+            
              ListTile(
               tileColor: whiteColor,
               leading: const Icon(Icons.business, color: mainBlueColor,),

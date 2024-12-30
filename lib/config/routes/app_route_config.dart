@@ -36,11 +36,12 @@ class MyAppRouter {
   GoRouter router = GoRouter(
     initialLocation: '/home',
     routes: [
+
         GoRoute(
       name: MyAppRouteConstants.homeRouteName,
       path: '/home',
       pageBuilder: (context, state) {
-        return const MaterialPage(child: BottomNavBarExample());
+        return const MaterialPage(child: BottomNavBarDashBoard());
       },
     ),
       GoRoute(
@@ -311,7 +312,7 @@ class MyAppRouter {
     // -------------- Payable Screens routes start ----------------------
      GoRoute(
       name: MyAppRouteConstants.allPayablesName,
-      path: '/all-payables',
+      path: '/all-payable',
       pageBuilder: (context, state) {
         return const MaterialPage(child: AllPayablesPage());
       },
@@ -353,7 +354,10 @@ class MyAppRouter {
       },
     ),
 
-    // -------------- Payable Screens routes end ----------------------
+    // -------------- Recivable Screens routes end ----------------------
+
+
+
 
     ]
   );

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/presentation/screens/bottom-navigation/dashboard-navigation.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
@@ -110,33 +112,33 @@ class SignInScreen extends StatelessWidget {
                     BlueButton(
                       title: 'Login',
                       onPressed: () async {
-                        final email = emailOrPhoneController.text.trim();
-                        final password = passwordController.text.trim();
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => BottomNavBarDashBoard()));
+                        // final email = emailOrPhoneController.text.trim();
+                        // final password = passwordController.text.trim();
 
-                        if (email.isEmpty || password.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('Please enter both email and password'),
-                            ),
-                          );
-                          return;
-                        }
+                        // if (email.isEmpty || password.isEmpty) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(
+                        //       content:
+                        //           Text('Please enter both email and password'),
+                        //     ),
+                        //   );
+                        //   return;
+                        // }
 
-                        final authProvider =
-                            Provider.of<AuthProvider>(context, listen: false);
-                        await authProvider.login(email, password);
+                        // final authProvider =
+                        //     Provider.of<AuthProvider>(context, listen: false);
+                        // await authProvider.login(email, password);
 
-                        if (authProvider.errorMessage != null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(authProvider.errorMessage!),
-                            ),
-                          );
-                        } else {
-                          // Navigate to the next screen
-                          Navigator.pushNamed(context, '/dashboard');
-                        }
+                        // if (authProvider.errorMessage != null) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     SnackBar(
+                        //       content: Text(authProvider.errorMessage!),
+                        //     ),
+                        //   );
+                        // } else {
+                        //   Navigator.pushNamed(context, '/dashboard');
+                        // }
                       },
                     ),
                     SizedBox(height: 20.h),
@@ -193,11 +195,17 @@ class SignInScreen extends StatelessWidget {
                             "Don't have an account?",
                             style: TextStyle(color: Colors.black, fontSize: 18.sp),
                           ),
+                          
                         ),
-                         Text(
-                          'Sign Up',
-                          style: TextStyle(color: mainBlueColor, fontSize: 18.sp),
-                        ),
+                         InkWell(
+                          onTap: (){
+                            GoRouter.of(context).go('/signup');
+                          },
+                           child: Text(
+                            'Sign Up',
+                            style: TextStyle(color: mainBlueColor, fontSize: 18.sp),
+                                                   ),
+                         ),
                       ],
                     ),
                   ],

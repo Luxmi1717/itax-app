@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/e-way-bill/slider-widgets/gsp-login-slider.dart';
 
@@ -11,7 +12,7 @@ class GSPSetupLoginPage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => GoRouter.of(context).go('/home'),
         ),
         title: const Text('GSP Setup', style: TextStyle(color: Colors.black, fontSize: 18)),
         actions:  [
@@ -31,12 +32,17 @@ class GSPSetupLoginPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('assets/images/login-gsp.png'),
-            ],
-        ),
+          child: InkWell(
+            onTap: (){
+              GoRouter.of(context).go('/gsp-setup-page');
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/login-gsp.png'),
+              ],
+                    ),
+          ),
             ),
       ));
   }

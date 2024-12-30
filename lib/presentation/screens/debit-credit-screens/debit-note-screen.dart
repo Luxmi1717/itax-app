@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-2-tile.dart';
@@ -115,12 +116,20 @@ class MonthlySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200'),
-          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200'),
-          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200'),
+          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200', onTap: () {
+            GoRouter.of(context).go('/debit-note-per-date');
+          },),
+          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200', 
+          onTap: () {
+            GoRouter.of(context).go('/debit-note-per-date');
+          },
+          ),
+          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200,', onTap: (){
+            GoRouter.of(context).go('/debit-note-per-date');
+          },),
         ],
       ),
     );
@@ -132,17 +141,23 @@ class CustomersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         children: [
           TileTypeTwo(
               leadingText: 'Monu Pathak',
               subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 7,20,200'),
+              trailingText: '₹ 7,20,200',  onTap: () {
+              GoRouter.of(context).go('/debit-note-per-date');
+            },
+          ),
           TileTypeTwo(
               leadingText: 'Sanjay Sharma',
               subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 28,305')
+              trailingText: '₹ 28,305',  onTap: () {
+              GoRouter.of(context).go('/debit-note-per-date');
+            },
+          )
         ],
       ),
     );

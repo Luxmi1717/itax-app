@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/bank-tile-widget.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/widgets/add-reduce-money-slider.dart';
@@ -25,7 +26,7 @@ class _SalesOnDayPageState extends State<SpecificBankPage> {
         
        
         
-        child: BlueButton(title: 'add/reduce money', onPressed: (){
+        child: BlueButton(title: 'Add/reduce money', onPressed: (){
           openBottomSheet(context,  AddReduceMoneySlider());
 
         })
@@ -38,6 +39,9 @@ class _SalesOnDayPageState extends State<SpecificBankPage> {
         onSortPressed: () {
           openBottomSheet(context, const SortByOptionsSlider());
         },
+        onBackPressed: () {
+          GoRouter.of(context).go('/home');
+        }
       ),
       body:  Column(
         children: [

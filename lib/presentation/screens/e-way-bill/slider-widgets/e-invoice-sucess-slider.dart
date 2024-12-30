@@ -33,7 +33,7 @@ class EInvoiceSuccessSlider extends StatelessWidget {
                 ),
                 SizedBox(height: 25.w),
                 Text(
-                  'GSP Login Successful',
+                  'E Invoice generated successfully',
                   style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class EInvoiceSuccessSlider extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
                 Text(
-                  'Now you can generate eWay Bill & eInvoice',
+                  'Your E-Invoice has been created and is ready for use.',
                   style: TextStyle(
                       fontSize: 16.sp,
                       color: const Color.fromARGB(255, 127, 127, 127)),
@@ -54,7 +54,7 @@ class EInvoiceSuccessSlider extends StatelessWidget {
                     // BlueButton
                   Expanded(
                     child: BlueButton(
-                          title: 'Done',
+                          title: 'Download',
                           onPressed: () {
                             Navigator.of(context).pop();
                             

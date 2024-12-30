@@ -16,32 +16,32 @@ class NavigationItem {
     NavigationItem(
       id: 1,
       imageUrl: 'assets/images/dashboard/itr-logo.png',
-      navigationPath: '/home',
+      navigationPath: '/all-receivables',
     ),
     NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/gstr-logo.png',
-      navigationPath: '/itr',
+      navigationPath: '/debit-page',
     ),
     NavigationItem(
       id: 3,
       imageUrl: 'assets/images/dashboard/accounts-logo.png',
-      navigationPath: '/profile',
+      navigationPath: '/all-banks',
     ),
     NavigationItem(
       id: 4,
       imageUrl: 'assets/images/dashboard/incom-tax-logo.png',
-      navigationPath: '/settings',
+      navigationPath: '/receipt-page',
     ),
     NavigationItem(
       id: 5,
       imageUrl: 'assets/images/dashboard/bill-logo.png',
-      navigationPath: '/notifications',
+      navigationPath: '/e-way-login',
     ),
     NavigationItem(
       id: 6,
       imageUrl: 'assets/images/dashboard/gstlink-logo.png',
-      navigationPath: '/help',
+      navigationPath: '/sales-monthly',
     ),
   ];
 
@@ -50,12 +50,12 @@ class NavigationItem {
     NavigationItem(
       id: 1,
       imageUrl: 'assets/images/dashboard/pdf-logo.png',
-      navigationPath: '/about',
+      navigationPath: '/all-payable',
     ),
     NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/ocr-logo.png',
-      navigationPath: '/contact',
+      navigationPath: '/user-payable',
     ),
     NavigationItem(
       id: 3,

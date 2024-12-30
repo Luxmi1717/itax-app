@@ -40,6 +40,7 @@ class DateOptionsSlider extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 24.h),
           InkWell(
             onTap: () {
               // Handle tap
@@ -60,7 +61,7 @@ class DateOptionsSlider extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(width: 8.w),
-                Text('Last Financial Year (1 Apr 23 to 31 Mar 24)',
+                Text('Last Financial Year (1 Apr\'23 to\n 31Mar 24)',
                     style: TextStyle(color: Colors.black, fontSize: 18.sp)),
               ],
             ),

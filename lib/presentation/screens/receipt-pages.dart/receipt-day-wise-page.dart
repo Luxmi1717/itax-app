@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-3-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
@@ -18,7 +19,9 @@ class _SalesOnDayPageState extends State<ReceiptDayWisePage> {
         title: '₹ 11,200',
         subtitle: 'Total Receipt',
         pageTitle: 'Receipt(Nov 2024)',
-        onBackPressed: () {},
+        onBackPressed: () {
+          GoRouter.of(context).go('/home');
+        },
       ),
       body: const Column(
         children: [

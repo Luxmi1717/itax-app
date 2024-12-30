@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/presentation/screens/more-screens/slider-widgets/help-and-support-slider-widget.dart';
 
 class MoreScreen extends StatelessWidget {
@@ -44,7 +45,9 @@ class MoreScreen extends StatelessWidget {
               leading: const Icon(Icons.business),
               title: const Text('My Companies'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).go('/my-companies');
+              },
             ),
                         const Divider(color: Colors.grey,  thickness: 0.1,),
 
@@ -52,7 +55,9 @@ class MoreScreen extends StatelessWidget {
               leading: const Icon(Icons.person),
               title: const Text('Manage User'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).go('/manage-users');
+              },
             ),
                                     const Divider(
               color: Colors.grey,
@@ -63,7 +68,9 @@ class MoreScreen extends StatelessWidget {
               leading: const Icon(Icons.settings),
               title: const Text('GSP Setup'),
               trailing: const Icon(Icons.arrow_forward_ios),
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).go('/gsp-setup-login');
+              },
             ),
             const Divider(color: Colors.grey),
             const Padding(

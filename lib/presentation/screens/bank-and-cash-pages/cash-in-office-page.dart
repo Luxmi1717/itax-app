@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/bank-tile-widget.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/widgets/add-reduce-money-slider.dart';
@@ -22,7 +23,7 @@ class _SalesOnDayPageState extends State<CashInOfficePage> {
       bottomNavigationBar: Container(
           padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 24.w),
           child: BlueButton(title: 'Add/Reduce money', onPressed: () {
-            openBottomSheet(context,  AddReduceMoneySlider());
+            GoRouter.of(context).go('/bank-add-money');
           })),
       appBar: CustomAppBar(
           title: '₹ 27,08,015',
@@ -34,6 +35,9 @@ class _SalesOnDayPageState extends State<CashInOfficePage> {
           onSortPressed: (){
             openBottomSheet(context, const SortByOptionsSlider());
           },
+          onBackPressed: () {
+            GoRouter.of(context).go('/home');
+          }
           ),
       body: Column(
         children: [

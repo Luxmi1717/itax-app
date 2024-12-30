@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/models/new_user_model.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
@@ -31,12 +32,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: GradientAppBar(
-        leadingWidget: Padding(
-          padding: EdgeInsets.only(left: 2.w, top: 2.h),
-          child:  Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 24.sp)),
+      appBar: AppBar(
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: AppGradients.mainGradient,
         ),
+
       ),
+            leading: InkWell(
+              onTap: () {
+                GoRouter.of(context).go('/login');
+              },
+              child: Icon(Icons.arrow_back_ios_new, color: Colors.white, )),
+            title:  Text('Sign Up', style: TextStyle(color: Colors.white, fontSize: 19.sp,)),
+      ),
+      
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(

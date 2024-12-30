@@ -54,7 +54,7 @@ class CompanyDetailsPage extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             Center(
-              child: Image.asset('assets/logo.png', height: 100),
+              child: Image.asset('assets/images/itaxlogo.png', height: 100),
             ),
             const SizedBox(height: 10),
             const Row(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/widgets/add-cash-category.dart';
 import 'package:itax/presentation/screens/more-screens/slider-widgets/add-user-slider-widget.dart';
@@ -32,7 +33,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  GoRouter.of(context).go('/home');
                 },
               ),
               Text('Bank & Cash',
@@ -40,7 +41,9 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.search, color: whiteColor),
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).go('/add-new-bank');
+                },
               ),
               IconButton(
                 icon: const Icon(Icons.sort, color: whiteColor),
@@ -64,7 +67,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
                 onTap: () => onTabSelected(0),
                 child: Container(
                   padding:
-                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 30.w),
                   decoration: BoxDecoration(
                     color:
                         selectedIndex == 0 ? Colors.white : Colors.transparent,
@@ -87,7 +90,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
                 onTap: () => onTabSelected(1),
                 child: Container(
                   padding:
-                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 30.w),
                   decoration: BoxDecoration(
                     color:
                         selectedIndex == 1 ? Colors.white : Colors.transparent,
@@ -115,7 +118,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('\$1000', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
+                    Text('₹1000', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
                     Text('Bank Balance', style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                     
                   ],
@@ -123,7 +126,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('\$500', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
+                    Text('₹500', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
                     Text('Cash',  style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                     
                   ],
@@ -204,12 +207,21 @@ class BankContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200'),
-          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200'),
-          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200'),
+          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200', onTap: (){
+            GoRouter.of(context).go('/specific-bank');
+
+          },),
+          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200', onTap: (){
+            GoRouter.of(context).go('/specific-bank');
+
+          },),
+          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200', onTap: (){
+            GoRouter.of(context).go('/specific-bank');
+
+          },),
         ],
       ),
     );
@@ -222,11 +234,17 @@ class CashContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Cash in Office', trailingText: '₹ 11,200'),
-          TileTypeOne(leadingText: 'Cash in Home', trailingText: '₹ 3,33,200'),
+          TileTypeOne(leadingText: 'Cash in Office', trailingText: '₹ 11,200', onTap: (){
+            GoRouter.of(context).go('/cash-in-office');
+
+          },),
+          TileTypeOne(leadingText: 'Cash in Home', trailingText: '₹ 3,33,200', onTap: (){
+            GoRouter.of(context).go('/cash-in-office');
+
+          },),
         ],
       ),
     );

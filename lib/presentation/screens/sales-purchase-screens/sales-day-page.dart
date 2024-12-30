@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/date-filter-widget.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
@@ -23,7 +24,7 @@ class _SalesOnDayPageState extends State<SalesOnDayPage> {
         subtitle: 'Total sales',
         pageTitle: 'Sales',
         onBackPressed: () {
-          Navigator.pop(context);
+          GoRouter.of(context).go('/home');
         },
         onSortPressed: (){
           openBottomSheet(context, const SortByOptionsSlider());

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 
 class BankAddMoneyPage extends StatelessWidget {
@@ -18,7 +19,9 @@ class BankAddMoneyPage extends StatelessWidget {
           'Add Money',
           style: TextStyle(color: whiteColor, fontSize: 20),
         ),
-        leading: const Icon(Icons.arrow_back_ios, color: whiteColor),
+        leading: InkWell(onTap:(){
+          GoRouter.of(context).go('/home');
+        },child: const Icon(Icons.arrow_back_ios, color: whiteColor, )),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit, color: whiteColor),
@@ -28,6 +31,8 @@ class BankAddMoneyPage extends StatelessWidget {
             icon: const Icon(Icons.delete, color: whiteColor),
             onPressed: () {},
           ),
+          
+          
         ],
       ),
       body: Column(

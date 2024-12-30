@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/receivables-and-payables-screens/widgets/receivable-ageing-tile-widget.dart';
 import 'package:itax/presentation/screens/receivables-and-payables-screens/widgets/receivables-customer-tile-widget.dart';
@@ -115,19 +116,26 @@ class AgeinSummarySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         children: [
-          ReceivablesAgeingTileWidget(
-            topLeftText: "Monu Pathak",
-            topRightText: "₹ 1,02,500",
-            titleSubtitleList: [
-              {'title': '1-45 days ', 'subtitle': '₹ 69,500'},
-              {'title': '46-90 days', 'subtitle': '₹ 71,800'},
-              {'title': '91-180 days', 'subtitle': '₹ 0.00'},
-              {'title': '180+ days', 'subtitle': '₹ 0.00'},
-            ],
-            bottomText: "Mob: 8825464741  |  GST: 22AAAAA0000A1Z5",
+          InkWell(
+            onTap: () {
+              GoRouter.of(context).go('/user-receivable');
+              
+            },
+            child: ReceivablesAgeingTileWidget(
+              topLeftText: "Monu Pathak",
+              topRightText: "₹ 1,02,500",
+              titleSubtitleList: [
+                {'title': '1-45 days ', 'subtitle': '₹ 69,500'},
+                {'title': '46-90 days', 'subtitle': '₹ 71,800'},
+                {'title': '91-180 days', 'subtitle': '₹ 0.00'},
+                {'title': '180+ days', 'subtitle': '₹ 0.00'},
+              ],
+              bottomText: "Mob: 8825464741  |  GST: 22AAAAA0000A1Z5",
+              
+            ),
           ),
 
          

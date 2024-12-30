@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/utility/dashboard-services.dart';
 
@@ -90,7 +91,7 @@ class DashboardScreen extends StatelessWidget {
                 children: List.generate(dashboardServicesList.length, (index) {
                   return InkWell(
                     onTap: () {
-                      // Handle tap action
+                      GoRouter.of(context).go(dashboardServicesList[index].navigationPath);
                     },
                     child: Container(
                       margin: EdgeInsets.all(3.w),
@@ -143,7 +144,7 @@ class DashboardScreen extends StatelessWidget {
                 children: List.generate(dashboardToolsList.length, (index) {
                   return InkWell(
                     onTap: () {
-                      // Handle tap action
+                      GoRouter.of(context).go(dashboardToolsList[index].navigationPath);
                     },
                     child: Container(
                       margin: EdgeInsets.all(3.w),

@@ -105,7 +105,7 @@ class ChangePassword extends StatelessWidget {
             CustomTextInput(
               controller: confirmPasswordController,
               hintText: "Confirm Password",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -157,7 +157,7 @@ class ChangeMobileNo extends StatelessWidget {
           CustomTextInput(
             controller: mobileController,
             hintText: "Mobile Number",
-            ifPasswordField: true,
+            ifPasswordField: false,
             validator: (value) {
               return null;
             },
@@ -208,7 +208,7 @@ class ChangeName extends StatelessWidget {
           CustomTextInput(
             controller: mobileController,
             hintText: "Name",
-            ifPasswordField: true,
+            ifPasswordField: false,
             validator: (value) {
               return null;
             },
@@ -259,7 +259,7 @@ class AddPANNumber extends StatelessWidget {
           CustomTextInput(
             controller: mobileController,
             hintText: "PAN Number",
-            ifPasswordField: true,
+            ifPasswordField: false,
             validator: (value) {
               return null;
             },
@@ -310,7 +310,7 @@ class AddGSTNumber extends StatelessWidget {
           CustomTextInput(
             controller: mobileController,
             hintText: "GST Number",
-            ifPasswordField: true,
+            ifPasswordField: false,
             validator: (value) {
               return null;
             },
@@ -361,7 +361,7 @@ class AddAadharNumber extends StatelessWidget {
           CustomTextInput(
             controller: mobileController,
             hintText: "Aadhar Number",
-            ifPasswordField: true,
+            ifPasswordField: false,
             validator: (value) {
               return null;
             },
@@ -412,7 +412,7 @@ class AddBusinessName extends StatelessWidget {
           CustomTextInput(
             controller: mobileController,
             hintText: "Business Name",
-            ifPasswordField: true,
+            ifPasswordField: false,
             validator: (value) {
               return null;
             },
@@ -464,7 +464,7 @@ class AddBankDetails extends StatelessWidget {
             CustomTextInput(
               controller: IFSCController,
               hintText: "Enter IFSC",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -473,7 +473,7 @@ class AddBankDetails extends StatelessWidget {
             CustomTextInput(
               controller: BankNameController,
               hintText: "Bank Name",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -482,7 +482,7 @@ class AddBankDetails extends StatelessWidget {
             CustomTextInput(
               controller: BranchNameController,
               hintText: "Pincode",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -491,7 +491,7 @@ class AddBankDetails extends StatelessWidget {
             CustomTextInput(
               controller: AccNumberController,
               hintText: "Bank account Number",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -500,7 +500,7 @@ class AddBankDetails extends StatelessWidget {
             CustomTextInput(
               controller: confirmAccNumberController,
               hintText: "Confirm Bank account Number",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -552,7 +552,7 @@ class AddAddress extends StatelessWidget {
             CustomTextInput(
               controller: BusinessAddressController,
               hintText: "Business Address",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -561,7 +561,7 @@ class AddAddress extends StatelessWidget {
             CustomTextInput(
               controller: StateController,
               hintText: "State",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },
@@ -570,7 +570,7 @@ class AddAddress extends StatelessWidget {
             CustomTextInput(
               controller: PincodeController,
               hintText: "Bank Branch Name",
-              ifPasswordField: true,
+              ifPasswordField: false,
               validator: (value) {
                 return null;
               },

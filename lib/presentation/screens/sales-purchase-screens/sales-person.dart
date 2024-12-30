@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sales-options-slider.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/bottom-sheets/sort-by-slider-widget.dart';
@@ -20,7 +21,9 @@ class _SalesOnDayPageState extends State<SalesPerUserPage> {
         title: 'Rs 7,21,333',
         subtitle: 'Total sales',
         pageTitle: 'Monu Pathak',
-        onBackPressed: () {},
+        onBackPressed: () {
+          GoRouter.of(context).go('/home');
+        },
         onSortPressed: () {
           openBottomSheet(context, const SortByOptionsSlider());
         },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/e-way-bill/slider-widgets/gsp-login-slider.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
@@ -32,10 +33,25 @@ class EWayLogin extends StatelessWidget {
             color: whiteColor,
           ),
         ),
+        actions: [
+          InkWell(
+            onTap: () {
+GoRouter.of(context).go('/e-way-details');
+            },
+            child: Padding(
+              padding: EdgeInsets.all(8.w),
+              child: Text(
+                'Go to details',
+                style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+        ],
         title: Text(
           'Login eWay Bill User',
           style: TextStyle(color: whiteColor, fontSize: 22.sp),
         ),
+        
       ),
       body: SingleChildScrollView(
         child: Column(
