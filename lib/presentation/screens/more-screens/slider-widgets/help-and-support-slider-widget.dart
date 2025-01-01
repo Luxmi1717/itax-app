@@ -27,7 +27,7 @@ class HelpAndSupportSliderWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 25.h),
       
             // Row 2: Tiles
             Row(

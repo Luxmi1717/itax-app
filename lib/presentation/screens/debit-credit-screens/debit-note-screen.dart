@@ -14,11 +14,7 @@ class DebitPage extends StatefulWidget {
 }
 
 class _SalesMonthlyPageState extends State<DebitPage> {
-  final List<String> tags = [
-    "Monthly",
-    "Customers",
-    "Item Wise"
-  ];
+  final List<String> tags = ["Monthly", "Customers", "Item Wise"];
   int selectedIndex = 0;
 
   final Map<int, Widget> content = {
@@ -30,59 +26,65 @@ class _SalesMonthlyPageState extends State<DebitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Rs 50,21,333',
+        title: '₹ 50,21,333',
         subtitle: 'Total Sales',
         pageTitle: 'Debit Note',
         onBackPressed: () {},
       ),
       body: Column(
         children: [
-          
-          Container(
-            height: 45.h,
-            margin: const EdgeInsets.symmetric(vertical: 8.0),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: tags.length,
-              itemBuilder: (context, index) {
-                final isSelected = selectedIndex == index;
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: isSelected
-                            ? mainBlueColor
-                            : (Colors.grey[300] ?? Colors.grey),
-                        width: 1.0,
-                      ),
-                      color: isSelected
-                          ? const Color.fromARGB(255, 221, 232, 248)
-                          : Colors.grey[300],
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Text(
-                      tags[index],
-                      style: TextStyle(
-                        color: isSelected ? mainBlueColor : Colors.black,
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+          Row(
+            children: [
+              SizedBox(width: 16.w),
+              Expanded(
+                child: Container(
+                  height: 45.h,
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: tags.length,
+                    itemBuilder: (context, index) {
+                      final isSelected = selectedIndex == index;
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 10.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: isSelected
+                                  ? mainBlueColor
+                                  : (Colors.grey[300] ?? Colors.grey),
+                              width: 1.0,
+                            ),
+                            color: isSelected
+                                ? const Color.fromARGB(255, 221, 232, 248)
+                                : Colors.grey[300],
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text(
+                            tags[index],
+                            style: TextStyle(
+                              color: isSelected ? mainBlueColor : Colors.black,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+           Padding(
+            padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
             child: Row(
               children: [
                 Icon(
@@ -116,20 +118,30 @@ class MonthlySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200', onTap: () {
-            GoRouter.of(context).go('/debit-note-per-date');
-          },),
-          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200', 
-          onTap: () {
-            GoRouter.of(context).go('/debit-note-per-date');
-          },
+          TileTypeOne(
+            leadingText: 'Nov 24',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/debit-note-per-date');
+            },
           ),
-          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200,', onTap: (){
-            GoRouter.of(context).go('/debit-note-per-date');
-          },),
+          TileTypeOne(
+            leadingText: 'Dec 24',
+            trailingText: '₹ 3,33,200',
+            onTap: () {
+              GoRouter.of(context).push('/debit-note-per-date');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Jan 23',
+            trailingText: '₹ 11,200,',
+            onTap: () {
+              GoRouter.of(context).push('/debit-note-per-date');
+            },
+          ),
         ],
       ),
     );
@@ -141,21 +153,23 @@ class CustomersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           TileTypeTwo(
-              leadingText: 'Monu Pathak',
-              subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 7,20,200',  onTap: () {
-              GoRouter.of(context).go('/debit-note-per-date');
+            leadingText: 'Monu Pathak',
+            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+            trailingText: '₹ 7,20,200',
+            onTap: () {
+              GoRouter.of(context).push('/debit-note-per-date');
             },
           ),
           TileTypeTwo(
-              leadingText: 'Sanjay Sharma',
-              subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 28,305',  onTap: () {
-              GoRouter.of(context).go('/debit-note-per-date');
+            leadingText: 'Sanjay Sharma',
+            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+            trailingText: '₹ 28,305',
+            onTap: () {
+              GoRouter.of(context).push('/debit-note-per-date');
             },
           )
         ],

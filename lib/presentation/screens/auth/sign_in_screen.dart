@@ -19,7 +19,7 @@ class SignInScreen extends StatelessWidget {
         TextEditingController();
     final TextEditingController passwordController = TextEditingController();
     return Scaffold(
-      appBar:  GradientAppBar(
+      appBar: GradientAppBar(
         leadingWidget: Padding(
           padding: EdgeInsets.all(12.0),
           child: Text(
@@ -112,7 +112,8 @@ class SignInScreen extends StatelessWidget {
                     BlueButton(
                       title: 'Login',
                       onPressed: () async {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => BottomNavBarDashBoard()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => BottomNavBarDashBoard()));
                         // final email = emailOrPhoneController.text.trim();
                         // final password = passwordController.text.trim();
 
@@ -142,47 +143,66 @@ class SignInScreen extends StatelessWidget {
                       },
                     ),
                     SizedBox(height: 20.h),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(child: Text('or login with')),
-                      ],
-                    ),
+                     Padding(
+                       padding:  EdgeInsets.symmetric(horizontal: 40.h),
+                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(right: 4.w),
+                              height: 1,
+                              color: blackColor,
+                            ),
+                          ),
+                          SizedBox(width: 8.w,),
+                          Center(child: Text('or login with')),
+                          SizedBox(width: 8.w,),
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(right: 4.w),
+                              height: 1,
+                              color: blackColor,
+                            ),
+                          ),
+                        ],
+                                           ),
+                     ),
                     SizedBox(height: 10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                      Container(
-                        width: 100.w,
-                        height: 70.h,
-                        decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10),
+                        Container(
+                          width: 100.w,
+                          height: 70.h,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/google-logo.png',
+                              width: 40.w,
+                              height: 40.h,
+                            ),
+                          ),
                         ),
-                        child: Center(
-                        child: Image.asset(
-                          'assets/images/google-logo.png',
-                          width: 40.w,
-                          height: 40.h,
+                        const SizedBox(width: 20),
+                        Container(
+                          height: 70.h,
+                          width: 100.w,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/facebook-logo.png',
+                              width: 40.w,
+                              height: 40.h,
+                            ),
+                          ),
                         ),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Container(
-                        height: 70.h,
-                        width: 100.w,
-                        decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                        child: Image.asset(
-                          'assets/images/facebook-logo.png',
-                          width: 40.w,
-                          height: 40.h,
-                        ),
-                        ),
-                      ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -191,21 +211,22 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child:  Text(
+                          child: Text(
                             "Don't have an account?",
-                            style: TextStyle(color: Colors.black, fontSize: 18.sp),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 18.sp),
                           ),
-                          
                         ),
-                         InkWell(
-                          onTap: (){
-                            GoRouter.of(context).go('/signup');
+                        InkWell(
+                          onTap: () {
+                            GoRouter.of(context).push('/signup');
                           },
-                           child: Text(
+                          child: Text(
                             'Sign Up',
-                            style: TextStyle(color: mainBlueColor, fontSize: 18.sp),
-                                                   ),
-                         ),
+                            style: TextStyle(
+                                color: mainBlueColor, fontSize: 18.sp),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -254,7 +275,8 @@ class ForgotPasswordStep1 extends StatelessWidget {
           SizedBox(
             height: 8.h,
           ),
-          const Text('Enter your mobile number or email for verification purposes'),
+          const Text(
+              'Enter your mobile number or email for verification purposes'),
           SizedBox(
             height: 16.h,
           ),
@@ -338,7 +360,6 @@ class ForgotPasswordStep2 extends StatelessWidget {
               print("Entered OTP: $pin");
             },
           ),
-
           SizedBox(height: 16.h),
           BlueButton(
             title: 'Verify OTP',
@@ -373,56 +394,58 @@ class ForgotPasswordStep3 extends StatelessWidget {
     TextEditingController ConfirmNewPasswordController =
         TextEditingController();
 
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Reset Password',
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
-              color: blackColor,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Reset Password',
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: blackColor,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          const Text(
-              'Set the new password for your account so you can login and and access all the features.'),
-          SizedBox(
-            height: 16.h,
-          ),
-          CustomTextInput(
-            controller: newPasswordController,
-            hintText: "New Password",
-            ifPasswordField: false,
-            validator: (value) {
-              return null;
-            },
-          ),
-          SizedBox(
-            height: 16.h,
-          ),
-          CustomTextInput(
-            controller: ConfirmNewPasswordController,
-            hintText: "Confirm New Password",
-            ifPasswordField: false,
-            validator: (value) {
-              return null;
-            },
-          ),
-          SizedBox(height: 16.h),
-          BlueButton(
-            title: 'Reset Password',
-            onPressed: () {
-              Navigator.pop(context);
-              _showForgotPasswordStep4(context);
-            },
-          ),
-        ],
+            SizedBox(
+              height: 8.h,
+            ),
+            const Text(
+                'Set the new password for your account so you can login and and access all the features.'),
+            SizedBox(
+              height: 16.h,
+            ),
+            CustomTextInput(
+              controller: newPasswordController,
+              hintText: "New Password",
+              ifPasswordField: false,
+              validator: (value) {
+                return null;
+              },
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            CustomTextInput(
+              controller: ConfirmNewPasswordController,
+              hintText: "Confirm New Password",
+              ifPasswordField: false,
+              validator: (value) {
+                return null;
+              },
+            ),
+            SizedBox(height: 16.h),
+            BlueButton(
+              title: 'Reset Password',
+              onPressed: () {
+                Navigator.pop(context);
+                _showForgotPasswordStep4(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -470,7 +493,9 @@ class ForgotPasswordStep4 extends StatelessWidget {
                   width: 70.w, height: 40.h),
             ],
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           BlueButton(
             title: 'Login',
             onPressed: () {

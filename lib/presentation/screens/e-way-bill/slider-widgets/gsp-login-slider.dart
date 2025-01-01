@@ -21,7 +21,7 @@ class GspLoginSlider extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('Add User',
+                Text('GSP Login',
                     style: TextStyle(fontSize: 20.sp, color: Colors.black, fontWeight: FontWeight.bold)),
               ],
             ),
@@ -41,7 +41,7 @@ class GspLoginSlider extends StatelessWidget {
                     value.isEmpty ? 'Please enter Mobile Number' : null),
             SizedBox(height: 20.h),
            
-            BlueButton(title: 'Login Gsp', onPressed: () {
+            BlueButton(title: 'Login GSP', onPressed: () {
               openBottomSheet(context, LoginSuccessSlider());
             })
           ],

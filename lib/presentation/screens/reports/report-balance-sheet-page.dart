@@ -3,22 +3,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/e-way-bill/slider-widgets/download-options-slider.dart';
+import 'package:itax/presentation/screens/reports/widgets/balance-report-tile-widget.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-2-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
 import 'package:itax/utility/functions.dart';
 
-class ReceiptPage extends StatefulWidget {
-  const ReceiptPage({super.key});
+class BalanceSheetPage extends StatefulWidget {
+  const BalanceSheetPage({super.key});
 
   @override
   _SalesMonthlyPageState createState() => _SalesMonthlyPageState();
 }
 
-class _SalesMonthlyPageState extends State<ReceiptPage> {
+class _SalesMonthlyPageState extends State<BalanceSheetPage> {
   final List<String> tags = [
-    "Monthly",
-    "Customers",
+    "Assets",
+    "Liabilites",
   ];
   int selectedIndex = 0;
 
@@ -26,32 +27,34 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
     0: const MonthlySection(),
     1: const CustomersSection(),
   };
-
-  @override
+@override
   Widget build(BuildContext context) {
     return Scaffold(
-
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-        },
+        onPressed: () {},
         icon: Icon(Icons.add_outlined, color: whiteColor),
-        label: Text('Add New Entry', style: TextStyle(color: whiteColor, fontSize: 16.sp)),
+        label: Text('Add New Entry',
+            style: TextStyle(color: whiteColor, fontSize: 16.sp)),
         backgroundColor: mainBlueColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
       ),
       bottomNavigationBar: Container(
+        color: mainBlueColor,
         height: 60.h,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         child: Row(
           children: [
-            Text('Total Assets', style: TextStyle(color: whiteColor, fontSize: 16.sp)),
+            Text(selectedIndex==0 ? 'Total Assets' : 'Total Liabilities',
+                style: TextStyle(color:  whiteColor, fontSize: 16.sp)),
             Spacer(),
-            Text('₹ 50,21,333', style: TextStyle(color: whiteColor, fontSize: 16.sp, fontWeight: FontWeight.bold)),
-            
-           
+            Text('₹ 50,21,333',
+                style: TextStyle(
+                    color: whiteColor,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -60,6 +63,10 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
           decoration: const BoxDecoration(
             gradient: AppGradients.mainGradient,
           ),
+        ),
+        title: Text(
+          'Balance Sheet',
+          style: TextStyle(color: whiteColor, fontSize: 18.sp),
         ),
         leading: Padding(
           padding: EdgeInsets.all(8.w),
@@ -84,11 +91,10 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
       ),
       body: Column(
         children: [
-          // Horizontal Scrollable Tags
           Container(
             height: 40.0,
             width: double.maxFinite,
-            margin:  EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
+            margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: tags.length,
@@ -146,17 +152,16 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
               ],
             ),
           ),
-
           const Divider(thickness: 3),
-
-          // Dynamic Content Area
           Expanded(
-            child: content[selectedIndex] ?? const Text("No data available"),
+            child: content[selectedIndex] ??
+                const Center(child: Text("No data available")),
           ),
         ],
       ),
     );
   }
+
 }
 
 class MonthlySection extends StatelessWidget {
@@ -167,25 +172,32 @@ class MonthlySection extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(
-            leadingText: 'Nov 24',
+          ReportTile(
+            leadingText: 'Current Assets',
             trailingText: '₹ 11,200',
             onTap: () {
-              GoRouter.of(context).go('/receipt-day-wise');
+              GoRouter.of(context).push('/receipt-day-wise');
             },
           ),
-          TileTypeOne(
-            leadingText: 'Dec 24',
+          ReportTile(
+            leadingText: 'Fixed Assets',
             trailingText: '₹ 3,33,200',
             onTap: () {
-              GoRouter.of(context).go('/receipt-day-wise');
+              GoRouter.of(context).push('/profit-loss');
             },
           ),
-          TileTypeOne(
-            leadingText: 'Jan 23',
+          ReportTile(
+            leadingText: 'Investments',
             trailingText: '₹ 11,200',
             onTap: () {
-              GoRouter.of(context).go('/receipt-day-wise');
+              GoRouter.of(context).push('/profit-loss');
+            },
+          ),
+          ReportTile(
+            leadingText: 'Loan Advances',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/profit-loss');
             },
           ),
         ],
@@ -202,22 +214,35 @@ class CustomersSection extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeTwo(
-            leadingText: 'Monu Pathak',
-            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-            trailingText: '₹ 7,20,200',
+          ReportTile(
+            leadingText: 'Capital',
+            trailingText: '₹ 3,33,200',
             onTap: () {
-              GoRouter.of(context).go('/receipt-per-user');
+              GoRouter.of(context).push('/profit-loss');
             },
           ),
-          TileTypeTwo(
-            leadingText: 'Sanjay Sharma',
-            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-            trailingText: '₹ 28,305',
+          ReportTile(
+            leadingText: 'Current Liability',
+            trailingText: '₹ 11,200',
             onTap: () {
-              GoRouter.of(context).go('/receipt-per-user');
+              GoRouter.of(context).push('/profit-loss');
             },
           ),
+          ReportTile(
+            leadingText: 'Loan',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/profit-loss');
+            },
+          ),
+          ReportTile(
+            leadingText: 'Net Income',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/profit-loss');
+            },
+          ),
+         
         ],
       ),
     );

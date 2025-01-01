@@ -49,6 +49,9 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         final myAppRouter = MyAppRouter();
         return MaterialApp.router(
+          theme: ThemeData(
+            fontFamily: 'Poppins',
+          ),
           debugShowCheckedModeBanner: false,
           routerConfig: myAppRouter.router,
           

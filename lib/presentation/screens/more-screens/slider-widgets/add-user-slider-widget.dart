@@ -45,7 +45,7 @@ class _AddUserSliderState extends State<AddUserSlider> {
     return SizedBox(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 22.h),
           child: Form(
             key: _formKey,
             child: Column(
@@ -106,6 +106,7 @@ class _AddUserSliderState extends State<AddUserSlider> {
                     ),
                   ],
                 ),
+                SizedBox(height: 10.h),
                 BlueButton(
                   title: 'Save',
                   onPressed: _saveForm,

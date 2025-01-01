@@ -25,11 +25,11 @@ class TileTypeOne extends StatelessWidget {
                  EdgeInsets.symmetric(horizontal: 20.w, ),
             title: Text(
               leadingText,
-              style:  TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w500),
+              style:  TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
             ),
             trailing: Text(
               trailingText,
-              style:  TextStyle(fontSize: 19.sp, color: Colors.black, fontWeight: FontWeight.w600),
+              style:  TextStyle(fontSize: 16.sp, color: Colors.black, fontWeight: FontWeight.w600),
             ),
           ),
           const Divider(

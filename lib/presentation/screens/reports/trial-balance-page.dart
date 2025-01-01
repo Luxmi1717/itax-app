@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 
-class ProfitAndLossScreen extends StatelessWidget {
-  const ProfitAndLossScreen({super.key});
+class TrialBalanceScreen extends StatelessWidget {
+  const TrialBalanceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

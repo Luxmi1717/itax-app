@@ -60,8 +60,8 @@ class TileTypeThree extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
               decoration: BoxDecoration(
-                color: ifGreen ? Colors.green.withOpacity(0.1): const Color.fromARGB(255, 190, 190, 190),
-                borderRadius: BorderRadius.circular(4),
+                color: ifGreen ? Colors.green.withOpacity(0.1): const Color.fromARGB(255, 206, 206, 206),
+                borderRadius: BorderRadius.circular(8),
               ),
                 child: Text(
                   trailingContainerContent,

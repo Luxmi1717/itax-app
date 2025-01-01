@@ -10,7 +10,11 @@ class ReceivableUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(pageTitle: 'Receivables', subtitle: '₹ 1,02,500', title: 'Monu Pathak', onBackPressed: () {}),
+      appBar: CustomAppBar(
+          pageTitle: 'Receivables',
+          subtitle: '₹ 1,02,500',
+          title: 'Monu Pathak',
+          onBackPressed: () {}),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -28,10 +32,6 @@ class ReceivableUserPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 //---------------- NAVBAR CODE ---------------------------------------
 
@@ -74,7 +74,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Row(
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
+                        icon: const Icon(Icons.arrow_back_ios_new,
+                            color: Colors.white),
                         onPressed: onBackPressed,
                       ),
                       Text(
@@ -92,18 +93,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       IconButton(
                         icon: const Icon(Icons.search, color: Colors.white),
-                        onPressed: () {
-                        
-                        },
+                        onPressed: () {},
                       ),
                       IconButton(
                         icon: const Icon(Icons.sort, color: Colors.white),
-                        onPressed: (){
-                            openBottomSheet(context, SortByOptionsSlider());
+                        onPressed: () {
+                          openBottomSheet(context, SortByOptionsSlider());
                         },
                       ),
-                      
-                    
                     ],
                   ),
                 ],
@@ -150,7 +147,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
             ),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 14.h),
               child: Row(
@@ -193,9 +192,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(260.h); // Adjust as needed
 }
 
-
 // ----------------- Tile Code ----------------------------
-
 
 class CustomTile extends StatelessWidget {
   final String id;
@@ -265,9 +262,8 @@ class CustomTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
-                      onTap: (){
-                        GoRouter.of(context).go('/user-receivable');
-
+                      onTap: () {
+                        GoRouter.of(context).push('/user-receivable');
                       },
                       child: Image.asset(
                         'assets/images/whatsapp.png',

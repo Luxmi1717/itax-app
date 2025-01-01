@@ -21,6 +21,7 @@ class EWayLogin extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
+        
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppGradients.mainGradient,
@@ -36,22 +37,22 @@ class EWayLogin extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-GoRouter.of(context).go('/e-way-details');
+              GoRouter.of(context).push('/e-way-details');
             },
             child: Padding(
               padding: EdgeInsets.all(8.w),
               child: Text(
                 'Go to details',
-                style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
               ),
             ),
           ),
         ],
         title: Text(
           'Login eWay Bill User',
-          style: TextStyle(color: whiteColor, fontSize: 22.sp),
+          style: TextStyle(color: whiteColor, fontSize: 18.sp),
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -59,19 +60,18 @@ GoRouter.of(context).go('/e-way-details');
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Follow below steps to register with your GST ',
-                    style: TextStyle(fontSize: 16.sp),
+              child: 
+                  Container(
+                    width: double.infinity,
+                    child: Text(
+                      'Follow below steps to register with your GST Suvidha Provider(GSP) on E-way Bill Portal',
+                      overflow: TextOverflow.clip,
+                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  Text(
-                    "Suvidha Provider(GSP) on E-way Bill Portal",
-                    style: TextStyle(fontSize: 16.sp),
-                  ),
-                ],
-              ),
+                 
+                  
+              
             ),
             SizedBox(height: 16.h),
             Container(
@@ -85,9 +85,9 @@ GoRouter.of(context).go('/e-way-details');
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17.sp),
               ),
             ),
-            SizedBox(height: 8.h),
+            SizedBox(height: 9.h),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 22.w , vertical: 8.h),
+              padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 8.h),
               child: Column(
                 children: [
                   Row(
@@ -104,7 +104,7 @@ GoRouter.of(context).go('/e-way-details');
                       ),
                     ],
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 14.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -119,7 +119,7 @@ GoRouter.of(context).go('/e-way-details');
                       ),
                     ],
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 14.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -134,7 +134,7 @@ GoRouter.of(context).go('/e-way-details');
                       ),
                     ],
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 14.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -153,7 +153,7 @@ GoRouter.of(context).go('/e-way-details');
                 ],
               ),
             ),
-            SizedBox(height: 12.h),
+            SizedBox(height: 14.h),
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
@@ -184,7 +184,7 @@ GoRouter.of(context).go('/e-way-details');
                       ),
                     ],
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 14.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -199,7 +199,7 @@ GoRouter.of(context).go('/e-way-details');
                       ),
                     ],
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 14.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -214,7 +214,7 @@ GoRouter.of(context).go('/e-way-details');
                       ),
                     ],
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 14.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

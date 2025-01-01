@@ -45,21 +45,22 @@ class TileTypeFour extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: ifGreen
                                 ? Colors.green.withOpacity(0.1)
-                                : const Color.fromARGB(255, 190, 190, 190),
-                            borderRadius: BorderRadius.circular(4),
+                                : const Color.fromARGB(255, 210, 210, 210),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             trailingContainerContent,
                             style: TextStyle(
                                 fontSize: 12.sp,
-                                color: ifGreen ? Colors.green : Colors.black),
+                                color: ifGreen ? Colors.green : const Color.fromARGB(255, 99, 99, 99)),
+
                           ),
                         )
                       : Container(),
                 ],
               ),
              
-               SizedBox(height: 6.h),
+               SizedBox(height: 8.h),
               Text(
                 leadingText2,
                 style:  TextStyle(fontSize: 14.sp, color: Colors.grey),
@@ -72,7 +73,7 @@ class TileTypeFour extends StatelessWidget {
             children: [
               Text(
                 trailingText,
-                style:  TextStyle(fontSize: 18.sp, color: Colors.black),
+                style:  TextStyle(fontSize: 18.sp, color: Colors.black, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 8.0),
              

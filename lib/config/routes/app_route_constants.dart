@@ -49,4 +49,9 @@ class MyAppRouteConstants {
   static const String allReceivablesName = 'all-receivables';
   static const String userReceivableName = 'user-receivable';
 
+  //Report Screens
+  static const String balanceSheetName = 'balance-sheet';
+  static const String profitLossScreenName = 'profit-loss';
+
+
 }

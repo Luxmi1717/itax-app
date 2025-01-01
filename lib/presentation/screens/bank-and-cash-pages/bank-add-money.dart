@@ -19,9 +19,14 @@ class BankAddMoneyPage extends StatelessWidget {
           'Add Money',
           style: TextStyle(color: whiteColor, fontSize: 20),
         ),
-        leading: InkWell(onTap:(){
-          GoRouter.of(context).go('/home');
-        },child: const Icon(Icons.arrow_back_ios, color: whiteColor, )),
+        leading: InkWell(
+            onTap: () {
+              GoRouter.of(context).push('/home');
+            },
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: whiteColor,
+            )),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit, color: whiteColor),
@@ -31,8 +36,6 @@ class BankAddMoneyPage extends StatelessWidget {
             icon: const Icon(Icons.delete, color: whiteColor),
             onPressed: () {},
           ),
-          
-          
         ],
       ),
       body: Column(
@@ -47,18 +50,18 @@ class BankAddMoneyPage extends StatelessWidget {
                 children: [
                   Text(
                     'Monu Pathak',
-                    style: TextStyle(fontSize: 14.sp, color: blackColor),
+                    style: TextStyle(fontSize: 16.sp, color: blackColor, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 5.h),
                   Text(
                     '14 Nov 24',
-                    style: TextStyle(fontSize: 12.sp, color: blackColor),
+                    style: TextStyle(fontSize: 14.sp, color: blackColor),
                   ),
                 ],
               ),
             ),
           ),
-          Divider(thickness: 2.h),
+          Divider(thickness: 4.h, color: const Color.fromARGB(255, 219, 219, 219),),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: ListTile(
@@ -72,7 +75,10 @@ class BankAddMoneyPage extends StatelessWidget {
               ),
             ),
           ),
-          Divider(thickness: 2.h),
+          Divider(
+            thickness: 4.h,
+            color: const Color.fromARGB(255, 219, 219, 219),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: ListTile(
@@ -86,7 +92,10 @@ class BankAddMoneyPage extends StatelessWidget {
               ),
             ),
           ),
-          Divider(thickness: 2.h),
+          Divider(
+            thickness: 4.h,
+            color: const Color.fromARGB(255, 219, 219, 219),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: ListTile(
@@ -100,7 +109,10 @@ class BankAddMoneyPage extends StatelessWidget {
               ),
             ),
           ),
-          Divider(thickness: 2.h),
+          Divider(
+            thickness: 4.h,
+            color: const Color.fromARGB(255, 219, 219, 219),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
             child: Column(

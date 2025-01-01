@@ -40,7 +40,7 @@ class _SalesMonthlyPageState extends State<SalesMonthlyPage> {
         subtitle: 'Total sales',
         pageTitle: 'Sales',
         onBackPressed: () {
-          GoRouter.of(context).go('/home');
+          GoRouter.of(context).push('/home');
         },
         onSortPressed: () {
           openBottomSheet(context, const SortByOptionsSlider());
@@ -72,10 +72,14 @@ class _SalesMonthlyPageState extends State<SalesMonthlyPage> {
                         horizontal: 16.0, vertical: 10.0),
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: isSelected ? mainBlueColor : (Colors.grey[300] ?? Colors.grey),
+                        color: isSelected
+                            ? mainBlueColor
+                            : (Colors.grey[300] ?? Colors.grey),
                         width: 1.0,
                       ),
-                      color: isSelected ? const Color.fromARGB(255, 221, 232, 248) : Colors.grey[300],
+                      color: isSelected
+                          ? const Color.fromARGB(255, 221, 232, 248)
+                          : Colors.grey[300],
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: Text(
@@ -93,15 +97,20 @@ class _SalesMonthlyPageState extends State<SalesMonthlyPage> {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-            child: Row(children: [
-              Icon(Icons.calendar_today, color: mainBlueColor,),
-              Text('Financial Year', style: TextStyle(color: blackColor, fontSize: 14)),
-              Text(' (1Apr 24 to 31 Mar 25)'),
-              Spacer(),
-              Text('Change', style: TextStyle(color: mainBlueColor, fontSize: 14)),
-              
-            
-            ],),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.calendar_today,
+                  color: mainBlueColor,
+                ),
+                Text('Financial Year',
+                    style: TextStyle(color: blackColor, fontSize: 14)),
+                Text(' (1Apr 24 to 31 Mar 25)'),
+                Spacer(),
+                Text('Change',
+                    style: TextStyle(color: mainBlueColor, fontSize: 14)),
+              ],
+            ),
           ),
 
           const Divider(thickness: 3),
@@ -118,32 +127,37 @@ class _SalesMonthlyPageState extends State<SalesMonthlyPage> {
   }
 }
 
-
 class MonthlySection extends StatelessWidget {
   const MonthlySection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TileTypeOne(leadingText: 'Money', trailingText: 
-          'Rs 50,21,333', onTap: (){
-            GoRouter.of(context).go('/sales-on-day');
-
-          },),
-          TileTypeOne(leadingText: 'Money', trailingText: 'Rs 50,21,333', onTap: (){
-            GoRouter.of(context).go('/sales-on-day');
-
-          },),
-          TileTypeOne(leadingText: 'Money', trailingText: 'Rs 50,21,333', onTap: (){
-            GoRouter.of(context).go('/sales-on-day');
-
-          },),
-          
-          
+          TileTypeOne(
+            leadingText: 'Money',
+            trailingText: 'Rs 50,21,333',
+            onTap: () {
+              GoRouter.of(context).push('/sales-on-day');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Money',
+            trailingText: 'Rs 50,21,333',
+            onTap: () {
+              GoRouter.of(context).push('/sales-on-day');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Money',
+            trailingText: 'Rs 50,21,333',
+            onTap: () {
+              GoRouter.of(context).push('/sales-on-day');
+            },
+          ),
         ],
       ),
     );
@@ -155,27 +169,30 @@ class CustomersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          TileTypeTwo(leadingText: 'Monu Pathak', subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5', trailingText: '₹ 7,20,200', onTap: (){
-            GoRouter.of(context).go('/sales-per-user');
-          },),
-                    TileTypeTwo(
+          TileTypeTwo(
+            leadingText: 'Monu Pathak',
+            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+            trailingText: '₹ 7,20,200',
+            onTap: () {
+              GoRouter.of(context).push('/sales-per-user');
+            },
+          ),
+          TileTypeTwo(
               leadingText: 'Sanjay Sharma',
               subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 28,305', onTap: (){
-            GoRouter.of(context).go('/sales-per-user');
+              trailingText: '₹ 28,305',
+              onTap: () {
+                GoRouter.of(context).push('/sales-per-user');
               }),
-
         ],
       ),
     );
   }
 }
-
-
 
 void openBottomSheet(BuildContext context, Widget content) {
   showModalBottomSheet(

@@ -18,14 +18,12 @@ class ReceivablesPage extends StatefulWidget {
 
 class _SalesMonthlyPageState extends State<ReceivablesPage> {
   final List<String> tags = [
-    
     "Customers",
     'Ageing Summary',
   ];
   int selectedIndex = 0;
 
   final Map<int, Widget> content = {
-   
     0: const CustomersSection(),
     1: const AgeinSummarySection(),
   };
@@ -48,7 +46,6 @@ class _SalesMonthlyPageState extends State<ReceivablesPage> {
       ),
       body: Column(
         children: [
-          
           Container(
             height: 40.0,
             margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -97,7 +94,6 @@ class _SalesMonthlyPageState extends State<ReceivablesPage> {
               ),
             ),
           ),
-          
 
           const Divider(thickness: 3),
 
@@ -116,13 +112,12 @@ class AgeinSummarySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           InkWell(
             onTap: () {
-              GoRouter.of(context).go('/user-receivable');
-              
+              GoRouter.of(context).push('/user-receivable');
             },
             child: ReceivablesAgeingTileWidget(
               topLeftText: "Monu Pathak",
@@ -134,11 +129,8 @@ class AgeinSummarySection extends StatelessWidget {
                 {'title': '180+ days', 'subtitle': '₹ 0.00'},
               ],
               bottomText: "Mob: 8825464741  |  GST: 22AAAAA0000A1Z5",
-              
             ),
           ),
-
-         
         ],
       ),
     );
@@ -153,9 +145,18 @@ class CustomersSection extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: [
-          ReceivablesCustomerTileWidget(leadingText: 'Monu Pathak', title1: 'Credit days', subtitle1: '10 Days', title2: 'Avg Day', subtitle2: '60 Days', bottomText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5', trailingText: '₹ 1,02,500', ifShowWhatsapp: true,),
-                    ReceivablesCustomerTileWidget(
-                      ifShowWhatsapp: true,
+          ReceivablesCustomerTileWidget(
+            leadingText: 'Monu Pathak',
+            title1: 'Credit days',
+            subtitle1: '10 Days',
+            title2: 'Avg Day',
+            subtitle2: '60 Days',
+            bottomText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+            trailingText: '₹ 1,02,500',
+            ifShowWhatsapp: true,
+          ),
+          ReceivablesCustomerTileWidget(
+              ifShowWhatsapp: true,
               leadingText: 'Monu Pathak',
               title1: 'Credit days',
               subtitle1: '10 Days',
@@ -163,7 +164,6 @@ class CustomersSection extends StatelessWidget {
               subtitle2: '60 Days',
               bottomText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
               trailingText: '₹ 1,02,500')
-
         ],
       ),
     );

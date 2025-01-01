@@ -60,7 +60,7 @@ class NavigationItem {
     NavigationItem(
       id: 3,
       imageUrl: 'assets/images/dashboard/startup-logo.png',
-      navigationPath: '/feedback',
+      navigationPath: '/balance-sheet',
     ),
   ];
 

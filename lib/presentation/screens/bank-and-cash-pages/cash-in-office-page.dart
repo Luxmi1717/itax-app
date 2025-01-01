@@ -22,29 +22,30 @@ class _SalesOnDayPageState extends State<CashInOfficePage> {
     return Scaffold(
       bottomNavigationBar: Container(
           padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 24.w),
-          child: BlueButton(title: 'Add/Reduce money', onPressed: () {
-            GoRouter.of(context).go('/bank-add-money');
-          })),
+          child: BlueButton(
+              title: 'Add/Reduce Money',
+              onPressed: () {
+                GoRouter.of(context).push('/bank-add-money');
+              })),
       appBar: CustomAppBar(
           title: '₹ 27,08,015',
           subtitle: 'Total Balance',
           pageTitle: 'Cash in Office',
-          onMorePressed: (){
+          onMorePressed: () {
             openBottomSheet(context, const SalesOptionsSlider());
           },
-          onSortPressed: (){
+          onSortPressed: () {
             openBottomSheet(context, const SortByOptionsSlider());
           },
           onBackPressed: () {
-            GoRouter.of(context).go('/home');
-          }
-          ),
+            GoRouter.of(context).push('/home');
+          }),
       body: Column(
         children: [
           // Horizontal Scrollable Tags
 
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 12.h),
             child: Row(
               children: [
                 Icon(

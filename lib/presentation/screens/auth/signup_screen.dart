@@ -32,129 +32,148 @@ class _SignUpScreenState extends State<SignUpScreen> {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
-      appBar: AppBar(
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: AppGradients.mainGradient,
-        ),
-
-      ),
-            leading: InkWell(
-              onTap: () {
-                GoRouter.of(context).go('/login');
-              },
-              child: Icon(Icons.arrow_back_ios_new, color: Colors.white, )),
-            title:  Text('Sign Up', style: TextStyle(color: Colors.white, fontSize: 19.sp,)),
-      ),
-      
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 Text(
-                  'Welcome to us',
-                  style: TextStyle(
-                      color: mainBlueColor,
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  'Hello there, Create New Account',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: 30.h),
-                CustomTextInput(
-                  controller: fullNameController,
-                  hintText: 'First Name',
-                  ifPasswordField: false,
-                  validator: (value) =>
-                      value!.isEmpty ? 'First Name is required' : null,
-                ),
-                SizedBox(height: 20.h),
-
-                CustomTextInput(
-                  controller: fullNameController,
-                  hintText: 'Last Name',
-                  ifPasswordField: false,
-                  validator: (value) =>
-                      value!.isEmpty ? 'Last Name is required' : null,
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: emailController,
-                  hintText: 'Email',
-                  ifPasswordField: false,
-                  validator: (value) =>
-                      value!.contains('@') ? null : 'Enter a valid email',
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: phoneNumberController,
-                  hintText: 'Phone Number',
-                  ifPasswordField: false,
-                  validator: (value) =>
-                      value!.length == 10 ? null : 'Enter a valid phone number',
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  ifPasswordField: true,
-                  validator: (value) => value!.length >= 6
-                      ? null
-                      : 'Password must be at least 6 characters',
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm Password',
-                  ifPasswordField: true,
-                  validator: (value) => value == passwordController.text
-                      ? null
-                      : 'Passwords do not match',
-                ),
-                SizedBox(height: 10.h,),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
-                    ),
-                    const Text('I agree to the terms and conditions'),
-                  ],
-                ),
-                BlueButton(
-                  title: 'Sign up',
-                  onPressed: () {
-                    if (_formKey.currentState!.validate() && isChecked) {
-                      authProvider.signUp(NewUserModel(
-                        firstName: fullNameController.text.split(' ')[0] ,
-                        lastName: fullNameController.text.split(' ')[1] ,
-                        email: emailController.text,
-                        password: passwordController.text,
-                        phone: phoneNumberController.text,
-                      ));
-                    } else if (!isChecked) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content:
-                            Text('Please agree to the terms and conditions'),
-                      ));
-                    }
-                  },
-                ),
-              ],
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: AppGradients.mainGradient,
             ),
           ),
+          leading: InkWell(
+              onTap: () {
+                GoRouter.of(context).push('/login');
+              },
+              child: Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.white,
+              )),
+          title: Text('Sign Up',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 19.sp,
+              )),
         ),
-      ),
-    );
+        body: Form(
+            key: _formKey,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Welcome to us',
+                        style: TextStyle(
+                            color: mainBlueColor,
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Hello there, Create New Account',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      SizedBox(height: 30.h),
+                      CustomTextInput(
+                        controller: fullNameController,
+                        hintText: 'First Name',
+                        ifPasswordField: false,
+                        validator: (value) =>
+                            value!.isEmpty ? 'First Name is required' : null,
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextInput(
+                        controller: fullNameController,
+                        hintText: 'Last Name',
+                        ifPasswordField: false,
+                        validator: (value) =>
+                            value!.isEmpty ? 'Last Name is required' : null,
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextInput(
+                        controller: emailController,
+                        hintText: 'Email',
+                        ifPasswordField: false,
+                        validator: (value) =>
+                            value!.contains('@') ? null : 'Enter a valid email',
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextInput(
+                        controller: phoneNumberController,
+                        hintText: 'Phone Number',
+                        ifPasswordField: false,
+                        validator: (value) => value!.length == 10
+                            ? null
+                            : 'Enter a valid phone number',
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextInput(
+                        controller: passwordController,
+                        hintText: 'Password',
+                        ifPasswordField: true,
+                        validator: (value) => value!.length >= 6
+                            ? null
+                            : 'Password must be at least 6 characters',
+                      ),
+                      SizedBox(height: 20.h),
+                      CustomTextInput(
+                        controller: confirmPasswordController,
+                        hintText: 'Confirm Password',
+                        ifPasswordField: true,
+                        validator: (value) => value == passwordController.text
+                            ? null
+                            : 'Passwords do not match',
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: isChecked,
+                            onChanged: (value) {
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            },
+                          ),
+                          const Text('I agree to the terms and conditions'),
+                        ],
+                      ),
+                      BlueButton(
+                        title: 'Sign up',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate() && isChecked) {
+                            authProvider.signUp(NewUserModel(
+                              firstName: fullNameController.text.split(' ')[0],
+                              lastName: fullNameController.text.split(' ')[1],
+                              email: emailController.text,
+                              password: passwordController.text,
+                              phone: phoneNumberController.text,
+                            ));
+                          } else if (!isChecked) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                  'Please agree to the terms and conditions'),
+                            ));
+                          }
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Already have an account?'),
+                          TextButton(
+                            onPressed: () {
+                              GoRouter.of(context).push('/login');
+                            },
+                            child: const Text('Login',
+                                style: TextStyle(color: mainBlueColor)),
+                          ),
+                        ],
+                      )
+                    ]),
+              ),
+            )));
   }
 }

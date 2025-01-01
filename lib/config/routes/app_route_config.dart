@@ -27,6 +27,9 @@ import 'package:itax/presentation/screens/receipt-pages.dart/receipt-day-wise-pa
 import 'package:itax/presentation/screens/receipt-pages.dart/receipt-page.dart';
 import 'package:itax/presentation/screens/receivables-and-payables-screens/receivable-user-page.dart';
 import 'package:itax/presentation/screens/receivables-and-payables-screens/receivables-page.dart';
+import 'package:itax/presentation/screens/reports/report-balance-sheet-page.dart';
+import 'package:itax/presentation/screens/reports/report-profit-loss-screen.dart';
+import 'package:itax/presentation/screens/reports/trial-balance-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-day-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-monthly-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-person.dart';
@@ -34,7 +37,7 @@ import 'package:itax/presentation/screens/sales-purchase-screens/sales-person.da
 class MyAppRouter {
 
   GoRouter router = GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/login',
     routes: [
 
         GoRoute(
@@ -358,6 +361,23 @@ class MyAppRouter {
 
 
 
+
+  //----------------- Reports Screens routes Start ---------------------
+  
+ GoRoute(
+      name: MyAppRouteConstants.balanceSheetName,
+      path: '/balance-sheet',
+      pageBuilder: (context, state) {
+        return const MaterialPage(child: BalanceSheetPage());
+      },
+    ),
+    GoRoute(
+      name: MyAppRouteConstants.profitLossScreenName,
+      path: '/profit-loss',
+      pageBuilder: (context, state) {
+        return const MaterialPage(child: ProfitLossReportPage());
+      },
+    ),
 
     ]
   );

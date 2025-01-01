@@ -13,7 +13,8 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
   final int selectedIndex;
   final Function(int) onTabSelected;
 
-  const CustomAppBarBank({super.key, 
+  const CustomAppBarBank({
+    super.key,
     required this.tabController,
     required this.selectedIndex,
     required this.onTabSelected,
@@ -33,7 +34,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
                 onPressed: () {
-                  GoRouter.of(context).go('/home');
+                  GoRouter.of(context).push('/home');
                 },
               ),
               Text('Bank & Cash',
@@ -42,7 +43,7 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
               IconButton(
                 icon: const Icon(Icons.search, color: whiteColor),
                 onPressed: () {
-                  GoRouter.of(context).go('/add-new-bank');
+                  GoRouter.of(context).push('/add-new-bank');
                 },
               ),
               IconButton(
@@ -67,40 +68,40 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
                 onTap: () => onTabSelected(0),
                 child: Container(
                   padding:
-                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 30.w),
+                      EdgeInsets.symmetric(vertical: 9.h, horizontal: 40.w),
                   decoration: BoxDecoration(
                     color:
                         selectedIndex == 0 ? Colors.white : Colors.transparent,
-                   
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
                     'Bank',
                     style: TextStyle(
-                      color: selectedIndex == 0 ? Colors.black : Colors.white,
+                      color: selectedIndex == 0 ? mainBlueColor : Colors.white,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 20.w),
+              SizedBox(width: 10.w),
+              
+              SizedBox(width: 10.w),
 
               GestureDetector(
                 onTap: () => onTabSelected(1),
                 child: Container(
                   padding:
-                      EdgeInsets.symmetric(vertical: 8.h, horizontal: 30.w),
+                      EdgeInsets.symmetric(vertical: 9.h, horizontal: 40.w),
                   decoration: BoxDecoration(
                     color:
                         selectedIndex == 1 ? Colors.white : Colors.transparent,
-                    
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
                     'Cash',
                     style: TextStyle(
-                      color: selectedIndex == 1 ? Colors.black : Colors.white,
+                      color: selectedIndex == 1 ? mainBlueColor : Colors.white,
                       fontSize: 15.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -118,17 +119,30 @@ class CustomAppBarBank extends StatelessWidget implements PreferredSizeWidget {
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('₹1000', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
-                    Text('Bank Balance', style: TextStyle(color: Colors.white, fontSize: 12.sp)),
-                    
+                    Text('₹1000',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold)),
+                    Text('Bank Balance',
+                        style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                   ],
+                ),
+                Container(
+                  height: 30.h,
+                  width: 1.w,
+                  color: Colors.white,
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('₹500', style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold)),
-                    Text('Cash',  style: TextStyle(color: Colors.white, fontSize: 12.sp)),
-                    
+                    Text('₹500',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold)),
+                    Text('Cash',
+                        style: TextStyle(color: Colors.white, fontSize: 12.sp)),
                   ],
                 ),
               ],
@@ -177,25 +191,48 @@ class _BankCashScreenState extends State<AllBanksPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: mainBlueColor,
-        onPressed: () {
-          openBottomSheet(context, AddCashSlider());
-        },
-        icon: const Icon(Icons.add, color: whiteColor,),
-        label: selectedIndex == 0 ? const Text('Add New Bank', style: TextStyle(color: whiteColor),): const Text('Add Category', style: TextStyle(color: whiteColor),
-              ),
-      ),
+       
       appBar: CustomAppBarBank(
         tabController: _tabController,
         selectedIndex: selectedIndex,
         onTabSelected: _handleTabSelection,
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: const [
-          Expanded(child: BankContentWidget()),
-          Expanded(child: CashContentWidget()),
+      body: Stack(
+        children: [
+          Container(
+            height: double.infinity,
+              child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  Expanded(child: BankContentWidget()),
+                  Expanded(child: CashContentWidget()),
+                ],
+              ),
+            
+          ),
+          Positioned(
+            bottom: 100.h,
+            right:40.w,
+            child: FloatingActionButton.extended(
+              backgroundColor: mainBlueColor,
+              onPressed: () {
+                openBottomSheet(context, AddCashSlider());
+              },
+              icon: const Icon(
+                Icons.add,
+                color: whiteColor,
+              ),
+              label: selectedIndex == 0
+                  ? const Text(
+                      'Add New Bank',
+                      style: TextStyle(color: whiteColor),
+                    )
+                  : const Text(
+                      'Add Category',
+                      style: TextStyle(color: whiteColor),
+                    ),
+            ),
+             )
         ],
       ),
     );
@@ -207,25 +244,33 @@ class BankContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200', onTap: (){
-            GoRouter.of(context).go('/specific-bank');
-
-          },),
-          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200', onTap: (){
-            GoRouter.of(context).go('/specific-bank');
-
-          },),
-          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200', onTap: (){
-            GoRouter.of(context).go('/specific-bank');
-
-          },),
+          TileTypeOne(
+            leadingText: 'Nov 24',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/specific-bank');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Dec 24',
+            trailingText: '₹ 3,33,200',
+            onTap: () {
+              GoRouter.of(context).push('/specific-bank');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Jan 23',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/specific-bank');
+            },
+          ),
         ],
       ),
     );
-    
   }
 }
 
@@ -234,21 +279,26 @@ class CashContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Cash in Office', trailingText: '₹ 11,200', onTap: (){
-            GoRouter.of(context).go('/cash-in-office');
-
-          },),
-          TileTypeOne(leadingText: 'Cash in Home', trailingText: '₹ 3,33,200', onTap: (){
-            GoRouter.of(context).go('/cash-in-office');
-
-          },),
+          TileTypeOne(
+            leadingText: 'Cash in Office',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/cash-in-office');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Cash in Home',
+            trailingText: '₹ 3,33,200',
+            onTap: () {
+              GoRouter.of(context).push('/cash-in-office');
+            },
+          ),
         ],
       ),
     );
-    
   }
 }
 

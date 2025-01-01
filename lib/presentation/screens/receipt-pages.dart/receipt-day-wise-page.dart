@@ -18,9 +18,9 @@ class _SalesOnDayPageState extends State<ReceiptDayWisePage> {
       appBar: CustomAppBar(
         title: '₹ 11,200',
         subtitle: 'Total Receipt',
-        pageTitle: 'Receipt(Nov 2024)',
+        pageTitle: 'Receipt(Nov2024)',
         onBackPressed: () {
-          GoRouter.of(context).go('/home');
+          GoRouter.of(context).push('/home');
         },
       ),
       body: const Column(

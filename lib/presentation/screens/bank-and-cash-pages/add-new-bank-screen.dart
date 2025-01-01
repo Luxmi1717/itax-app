@@ -51,12 +51,33 @@ class AddNewBankScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 15.h),
-                  CustomTextInput(
-                    controller: ifscController,
-                    hintText: 'Enter IFSC',
-                    ifPasswordField: false,
-                    validator: (value) =>
-                        value.isEmpty ? 'Please enter IFSC' : null,
+                  SizedBox(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomTextInput(
+                            controller: ifscController,
+                            hintText: 'Enter IFSC',
+                            ifPasswordField: false,
+                            validator: (value) =>
+                                value.isEmpty ? 'Please enter IFSC' : null,
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Container(
+                            height: 50.h,
+                            width: 50.w,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 202, 223, 255),
+                              borderRadius: BorderRadius.circular(14),
+                              border: Border.all(color: mainBlueColor, width: 1),
+                            ),
+                            child: Center(child: Text('Fetch Bank Details', style: TextStyle(color: mainBlueColor, fontSize: 14.sp, fontWeight: FontWeight.bold),)),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 15.h),
                   CustomTextInput(

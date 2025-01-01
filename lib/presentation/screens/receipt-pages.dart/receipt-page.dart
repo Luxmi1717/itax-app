@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/main.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-1-tile.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/widgets/type-2-tile.dart';
 import 'package:itax/presentation/widgets/appbars/custom-appbar.dart';
@@ -16,35 +18,33 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
   final List<String> tags = [
     "Monthly",
     "Customers",
-   
   ];
   int selectedIndex = 0;
 
   final Map<int, Widget> content = {
     0: const MonthlySection(),
     1: const CustomersSection(),
-   
   };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Rs 50,21,333',
+        title: '₹ 50,21,333',
         subtitle: 'Total Receipt',
         pageTitle: 'Receipt',
         onBackPressed: () {
-          GoRouter.of(context).go('/home');
+          GoRouter.of(context).push('/home');
         },
       ),
       body: Column(
         children: [
           // Horizontal Scrollable Tags
           Container(
-            height: 40.0,
+            height: 40.h,
+            width: double.infinity,
             margin: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListView.builder(
-              
               scrollDirection: Axis.horizontal,
               itemCount: tags.length,
               itemBuilder: (context, index) {
@@ -56,9 +56,9 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
                     });
                   },
                   child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 10.0),
+                    margin:  EdgeInsets.symmetric(horizontal: 8.w),
+                    padding:  EdgeInsets.symmetric(
+                        horizontal: 42.w, vertical: 8.h),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: isSelected
@@ -75,7 +75,7 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
                       tags[index],
                       style: TextStyle(
                         color: isSelected ? mainBlueColor : Colors.black,
-                        fontSize: 14.0,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -106,9 +106,7 @@ class _SalesMonthlyPageState extends State<ReceiptPage> {
 
           // Dynamic Content Area
           Expanded(
-            
-              child: content[selectedIndex] ?? const Text("No data available"),
-            
+            child: content[selectedIndex] ?? const Text("No data available"),
           ),
         ],
       ),
@@ -121,21 +119,30 @@ class MonthlySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
-          TileTypeOne(leadingText: 'Nov 24', trailingText: '₹ 11,200', onTap: (){
-            GoRouter.of(context).go('/receipt-day-wise');
-
-          },),
-          TileTypeOne(leadingText: 'Dec 24', trailingText: '₹ 3,33,200', onTap: (){
-            GoRouter.of(context).go('/receipt-day-wise');
-
-          },),
-          TileTypeOne(leadingText: 'Jan 23', trailingText: '₹ 11,200', onTap: (){
-            GoRouter.of(context).go('/receipt-day-wise');
-
-          },),
+          TileTypeOne(
+            leadingText: 'Nov 24',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/receipt-day-wise');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Dec 24',
+            trailingText: '₹ 3,33,200',
+            onTap: () {
+              GoRouter.of(context).push('/receipt-day-wise');
+            },
+          ),
+          TileTypeOne(
+            leadingText: 'Jan 23',
+            trailingText: '₹ 11,200',
+            onTap: () {
+              GoRouter.of(context).push('/receipt-day-wise');
+            },
+          ),
         ],
       ),
     );
@@ -147,24 +154,27 @@ class CustomersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           TileTypeTwo(
-              leadingText: 'Monu Pathak',
-              subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 7,20,200', onTap: () {
-                GoRouter.of(context).go('/receipt-per-user');
-              }, ),
+            leadingText: 'Monu Pathak',
+            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+            trailingText: '₹ 7,20,200',
+            onTap: () {
+              GoRouter.of(context).push('/receipt-per-user');
+            },
+          ),
           TileTypeTwo(
-              leadingText: 'Sanjay Sharma',
-              subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
-              trailingText: '₹ 28,305', onTap: () {
-                GoRouter.of(context).go('/receipt-per-user');
-              }, ),
+            leadingText: 'Sanjay Sharma',
+            subText: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+            trailingText: '₹ 28,305',
+            onTap: () {
+              GoRouter.of(context).push('/receipt-per-user');
+            },
+          ),
         ],
       ),
     );
   }
 }
-

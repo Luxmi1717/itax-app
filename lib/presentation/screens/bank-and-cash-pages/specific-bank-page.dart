@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -22,28 +21,26 @@ class _SalesOnDayPageState extends State<SpecificBankPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 24.w),
-        
-       
-        
-        child: BlueButton(title: 'Add/reduce money', onPressed: (){
-          openBottomSheet(context,  AddReduceMoneySlider());
-
-        })
-      ),
+          padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 24.w),
+          child: BlueButton(
+              title: 'Add/reduce money',
+              onPressed: () {
+                openBottomSheet(context, AddReduceMoneySlider());
+              })),
       appBar: CustomAppBar(
-          title: '₹ 27,08,015', subtitle: 'Total Balance', pageTitle: 'State Bank of India', 
-           onMorePressed: () {
-          openBottomSheet(context, const SalesOptionsSlider());
-        },
-        onSortPressed: () {
-          openBottomSheet(context, const SortByOptionsSlider());
-        },
-        onBackPressed: () {
-          GoRouter.of(context).go('/home');
-        }
-      ),
-      body:  Column(
+          title: '₹ 27,08,015',
+          subtitle: 'Total Balance',
+          pageTitle: 'State Bank of India',
+          onMorePressed: () {
+            openBottomSheet(context, const SalesOptionsSlider());
+          },
+          onSortPressed: () {
+            openBottomSheet(context, const SortByOptionsSlider());
+          },
+          onBackPressed: () {
+            GoRouter.of(context).push('/home');
+          }),
+      body: Column(
         children: [
           // Horizontal Scrollable Tags
 
@@ -86,15 +83,20 @@ class CustomersSection extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: [
-          BankTile(leadingText1: 'Monu Pathak', leadingText2: '14 Nov 24', leadingText3: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5', leadingContainerText: 'Payment', trailingText: '+ ₹ 1,28,300', trailingTextColor: Colors.green),
-                    BankTile(
+          BankTile(
+              leadingText1: 'Monu Pathak',
+              leadingText2: '14 Nov 24',
+              leadingText3: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
+              leadingContainerText: 'Payment',
+              trailingText: '+ ₹ 1,28,300',
+              trailingTextColor: Colors.green),
+          BankTile(
               leadingText1: 'Monu Pathak',
               leadingText2: '14 Nov 24',
               leadingText3: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
               leadingContainerText: 'Receipt',
               trailingText: '- ₹ 1,28,300',
               trailingTextColor: Colors.red),
-
         ],
       ),
     );

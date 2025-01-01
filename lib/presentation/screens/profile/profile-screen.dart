@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/profile/profile-sliders.dart';
 
@@ -13,50 +14,73 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: whiteColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context), // Navigate back
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () => GoRouter.of(context).pop(), // Navigate back
         ),
         title: const Text('Profile'),
       ),
       body: SingleChildScrollView(
         child: Column(
+          
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Picture with Camera Icon
-            Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 70.r,
-                    backgroundImage: const AssetImage(
-                        'assets/dummy_profile.png'), // Replace with your image
+            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.grey[200],
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey,
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.camera_alt, color: Colors.white),
-                        onPressed: () {
-                          // Add camera functionality here
-                        },
-                      ),
+                 
+                  padding:  EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
+                
+                  child:
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                            child: Stack(
+                              children: [
+                                CircleAvatar(
+                                  radius: 65.r,
+                                  backgroundImage: const AssetImage(
+                                      'assets/dummy_profile.png'), // Replace with your image
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.grey,
+                                    ),
+                                    child: IconButton(
+                                      icon: const Icon(Icons.camera_alt, color: Colors.white),
+                                      onPressed: () {
+                                        // Add camera functionality here
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        
+                        const SizedBox(height: 10),
+                        // User Name
+                        const Center(
+                          child: Text(
+                            'John Doe', // Dummy value
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-            // User Name
-            const Center(
-              child: Text(
-                'John Doe', // Dummy value
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+                  
+                ),
+              ],
             ),
             const SizedBox(height: 20),
 
@@ -113,11 +137,15 @@ class ProfilePage extends StatelessWidget {
 
   // Method to render section headers
   Widget sectionHeader(String title) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-      child: Text(
-        title,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Container(
+      width: double.infinity,
+      color: Colors.grey[200],
+      child: Padding(
+        padding:  EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+        child: Text(
+          title,
+          style:  TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold, color: Colors.grey[600]),
+        ),
       ),
     );
   }
@@ -139,16 +167,16 @@ class ProfilePage extends StatelessWidget {
                     );
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding:  EdgeInsets.symmetric(vertical: 12.h),
               child: Row(
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(item['label']!,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 5),
-                      Text(item['value']!, style: const TextStyle(fontSize: 15)),
+                          style:  TextStyle(fontSize: 16.sp, color: Colors.grey)),
+                       SizedBox(height: 5.h),
+                      Text(item['value']!, style:  TextStyle(fontSize: 17.sp, fontWeight: FontWeight.bold)),
                     ],
                   ),
                   const Spacer(),
@@ -166,12 +194,12 @@ class ProfilePage extends StatelessWidget {
   Widget otherOptions(
       BuildContext context, List<Map<String, dynamic>> options) {
     return Container(
-      color: Colors.grey[200],
+      color: whiteColor,
       width: double.infinity,
       child: Column(
         children: options.map((option) {
           return ListTile(
-            title: Text(option['label']),
+            title: Text(option['label'], style:  TextStyle(fontSize: 16.sp, color: Colors.black)),
             trailing: const Icon(Icons.arrow_forward_ios),
             onTap: option['action'], // Trigger the specific action
           );

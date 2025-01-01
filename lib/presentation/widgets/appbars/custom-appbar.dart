@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Padding(
               padding:
-                   EdgeInsets.symmetric(horizontal: 15.w, vertical: 14.h),
+                   EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -48,7 +48,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Text(
                         pageTitle,
                         style:
-                             TextStyle(color: Colors.white, fontSize: 17.sp,),
+                             TextStyle(color: Colors.white, fontSize: 16.sp,),
                       ),
                     ],
                   ),

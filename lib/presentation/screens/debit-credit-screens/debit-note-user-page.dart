@@ -15,7 +15,7 @@ class _SalesOnDayPageState extends State<DebitNotePerDate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Rs 7,21,333',
+        title: '₹ 7,21,333',
         subtitle: 'Total Sales',
         pageTitle: 'Debit Note(Nov 24)',
         onBackPressed: () {},
@@ -68,7 +68,7 @@ class CustomersSection extends StatelessWidget {
               leadingText3: 'Mob: 8825464741  |  GST: 22AAAAA0000A1Z5',
               trailingText: '₹ 11,200',
               ifTrailingContainer: true,
-              trailingContainerContent: 'Unpaid',
+              trailingContainerContent: 'Receipt',
               ifGreen: false)
         ],
       ),

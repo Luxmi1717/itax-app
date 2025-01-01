@@ -22,7 +22,7 @@ class _SalesOnDayPageState extends State<SalesPerUserPage> {
         subtitle: 'Total sales',
         pageTitle: 'Monu Pathak',
         onBackPressed: () {
-          GoRouter.of(context).go('/home');
+          GoRouter.of(context).push('/home');
         },
         onSortPressed: () {
           openBottomSheet(context, const SortByOptionsSlider());
@@ -76,7 +76,6 @@ class CustomersSection extends StatelessWidget {
           TileTypeFour(
               leadingText1: '#123',
               leadingText2: '14Nov\'24',
-            
               trailingText: '₹ 30,500',
               ifLeadingContainer: true,
               trailingContainerContent: 'Unpaid',
@@ -86,7 +85,6 @@ class CustomersSection extends StatelessWidget {
     );
   }
 }
-
 
 void openBottomSheet(BuildContext context, Widget content) {
   showModalBottomSheet(

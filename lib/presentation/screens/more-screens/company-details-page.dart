@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 
 class CompanyDetailsPage extends StatelessWidget {
@@ -30,11 +31,11 @@ class CompanyDetailsPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text('Company Details',
-            style: TextStyle(color: Colors.black, fontSize: 20)),
+        title:  Text('Company Details',
+            style: TextStyle(color: Colors.black, fontSize: 20.sp, fontWeight: FontWeight.bold)),
         actions: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding:  EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               children: [
                 IconButton(
@@ -52,9 +53,18 @@ class CompanyDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Center(
-              child: Image.asset('assets/images/itaxlogo.png', height: 100),
+              child: Container(
+                width: 100.w,
+                height: 100.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: blackColor),
+                  
+                ),
+                
+                child: Image.asset('assets/images/itaxlogo.png', height: 100)),
             ),
             const SizedBox(height: 10),
             const Row(
@@ -68,31 +78,40 @@ class CompanyDetailsPage extends StatelessWidget {
               thickness: 1,
               color: Colors.grey,
             ),
-            const SizedBox(height: 20),
-            _buildTile('Business Name', 'Shaiz Enterprise'),
+             SizedBox(height: 30.h),
+            _buildTile('Business ', 'Shaiz Enterprise'),
+            SizedBox(height: 16.h),
+            
             _buildTile('GST Number', '22AAAAA0000A1Z5'),
+            SizedBox(height: 16.h),
             _buildTile('Aadhar Number', '999941057058'),
+            SizedBox(height: 16.h),
             _buildTile('PAN Number', 'ABCTY1234D'),
+            SizedBox(height: 16.h),
             _buildTile('Mobile Number', '8466232323'),
+            SizedBox(height: 16.h),
             _buildTile('Email ID', 'shaiz0702@gmail.com'),
+            SizedBox(height: 16.h),
             _buildTile('Registration Number', '123456789'),
             const Divider(
               thickness: 2,
-              color: Colors.grey,
+              color: Color.fromARGB(255, 211, 211, 211),
             ),
 
-            const Padding(padding: EdgeInsets.all(16),
+             Padding(padding: EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Business Adress', style: TextStyle(fontSize: 20, color: blackColor, fontWeight: FontWeight.bold)),
-                SizedBox(height: 6),
+                SizedBox(height: 12.h),
                 Text('Akshya Nagar 1st Block 1st Cross, Rammurthy nagar',
-                    style: TextStyle(fontSize: 12, )),
-                                    SizedBox(height: 4),
+                    style: TextStyle(fontSize: 12.sp, )),
+                                    SizedBox(height: 6.h),
 
                     Row(children: [
                       Text('State:',style: TextStyle(color: Colors.grey),),
+                      SizedBox(height: 6.h),
+
                                             Text(
                         'Karnataka:',
                         style: TextStyle(color: Colors.black),

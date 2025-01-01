@@ -40,209 +40,289 @@ class DashboardScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-          child: Column(
+        child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 55.h,
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search...',
-                    prefixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(right: 4.w),
-                      height: 1,
-                      color: mainBlueColor,
-                    ),
-                  ),
-                  Text(
-                    'Services',
-                    style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                        color: mainBlueColor),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 4.w),
-                      height: 1,
-                      color: mainBlueColor,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              GridView.count(
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: List.generate(dashboardServicesList.length, (index) {
-                  return InkWell(
-                    onTap: () {
-                      GoRouter.of(context).go(dashboardServicesList[index].navigationPath);
-                    },
-                    child: Container(
-                      margin: EdgeInsets.all(3.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: DecorationImage(
-                          image:
-                              AssetImage(dashboardServicesList[index].imageUrl),
-                          fit: BoxFit.cover,
+
+              Padding(
+                padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                child: Column(
+                  
+                  children: [
+                    SizedBox(
+                      height: 55.h,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search...',
+                          prefixIcon: const Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
-                      height: 18.h, 
-                      width: 18.w, 
                     ),
-                  );
-                }),
+                     SizedBox(height: 20.h),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w, ),
+                      decoration: BoxDecoration(
+                        color: mainBlueColor,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/images/dashboard/dashboard2.png', // Replace with your logo asset
+                            height: 130.h,
+                            width: 100.w,
+                          ),
+                          Spacer(),
+                    
+                    
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                  Text(
+                                  'Smart Policy Choice',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  ),
+                                Text('Select Policies That Suit You', style: TextStyle(color: Colors.white, fontSize: 12.sp),),
+                                SizedBox(height: 20.h),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: whiteColor),
+                                  ),
+                                  child: Text('CHOOSE POLICY', style: TextStyle(color: whiteColor, fontSize: 14.sp, ),),
+                                )
+                                
+                                
+                              ],
+                            ),
+                          
+                         
+                          
+                        ],
+                      ),
+                    
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.h),
+               Divider(
+                color: const Color.fromARGB(255, 226, 225, 225),
+                thickness: 6,
+              ),
+               SizedBox(height: 20.h),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(right: 4.w),
+                            height: 1,
+                            color: mainBlueColor,
+                          ),
+                        ),
+                        Text(
+                          'Services',
+                          style: TextStyle(
+                              fontSize: 20.sp,
+                              fontWeight: FontWeight.bold,
+                              color: mainBlueColor),
+                        ),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 4.w),
+                            height: 1,
+                            color: mainBlueColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    GridView.count(
+                      crossAxisCount: 3,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: List.generate(dashboardServicesList.length, (index) {
+                        return InkWell(
+                          onTap: () {
+                            GoRouter.of(context).push(dashboardServicesList[index].navigationPath);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(3.w),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              image: DecorationImage(
+                                image:
+                                    AssetImage(dashboardServicesList[index].imageUrl),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            height: 18.h, 
+                            width: 18.w, 
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 40.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(right: 4.w),
-                      height: 1,
-                      color: mainBlueColor,
-                    ),
-                  ),
-                  Text(
-                    'Tools',
-                    style: TextStyle(
-                        fontSize: 20.sp,
-                        fontWeight: FontWeight.bold,
-                        color: mainBlueColor),
-                  ),
-                  SizedBox(height: 20.h,),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(left: 4.w),
-                      height: 1,
-                      color: mainBlueColor,
-                    ),
-                  ),
-                ],
+              Divider(
+                color: const Color.fromARGB(255, 226, 225, 225),
+                thickness: 6,
               ),
-              SizedBox(height: 1.h),
-              GridView.count(
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                children: List.generate(dashboardToolsList.length, (index) {
-                  return InkWell(
-                    onTap: () {
-                      GoRouter.of(context).go(dashboardToolsList[index].navigationPath);
-                    },
-                    child: Container(
-                      margin: EdgeInsets.all(3.w),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: DecorationImage(
-                          image: AssetImage(dashboardToolsList[index].imageUrl),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      height: 18.h, 
-                      width: 18.w, 
-                    ),
-                  );
-                }),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: EdgeInsets.all(10.w),
-                    padding: EdgeInsets.symmetric(horizontal:  10.w,vertical: 5.h),
-                    width: 140.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      color: mainBlueColor.withOpacity(0.1),
-                      border: Border.all(color: mainBlueColor),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'View More',
-                        style: TextStyle(
-                          color: mainBlueColor,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-               SizedBox(height: 20.h),
-
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Row(
+              SizedBox(height: 20.h),
+              Padding(
+                padding:  EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                child: Column(
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Fill your ITR for free',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.sp,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(right: 4.w),
+                            height: 1,
+                            color: mainBlueColor,
+                          ),
+                        ),
+                        Text(
+                          'Tools',
+                          style: TextStyle(
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.bold,
-                            ),
+                              color: mainBlueColor),
+                        ),
+                        SizedBox(height: 20.h,),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 4.w),
+                            height: 1,
+                            color: mainBlueColor,
                           ),
-                          SizedBox(height: 5.h),
-                          Text(
-                            'Fill your Income Tax returns \nfor free in just minutes \n- Completely Free!',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 1.h),
+                    GridView.count(
+                      crossAxisCount: 3,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: List.generate(dashboardToolsList.length, (index) {
+                        return InkWell(
+                          onTap: () {
+                            GoRouter.of(context).push(dashboardToolsList[index].navigationPath);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(3.w),
                             decoration: BoxDecoration(
-                              
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: whiteColor),
+                              borderRadius: BorderRadius.circular(12),
+                              image: DecorationImage(
+                                image: AssetImage(dashboardToolsList[index].imageUrl),
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            
+                            height: 18.h, 
+                            width: 18.w, 
+                          ),
+                        );
+                      }),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(10.w),
+                          padding: EdgeInsets.symmetric(horizontal:  10.w,vertical: 5.h),
+                          width: 140.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            color: mainBlueColor.withOpacity(0.1),
+                            border: Border.all(color: mainBlueColor),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
                             child: Text(
-                              'Apply Now',
+                              'View More',
                               style: TextStyle(
-                                color: whiteColor,
+                                color: mainBlueColor,
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
+                        ),
+                      ],
+                    ),
+                    
+                     SizedBox(height: 20.h),
+                    
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Fill your ITR for free',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 5.h),
+                                Text(
+                                  'Fill your Income Tax returns \nfor free in just minutes \n- Completely Free!',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                                  decoration: BoxDecoration(
+                                    
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: whiteColor),
+                                  ),
+                                  
+                                  child: Text(
+                                    'Apply Now',
+                                    style: TextStyle(
+                                      color: whiteColor,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 10.w),
+                          CircleAvatar(
+                            radius: 30.w,
+                            backgroundImage: AssetImage('assets/photo.png'), // Replace with your photo asset
+                          ),
                         ],
                       ),
-                    ),
-                    SizedBox(width: 10.w),
-                    CircleAvatar(
-                      radius: 30.w,
-                      backgroundImage: AssetImage('assets/photo.png'), // Replace with your photo asset
                     ),
                   ],
                 ),
@@ -250,7 +330,7 @@ class DashboardScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }
