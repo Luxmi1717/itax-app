@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/cubits/auth_cubit.dart';
+import 'package:itax/cubits/auth_state.dart';
 import 'package:itax/presentation/screens/bottom-navigation/dashboard-navigation.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
-import 'package:itax/repositories/auth_repository.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
   @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     final TextEditingController emailOrPhoneController =
         TextEditingController();
     final TextEditingController passwordController = TextEditingController();
@@ -109,39 +117,50 @@ class SignInScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    BlueButton(
-                      title: 'Login',
-                      onPressed: () async {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => BottomNavBarDashBoard()));
-                        // final email = emailOrPhoneController.text.trim();
-                        // final password = passwordController.text.trim();
-
-                        // if (email.isEmpty || password.isEmpty) {
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     const SnackBar(
-                        //       content:
-                        //           Text('Please enter both email and password'),
-                        //     ),
-                        //   );
-                        //   return;
-                        // }
-
-                        // final authProvider =
-                        //     Provider.of<AuthProvider>(context, listen: false);
-                        // await authProvider.login(email, password);
-
-                        // if (authProvider.errorMessage != null) {
-                        //   ScaffoldMessenger.of(context).showSnackBar(
-                        //     SnackBar(
-                        //       content: Text(authProvider.errorMessage!),
-                        //     ),
-                        //   );
-                        // } else {
-                        //   Navigator.pushNamed(context, '/dashboard');
-                        // }
+                     BlocConsumer<AuthCubit, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthError) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(state.message),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.error,
+                            ),
+                          );
+                        } else if (state is AuthSuccess) {
+                          GoRouter.of(context).push('/home');
+                          final user =
+                              context.read<AuthCubit>().getLoggedInUser();
+                          print(user.data?.email ?? "");
+                          // context.push('/otp-verification');
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   const SnackBar(
+                          //     content: Text('OTP Sent to your email.'),
+                          //   ),
+                          // );
+                        }
+                      },
+                      builder: (context, state) {
+                        return BlueButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              context.read<AuthCubit>().generateOTP(
+                                  emailOrPhoneController.text,
+                                  passwordController.text);
+                            }
+                          },
+                          title: 'Login',
+                        );
                       },
                     ),
+                    // BlueButton(
+                    //   title: 'Login',
+                    //   onPressed: () async {
+                    //     Navigator.of(context).push(MaterialPageRoute(
+                    //         builder: (context) => BottomNavBarDashBoard()));
+                       
+                    //   },
+                    // ),
                     SizedBox(height: 20.h),
                      Padding(
                        padding:  EdgeInsets.symmetric(horizontal: 40.h),
@@ -254,7 +273,6 @@ class ForgotPasswordStep1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController phoneController = TextEditingController();
 
@@ -293,7 +311,6 @@ class ForgotPasswordStep1 extends StatelessWidget {
             title: 'Send OTP',
             onPressed: () {
               Navigator.pop(context);
-              authProvider.generateForgotPasswordOTP(phoneController.text);
 
               _showForgotPasswordStep2(context);
             },
@@ -318,7 +335,6 @@ class ForgotPasswordStep2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     TextEditingController otpController = TextEditingController();
 
@@ -365,7 +381,6 @@ class ForgotPasswordStep2 extends StatelessWidget {
             title: 'Verify OTP',
             onPressed: () {
               Navigator.pop(context);
-              authProvider.verifyOTP(otpController.text);
 
               _showForgotPasswordStep3(context);
             },

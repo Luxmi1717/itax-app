@@ -11,7 +11,6 @@ class ChangeEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController phoneController = TextEditingController();
 
@@ -49,7 +48,6 @@ class ChangeEmail extends StatelessWidget {
             title: 'Save',
             onPressed: () {
               Navigator.pop(context);
-              authProvider.generateForgotPasswordOTP(phoneController.text);
             },
           ),
         ],
@@ -63,7 +61,6 @@ class ChangePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController passwordController = TextEditingController();
     final TextEditingController confirmPasswordController =
@@ -129,7 +126,6 @@ class ChangeMobileNo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController mobileController = TextEditingController();
 
@@ -180,7 +176,6 @@ class ChangeName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController mobileController = TextEditingController();
 
@@ -231,7 +226,6 @@ class AddPANNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController mobileController = TextEditingController();
 
@@ -282,7 +276,6 @@ class AddGSTNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController mobileController = TextEditingController();
 
@@ -333,7 +326,6 @@ class AddAadharNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController mobileController = TextEditingController();
 
@@ -384,7 +376,6 @@ class AddBusinessName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController mobileController = TextEditingController();
 
@@ -435,7 +426,6 @@ class AddBankDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController IFSCController = TextEditingController();
     final TextEditingController BankNameController = TextEditingController();
@@ -526,7 +516,6 @@ class AddAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     final TextEditingController BusinessAddressController = TextEditingController();
     final TextEditingController StateController = TextEditingController();

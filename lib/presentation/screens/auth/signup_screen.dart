@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/cubits/auth_cubit.dart';
+import 'package:itax/cubits/auth_state.dart';
 import 'package:itax/models/new_user_model.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
@@ -29,7 +32,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
         appBar: AppBar(
@@ -100,9 +102,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         controller: phoneNumberController,
                         hintText: 'Phone Number',
                         ifPasswordField: false,
-                        validator: (value) => value!.length == 10
-                            ? null
-                            : 'Enter a valid phone number',
+                        validator: (value) {
+                          if (value != null && value.isNotEmpty) {
+                              return 'Please enter a phone number';
+                            }
+
+                            // Use regex to validate the phone number
+                            String pattern = r'^\+91[6-9]\d{9}$';
+                            RegExp regExp = RegExp(pattern);
+                            if (!regExp.hasMatch(value!)) {
+                              return 'Please enter a valid Indian phone number';
+                            }
+
+                            return null;
+                        }
                       ),
                       SizedBox(height: 20.h),
                       CustomTextInput(
@@ -138,17 +151,71 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           const Text('I agree to the terms and conditions'),
                         ],
                       ),
+                      BlocConsumer<AuthCubit, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthError) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(state.message),
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.error,
+                              ),
+                            );
+                          } else if (state is AuthOTPSentSuccess) {
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(
+                            //     content: Text('Login successfull'),
+                            //   ),
+                            // );
+                            context.go('/otp-verification');
+                          }
+                        },
+                        builder: (context, state) {
+                          return BlueButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                final parts =
+                                    fullNameController.text.trim().split(' ');
+
+                                String lastName = parts.removeLast().toString();
+
+                                String firstName = parts.join(' ');
+
+                                if (firstName == '') {
+                                  firstName = lastName;
+                                  lastName = '';
+                                }
+
+
+                                final user = NewUserModel(
+                                  firstName: firstName.trim(),
+                                  lastName: lastName.trim(),
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim(),
+                                  //gender: genderController.text.toLowerCase(),
+                                  // gender: genderController.text.toLowerCase(),
+                                  //dob: dobController.text.trim(),
+                                  phone: phoneNumberController.text.trim(),
+                                  address: '',
+                                  aadhaar: '',
+                                  pan: '',
+                                  pin: '',
+                                );
+
+                                context.read<AuthCubit>().signUp(user);
+                              }
+                              context.push('/otp-verification');
+                            },
+                            title: 'Sign up',
+                           
+                          );
+                        },
+                      ),
                       BlueButton(
                         title: 'Sign up',
                         onPressed: () {
                           if (_formKey.currentState!.validate() && isChecked) {
-                            authProvider.signUp(NewUserModel(
-                              firstName: fullNameController.text.split(' ')[0],
-                              lastName: fullNameController.text.split(' ')[1],
-                              email: emailController.text,
-                              password: passwordController.text,
-                              phone: phoneNumberController.text,
-                            ));
+                           
                           } else if (!isChecked) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
