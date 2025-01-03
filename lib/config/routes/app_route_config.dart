@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/routes/app_route_constants.dart';
+import 'package:itax/presentation/screens/auth/otp-verification-screen.dart';
 import 'package:itax/presentation/screens/auth/sign_in_screen.dart';
 import 'package:itax/presentation/screens/auth/signup_screen.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/add-new-bank-screen.dart';
@@ -56,6 +57,14 @@ class MyAppRouter {
 
 
       ),
+      GoRoute(
+      name: MyAppRouteConstants.otpVerificationName,
+      path: '/otp-verification',
+      pageBuilder: (context, state) {
+        return const MaterialPage(child: OTPVerificationScreen());
+      },
+    ),
+
       GoRoute(
       name: MyAppRouteConstants.signInRouteName,
       path: '/login',

@@ -1,15 +1,13 @@
 import 'dart:convert';
 
-
-import 'package:http/http.dart' as http;
 import 'package:itax/config/user_secure_storage.dart';
 import 'package:itax/models/new_user_model.dart';
 
-
+import 'package:http/http.dart' as http;
 
 import '../models/bussiness_model.dart';
 
-class AuthRepository  {
+class AuthRepository {
   //final baseUrl = 'https://node.itaxeasy.com';
   // final baseUrl = 'http://10.0.2.2:8080';
   final baseUrl = 'https://api.itaxeasy.com';
@@ -20,8 +18,9 @@ class AuthRepository  {
   String token = '';
   NewUserModel? user;
   String Otp = '';
-  
+
   Future<http.Response> generateOTP(email, password) async {
+    print('login has started');
     final response = await http.post(
       Uri.parse('$baseUrl/user/login'),
       body: json.encode({
@@ -36,7 +35,6 @@ class AuthRepository  {
     final jsonResponse = jsonDecode(response.body);
 
     if (response.statusCode != 200) {
-
       throw http.ClientException(jsonResponse['message']);
     }
     //final otpId = jsonResponse['results']['data']['id'].toString();
@@ -48,7 +46,7 @@ class AuthRepository  {
 
     return response;
   }
-
+  
 
   Future<http.Response> signUp(NewUserModel user) async {
     print("Request payload: ${user.toJSON()}");
@@ -109,7 +107,7 @@ class AuthRepository  {
     return response;
   }
 
-                                                                      //O R I G I N A L    F U N C T I O N A L I T Y
+  //O R I G I N A L    F U N C T I O N A L I T Y
 
 // Future<http.Response> signUp(NewUserModel user) async {
 //     print(user.toJSON().toString());
@@ -141,7 +139,6 @@ class AuthRepository  {
 //         }),
 //         headers: {'Content-Type': 'application/json'},
 
-
 //       );
 
 //       final jsonResponse = jsonDecode(response.body);
@@ -158,13 +155,8 @@ class AuthRepository  {
 //       throw http.ClientException(message);
 //     }
 
-
-
-
 //     return response;
 //   }
-
-
 
   Future<http.Response> CreateBussinessProfile(BusinessData user) async {
     print(user.toJson().toString());
@@ -172,18 +164,18 @@ class AuthRepository  {
     final response = await http.post(
       Uri.parse('$baseUrl/users/create-business-profile'),
       body: json.encode({
-        "ifsc":user.ifsc,
-        "businessName":user.businessName,
-        "bankAccountNo":user.bankAccountNo,
-        "companyPanNo":user.companyPanNo,
-        "companyTanNo":user.companyTanNo,
-        "msmeNo":user.msmeNo,
-        "gstNo":user.gstNo,
-        "state":user.state,
-        "branch":user.branch,
-        "tradename":user.tradeName,
-        "status":user.state,
-        "address":user.address,
+        "ifsc": user.ifsc,
+        "businessName": user.businessName,
+        "bankAccountNo": user.bankAccountNo,
+        "companyPanNo": user.companyPanNo,
+        "companyTanNo": user.companyTanNo,
+        "msmeNo": user.msmeNo,
+        "gstNo": user.gstNo,
+        "state": user.state,
+        "branch": user.branch,
+        "tradename": user.tradeName,
+        "status": user.state,
+        "address": user.address,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -224,15 +216,15 @@ class AuthRepository  {
     return response;
   }
 
-
   Future<http.Response> verifyOTP(otp) async {
     print('hello$otpId');
     Otp = otp;
-    final response = await http.post(Uri.parse('$baseUrl/user/verify'),
+    final response = await http.post(
+      Uri.parse('$baseUrl/user/verify'),
       body: json.encode({
-        "email":email,
-        "otp_key":otpId,
-        "otp":otp,
+        "email": email,
+        "otp_key": otpId,
+        "otp": otp,
       }),
       headers: {'Content-Type': 'application/json'},
     );
@@ -305,7 +297,7 @@ class AuthRepository  {
     user = NewUserModel(
       firstName: data['firstName'] ?? '',
       lastName: data['lastName'] ?? '',
-      email: data['email'] ,
+      email: data['email'],
       phone: data['phone'],
       aadhaar: data['aadhaar'] ?? '',
       pan: data['pan'] ?? '',
@@ -323,6 +315,7 @@ class AuthRepository  {
     user = null;
   }
 }
+
 // import 'dart:convert';
 // import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;

@@ -19,7 +19,10 @@ class AuthCubit extends Cubit<AuthState> {
   late String token='';
 
   Future<void> generateOTP(String email, String password) async {
+      print('generate otp cubit started');
     try {
+
+
       emit(AuthLoading());
 
       final response = await authRepository.generateOTP(email, password);

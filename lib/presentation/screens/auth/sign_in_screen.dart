@@ -131,7 +131,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           GoRouter.of(context).push('/home');
                           final user =
                               context.read<AuthCubit>().getLoggedInUser();
-                          print(user.data?.email ?? "");
+                         
                           // context.push('/otp-verification');
                           // ScaffoldMessenger.of(context).showSnackBar(
                           //   const SnackBar(
@@ -143,11 +143,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       builder: (context, state) {
                         return BlueButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
+                            // if (_formKey.currentState!.validate()) {
+                              print('login button pressed');
                               context.read<AuthCubit>().generateOTP(
-                                  emailOrPhoneController.text,
-                                  passwordController.text);
-                            }
+                                  emailOrPhoneController.text.trim(),
+                                  passwordController.text.trim());
+                            // }
                           },
                           title: 'Login',
                         );
