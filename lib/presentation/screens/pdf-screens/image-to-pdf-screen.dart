@@ -1,7 +1,9 @@
 import 'dart:io';
 
 // import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:alh_pdf_view/alh_pdf_view.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:file_picker/file_picker.dart';
@@ -12,7 +14,6 @@ import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/pdf_cubit.dart';
 import 'package:itax/cubits/pdf_state.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
 
@@ -251,7 +252,19 @@ class _ImageToPDFScreenState extends State<ImageToPDFScreen> {
       child: Column(
         children: [
           Expanded(
-            child: SfPdfViewer.file(pdf),
+            child:  AlhPdfView(
+              enableDefaultScrollHandle: true,
+              filePath: pdf.path,
+              enableSwipe: true, // Allow swiping between pages
+              // swipeHorizontal:
+              //     true, // Scroll vertically (set to true for horizontal scrolling)
+              autoSpacing: true, // Add spacing between pages
+              pageFling: true, 
+              pageSnap: true,
+              onPageChanged: (int? page, int? total) {
+                print('Current page: $page, Total pages: $total');
+              },
+            ),
           ),
           const SizedBox(height: 16),
           Text(pdf.path.split('/').last),

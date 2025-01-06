@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:itax/adapters/aadhaar_adapter.dart';
+import 'package:itax/adapters/invoice_adapter.dart';
+import 'package:itax/adapters/itr_adapter.dart';
+import 'package:itax/adapters/pan_adapter.dart';
 import 'package:itax/config/routes/app_route_config.dart';
 import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/auth_state.dart';
@@ -13,6 +19,10 @@ import 'package:itax/cubits/ocr_cubit.dart';
 import 'package:itax/cubits/pan_details_cubit.dart';
 import 'package:itax/cubits/pdf_cubit.dart';
 import 'package:itax/cubits/stratup_cubit.dart';
+import 'package:itax/models/aadhaar_model.dart';
+import 'package:itax/models/invoice_model.dart';
+import 'package:itax/models/itr_model.dart';
+import 'package:itax/models/pan_model.dart';
 
 import 'package:itax/repositories/auth_repository.dart';
 import 'package:itax/repositories/blog_repository.dart';
@@ -23,12 +33,25 @@ import 'package:itax/repositories/pan_aadhaar_repository.dart';
 import 'package:itax/repositories/pan_details_repository.dart';
 import 'package:itax/repositories/pdf_repository.dart';
 import 'package:itax/repositories/stratup_repository.dart';
-import 'package:provider/provider.dart';
 
 import 'cubits/pan_aadhaar_cubit.dart';
 import 'repositories/ocr_repository.dart';
 
-void main() {
+void main() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Hive.initFlutter();
+
+   Hive.registerAdapter(AadhaarModelAdapter());
+  Hive.registerAdapter(PanModelAdapter());
+  Hive.registerAdapter(InvoiceModelAdapter());
+  Hive.registerAdapter(ITRModelAdapter());
+
+  // Open the box for storing OCR objects
+  await Hive.openBox<AadhaarModel>('aadhaar_models');
+  await Hive.openBox<PanModel>('pan_models');
+  await Hive.openBox<InvoiceModel>('invoice_models');
+  await Hive.openBox<ITRModel>('itr_models');
+
   runApp(
     const MyApp(),
     
@@ -128,10 +151,10 @@ class MyApp extends StatelessWidget {
           if (state is AuthSuccess) {
             if (state.loggedIn) {
               
-                GoRouter.of(context).pushReplacement('/login');
+                GoRouter.of(context).pushReplacement('/home');
               
             } else {
-              GoRouter.of(context).pushReplacement('/home');
+              GoRouter.of(context).pushReplacement('/login');
               
             }
           }
@@ -142,7 +165,7 @@ class MyApp extends StatelessWidget {
           designSize: const Size(375, 812),
           minTextAdapt: true,
           splitScreenMode: true,
-          // Use builder only if you need to use library outside ScreenUtilInit context
+          
           builder: (_, child) {
             final myAppRouter = MyAppRouter();
             return MaterialApp.router(

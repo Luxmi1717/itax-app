@@ -2,20 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:itax/presentation/screens/calculators/widgets/blue-text-feild-widget.dart';
+import 'package:itax/presentation/screens/calculators/widgets/text-decoration-widget.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 
-import '../widgets/text-decoration-widget.dart';
-
-class LumpSumCalculator extends StatefulWidget {
-  const LumpSumCalculator({super.key});
+class RDCalculator extends StatefulWidget {
+  const RDCalculator({super.key});
 
   @override
-  State<LumpSumCalculator> createState() => _LumpSumCalculatorPageState();
+  State<RDCalculator> createState() => _SipCalculatorPageState();
 }
 
-class _LumpSumCalculatorPageState extends State<LumpSumCalculator> {
+class _SipCalculatorPageState extends State<RDCalculator> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController totalInvestment = TextEditingController();
+  TextEditingController monthlyInvestment = TextEditingController();
   TextEditingController expectedReturnRate = TextEditingController();
   TextEditingController noOfYears = TextEditingController();
 
@@ -23,17 +22,19 @@ class _LumpSumCalculatorPageState extends State<LumpSumCalculator> {
   String _estimatedReturns = "";
   String _totalValue = "";
 
-  /// Function to calculate Lump Sum
-  void _calculateLumpSum() {
+  /// Function to calculate SIP
+  void _calculateSip(
+      String monthlyInvestment, String expectedReturnRate, String noOfYears) {
     if (_formKey.currentState!.validate()) {
-      double p = double.parse(totalInvestment.text); // Lump Sum Investment
-      double r =
-          double.parse(expectedReturnRate.text) / 100; // Annual Return Rate
-      int t = int.parse(noOfYears.text); // Number of Years
+      double p = double.parse(monthlyInvestment); // Monthly investment
+      double r = double.parse(expectedReturnRate) / 100; // Annual return rate
+      int t = int.parse(noOfYears); // Number of years
+      int n = 12; // Compounding frequency (monthly)
 
-      // Lump Sum Formula
-      double maturityValue = p * pow(1 + r, t);
-      double investedAmount = p; // Total Invested Amount
+      // SIP Formula
+      double maturityValue =
+          p * ((pow(1 + r / n, n * t) - 1) / (r / n)) * (1 + r / n);
+      double investedAmount = p * n * t; // Total invested amount
       double estimatedReturns = maturityValue - investedAmount; // Returns
 
       setState(() {
@@ -47,8 +48,9 @@ class _LumpSumCalculatorPageState extends State<LumpSumCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Lump Sum Calculator'),
+        title: const Text('RD Calculator'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -60,20 +62,20 @@ class _LumpSumCalculatorPageState extends State<LumpSumCalculator> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               const textdecoration(
-                text: 'Total Investment Amount (₹)',
+                text: 'Monthly Investment (₹)',
               ),
               const SizedBox(height: 15),
               BlueTextField(
-                controller: totalInvestment,
-                initialValue: totalInvestment.text,
+                controller: monthlyInvestment,
+                initialValue: monthlyInvestment.text,
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
                     return null;
                   }
-                  return 'Please enter total investment amount';
+                  return 'Please enter monthly investment';
                 },
-                hintText: 'Enter total investment amount',
+                hintText: 'Enter monthly investment',
               ),
               const SizedBox(height: 15),
               const textdecoration(
@@ -111,8 +113,14 @@ class _LumpSumCalculatorPageState extends State<LumpSumCalculator> {
               ),
               const SizedBox(height: 20),
               BlueButton(
-                onPressed: _calculateLumpSum,
-               title: 'Calculate',
+                onPressed: () {
+                  _calculateSip(
+                    monthlyInvestment.text,
+                    expectedReturnRate.text,
+                    noOfYears.text,
+                  );
+                },
+                title: 'Calculate',
               ),
               const SizedBox(height: 20),
               if (_totalValue.isNotEmpty)

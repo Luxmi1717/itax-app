@@ -59,6 +59,7 @@ class _CompoundInterestState extends State<CompoundInterest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Compound Interest Calculator'),
         elevation: 0,

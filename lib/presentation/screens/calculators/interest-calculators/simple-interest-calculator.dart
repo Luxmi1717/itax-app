@@ -25,6 +25,7 @@ class _SimpleIntrestState extends State<SimpleIntrest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('Simple Interest'),
         elevation: 0,

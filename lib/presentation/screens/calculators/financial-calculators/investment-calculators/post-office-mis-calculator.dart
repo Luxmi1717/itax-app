@@ -5,16 +5,18 @@ import 'package:itax/presentation/screens/calculators/widgets/blue-text-feild-wi
 import 'package:itax/presentation/screens/calculators/widgets/text-decoration-widget.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 
-class RDCalculator extends StatefulWidget {
-  const RDCalculator({super.key});
+
+class PostOfficeMissCalculator extends StatefulWidget {
+  const PostOfficeMissCalculator({super.key});
 
   @override
-  State<RDCalculator> createState() => _SipCalculatorPageState();
+  State<PostOfficeMissCalculator> createState() =>
+      _LumpSumCalculatorPageState();
 }
 
-class _SipCalculatorPageState extends State<RDCalculator> {
+class _LumpSumCalculatorPageState extends State<PostOfficeMissCalculator> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController monthlyInvestment = TextEditingController();
+  TextEditingController totalInvestment = TextEditingController();
   TextEditingController expectedReturnRate = TextEditingController();
   TextEditingController noOfYears = TextEditingController();
 
@@ -22,19 +24,17 @@ class _SipCalculatorPageState extends State<RDCalculator> {
   String _estimatedReturns = "";
   String _totalValue = "";
 
-  /// Function to calculate SIP
-  void _calculateSip(
-      String monthlyInvestment, String expectedReturnRate, String noOfYears) {
+  /// Function to calculate Lump Sum
+  void _calculateLumpSum() {
     if (_formKey.currentState!.validate()) {
-      double p = double.parse(monthlyInvestment); // Monthly investment
-      double r = double.parse(expectedReturnRate) / 100; // Annual return rate
-      int t = int.parse(noOfYears); // Number of years
-      int n = 12; // Compounding frequency (monthly)
+      double p = double.parse(totalInvestment.text); // Lump Sum Investment
+      double r =
+          double.parse(expectedReturnRate.text) / 100; // Annual Return Rate
+      int t = int.parse(noOfYears.text); // Number of Years
 
-      // SIP Formula
-      double maturityValue =
-          p * ((pow(1 + r / n, n * t) - 1) / (r / n)) * (1 + r / n);
-      double investedAmount = p * n * t; // Total invested amount
+      // Lump Sum Formula
+      double maturityValue = p * pow(1 + r, t);
+      double investedAmount = p; // Total Invested Amount
       double estimatedReturns = maturityValue - investedAmount; // Returns
 
       setState(() {
@@ -48,8 +48,9 @@ class _SipCalculatorPageState extends State<RDCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('RD Calculator'),
+        title: const Text('Post Office MIS Calculator'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -61,20 +62,20 @@ class _SipCalculatorPageState extends State<RDCalculator> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               const textdecoration(
-                text: 'Monthly Investment (₹)',
+                text: 'Total Investment Amount (₹)',
               ),
               const SizedBox(height: 15),
               BlueTextField(
-                controller: monthlyInvestment,
-                initialValue: monthlyInvestment.text,
+                controller: totalInvestment,
+                initialValue: totalInvestment.text,
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
                     return null;
                   }
-                  return 'Please enter monthly investment';
+                  return 'Please enter total investment amount';
                 },
-                hintText: 'Enter monthly investment',
+                hintText: 'Enter total investment amount',
               ),
               const SizedBox(height: 15),
               const textdecoration(
@@ -108,17 +109,11 @@ class _SipCalculatorPageState extends State<RDCalculator> {
                   }
                   return 'Please enter no. of years';
                 },
-                hintText: 'Enter number of years',
+                hintText: 'Normally 5 Years',
               ),
               const SizedBox(height: 20),
               BlueButton(
-                onPressed: () {
-                  _calculateSip(
-                    monthlyInvestment.text,
-                    expectedReturnRate.text,
-                    noOfYears.text,
-                  );
-                },
+                onPressed: _calculateLumpSum,
                 title: 'Calculate',
               ),
               const SizedBox(height: 20),

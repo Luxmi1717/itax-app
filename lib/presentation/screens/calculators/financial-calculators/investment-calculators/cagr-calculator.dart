@@ -39,6 +39,7 @@ class _CagrCalulatorState extends State<CagrCalulator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text('CAGR Calculator'),
         elevation: 0,

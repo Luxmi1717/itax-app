@@ -5,7 +5,6 @@ class MyAppRouteConstants {
   static const String signInRouteName = 'login';
   static const String signUpRouteName = 'signup';
   static const String otpVerificationName = ' otp-verification';
- 
 
   //More screens
   static const String companyDetailsName = 'company-details-page';
@@ -19,13 +18,10 @@ class MyAppRouteConstants {
   static const String salesOnaDayName = 'sales-on-day';
   static const String salesMonthlyName = 'sales-monthlyr';
   static const String salesPerUserName = 'sales-per-user';
- 
 
-
-   //Debit Credit Screens
+  //Debit Credit Screens
   static const String debitPageName = 'debit-page';
   static const String debitPerDateName = 'debit-note-per-date';
-
 
   //Bank and Cash Screens
   static const String addBankName = 'add-new-bank';
@@ -55,5 +51,5 @@ class MyAppRouteConstants {
   static const String balanceSheetName = 'balance-sheet';
   static const String profitLossScreenName = 'profit-loss';
 
-
-}
+  //calculator screens
+  }

@@ -5,16 +5,14 @@ import 'package:itax/presentation/screens/calculators/widgets/blue-text-feild-wi
 import 'package:itax/presentation/screens/calculators/widgets/text-decoration-widget.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 
-
-class PostOfficeMissCalculator extends StatefulWidget {
-  const PostOfficeMissCalculator({super.key});
+class FDCalculator extends StatefulWidget {
+  const FDCalculator({super.key});
 
   @override
-  State<PostOfficeMissCalculator> createState() =>
-      _LumpSumCalculatorPageState();
+  State<FDCalculator> createState() => _LumpSumCalculatorPageState();
 }
 
-class _LumpSumCalculatorPageState extends State<PostOfficeMissCalculator> {
+class _LumpSumCalculatorPageState extends State<FDCalculator> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController totalInvestment = TextEditingController();
   TextEditingController expectedReturnRate = TextEditingController();
@@ -48,8 +46,9 @@ class _LumpSumCalculatorPageState extends State<PostOfficeMissCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Post Office MIS Calculator'),
+        title: const Text('FD Calculator'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -108,12 +107,12 @@ class _LumpSumCalculatorPageState extends State<PostOfficeMissCalculator> {
                   }
                   return 'Please enter no. of years';
                 },
-                hintText: 'Normally 5 Years',
+                hintText: 'Enter number of years',
               ),
               const SizedBox(height: 20),
               BlueButton(
                 onPressed: _calculateLumpSum,
-                title: 'Calculate',
+                title: 'Calculate '
               ),
               const SizedBox(height: 20),
               if (_totalValue.isNotEmpty)

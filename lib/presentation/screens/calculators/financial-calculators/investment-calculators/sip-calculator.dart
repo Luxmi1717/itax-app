@@ -5,16 +5,16 @@ import 'package:itax/presentation/screens/calculators/widgets/blue-text-feild-wi
 import 'package:itax/presentation/screens/calculators/widgets/text-decoration-widget.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 
-class FDCalculator extends StatefulWidget {
-  const FDCalculator({super.key});
+class SipCalculator extends StatefulWidget {
+  const SipCalculator({super.key});
 
   @override
-  State<FDCalculator> createState() => _LumpSumCalculatorPageState();
+  State<SipCalculator> createState() => _SipCalculatorPageState();
 }
 
-class _LumpSumCalculatorPageState extends State<FDCalculator> {
+class _SipCalculatorPageState extends State<SipCalculator> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController totalInvestment = TextEditingController();
+  TextEditingController monthlyInvestment = TextEditingController();
   TextEditingController expectedReturnRate = TextEditingController();
   TextEditingController noOfYears = TextEditingController();
 
@@ -22,17 +22,19 @@ class _LumpSumCalculatorPageState extends State<FDCalculator> {
   String _estimatedReturns = "";
   String _totalValue = "";
 
-  /// Function to calculate Lump Sum
-  void _calculateLumpSum() {
+  /// Function to calculate SIP
+  void _calculateSip() {
     if (_formKey.currentState!.validate()) {
-      double p = double.parse(totalInvestment.text); // Lump Sum Investment
+      double p = double.parse(monthlyInvestment.text); // Monthly investment
       double r =
-          double.parse(expectedReturnRate.text) / 100; // Annual Return Rate
-      int t = int.parse(noOfYears.text); // Number of Years
+          double.parse(expectedReturnRate.text) / 100; // Annual return rate
+      int t = int.parse(noOfYears.text); // Number of years
+      int n = 12; // Compounding frequency (monthly)
 
-      // Lump Sum Formula
-      double maturityValue = p * pow(1 + r, t);
-      double investedAmount = p; // Total Invested Amount
+      // SIP Formula
+      double maturityValue =
+          p * ((pow(1 + r / n, n * t) - 1) / (r / n)) * (1 + r / n);
+      double investedAmount = p * n * t; // Total invested amount
       double estimatedReturns = maturityValue - investedAmount; // Returns
 
       setState(() {
@@ -46,8 +48,9 @@ class _LumpSumCalculatorPageState extends State<FDCalculator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('FD Calculator'),
+        title: const Text('SIP Calculator'),
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -59,20 +62,20 @@ class _LumpSumCalculatorPageState extends State<FDCalculator> {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               const textdecoration(
-                text: 'Total Investment Amount (₹)',
+                text: 'Monthly Investment (₹)',
               ),
               const SizedBox(height: 15),
               BlueTextField(
-                controller: totalInvestment,
-                initialValue: totalInvestment.text,
+                controller: monthlyInvestment,
+                initialValue: monthlyInvestment.text,
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value != null && value.isNotEmpty) {
                     return null;
                   }
-                  return 'Please enter total investment amount';
+                  return 'Please enter monthly investment';
                 },
-                hintText: 'Enter total investment amount',
+                hintText: 'Enter monthly investment',
               ),
               const SizedBox(height: 15),
               const textdecoration(
@@ -110,8 +113,8 @@ class _LumpSumCalculatorPageState extends State<FDCalculator> {
               ),
               const SizedBox(height: 20),
               BlueButton(
-                onPressed: _calculateLumpSum,
-                title: 'Calculate '
+                onPressed: _calculateSip,
+                title: 'Calculate SIP',
               ),
               const SizedBox(height: 20),
               if (_totalValue.isNotEmpty)

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/auth_state.dart';
+import 'package:itax/models/forgot_password_state.dart';
 import 'package:itax/presentation/screens/bottom-navigation/dashboard-navigation.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
@@ -268,58 +269,109 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 }
-
 class ForgotPasswordStep1 extends StatelessWidget {
   const ForgotPasswordStep1({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     final TextEditingController phoneController = TextEditingController();
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+    // Regular expressions for validation
+    final RegExp emailRegex = RegExp(
+        r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+    final RegExp phoneRegex = RegExp(r"^[0-9]{10}$");
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 50.h, horizontal: 14.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Forgot Password',
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
-              color: blackColor,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Forgot Password',
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: blackColor,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 8.h,
-          ),
-          const Text(
-              'Enter your mobile number or email for verification purposes'),
-          SizedBox(
-            height: 16.h,
-          ),
-          CustomTextInput(
-            controller: phoneController,
-            hintText: "Mobile Number or Email",
-            ifPasswordField: false,
-            validator: (value) {
-              return null;
-            },
-          ),
-          SizedBox(height: 16.h),
-          BlueButton(
-            title: 'Send OTP',
-            onPressed: () {
-              Navigator.pop(context);
+            SizedBox(
+              height: 8.h,
+            ),
+            const Text(
+                'Enter your mobile number or email for verification purposes'),
+            SizedBox(
+              height: 16.h,
+            ),
+            CustomTextInput(
+              controller: phoneController,
+              hintText: "Mobile Number or Email",
+              ifPasswordField: false,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter a mobile number or email.";
+                }
+                if (!emailRegex.hasMatch(value) &&
+                    !phoneRegex.hasMatch(value)) {
+                  return "Enter a valid email or 10-digit phone number.";
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 16.h),
+            BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                    ),
+                  );
+                } else if (state is AuthOTPSentSuccess) {
+                  _showForgotPasswordStep2(context);
+                }
+              },
+              builder: (context, state) {
+                return BlueButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      context
+                          .read<AuthCubit>()
+                          .generateForgotPasswordOTP(
+                              phoneController.text.trim());
+                              Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text(
+                              "Please enter a valid mobile number or email."),
+                        ),
+                      );
+                    }
+                  },
+                  title: 'Send OTP',
+                );
+              },
+             
+            ),
+             // BlueButton(
+            //   title: 'Send OTP',
+            //   onPressed: () {
+            //     Navigator.pop(context);
 
-              _showForgotPasswordStep2(context);
-            },
-          ),
-        ],
+            //     _showForgotPasswordStep2(context);
+            //   },
+            // ),
+          ],
+        ),
       ),
     );
   }
+}
+
 
   void _showForgotPasswordStep2(BuildContext context) {
     showModalBottomSheet(
@@ -329,7 +381,7 @@ class ForgotPasswordStep1 extends StatelessWidget {
       },
     );
   }
-}
+
 
 class ForgotPasswordStep2 extends StatelessWidget {
   const ForgotPasswordStep2({super.key});
@@ -362,7 +414,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
             height: 16.h,
           ),
           Pinput(
-            length: 4,
+            length: 6,
             controller: otpController,
             defaultPinTheme: PinTheme(
               width: 50.w,
@@ -378,14 +430,52 @@ class ForgotPasswordStep2 extends StatelessWidget {
             },
           ),
           SizedBox(height: 16.h),
-          BlueButton(
-            title: 'Verify OTP',
-            onPressed: () {
-              Navigator.pop(context);
+          BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                    ),
+                  );
+                } else if (state is AuthSuccess) {
+                  Navigator.pop(context);
+                   _showForgotPasswordStep3(context);
+                  
+                    
+                  
+                }
+              },
+              builder: (context, state) {
+                return BlueButton(
+                  onPressed: () {
+                    final authCubit = context.read<AuthCubit>();
 
-              _showForgotPasswordStep3(context);
-            },
-          ),
+                 
+
+                    
+                      authCubit.verifyForgotPasswordOTP(
+                        otpController.text);
+                      
+                  
+                      authCubit.verifyOTP(otpController.text);
+                    
+                  },
+                  title: 'Verify',
+
+  );
+              },
+          //   ),
+          // BlueButton(
+          //   title: 'Verify OTP',
+          //   onPressed: () {
+          //     Navigator.pop(context);
+
+          //     _showForgotPasswordStep3(context);
+          //   },
+          // ),
+          )
         ],
       ),
     );
@@ -409,6 +499,8 @@ class ForgotPasswordStep3 extends StatelessWidget {
     TextEditingController newPasswordController = TextEditingController();
     TextEditingController ConfirmNewPasswordController =
         TextEditingController();
+          final _formKey = GlobalKey<FormState>();
+
 
     return SingleChildScrollView(
       child: Padding(
@@ -453,13 +545,74 @@ class ForgotPasswordStep3 extends StatelessWidget {
               },
             ),
             SizedBox(height: 16.h),
-            BlueButton(
-              title: 'Reset Password',
-              onPressed: () {
-                Navigator.pop(context);
-                _showForgotPasswordStep4(context);
+             BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state is AuthError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                    ),
+                  );
+                } else if (state is AuthSuccess) {
+                                                  _showForgotPasswordStep4(context);
+
+
+                }
               },
+              builder: ((context, state) => SizedBox(
+                    width: double.maxFinite,
+                    child:
+                    BlueButton(title: state is AuthLoading?'Changing...' :'Reset Password', onPressed: (){
+                      if (_formKey.currentState!.validate()) {
+                            context.read<AuthCubit>().changePassword(
+                                  newPasswordController.text,
+                                  false,
+                                  false,
+                                );
+                          }
+                    })
+                    // Material(
+                    //   clipBehavior: Clip.antiAlias,
+                    //   borderRadius: BorderRadius.circular(8),
+                    //   color: Theme.of(context).primaryColor,
+                    //   child: InkWell(
+                    //     onTap: () {
+                    //       if (_formKey.currentState!.validate()) {
+                    //         context.read<AuthCubit>().changePassword(
+                    //               newPasswordController.text,
+                    //               false,
+                    //               false,
+                    //             );
+                    //       }
+                    //     },
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.all(16),
+                    //       child: Align(
+                    //         alignment: Alignment.center,
+                    //         child: state is AuthLoading
+                    //             ? const CircularProgressIndicator()
+                    //             : const Text(
+                    //                 'Reset',
+                    //                 style: TextStyle(
+                    //                   color: Colors.white,
+                    //                   fontWeight: FontWeight.w500,
+                    //                 ),
+                    //               ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  )),
             ),
+                 
+            // BlueButton(
+            //   title: 'Reset Password',
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //     _showForgotPasswordStep4(context);
+            //   },
+            // ),
+            
           ],
         ),
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/presentation/screens/profile/profile-sliders.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -272,8 +274,11 @@ class LogoutConfirmationContent extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Implement logout logic
-                Navigator.pop(context); // Close the bottom sheet
+              context.read<AuthCubit>().logout();
+
+
+                context.go('/login'); // Navigate to login screen
+                
               },
               child: const Text('Yes'),
             ),

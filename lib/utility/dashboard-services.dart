@@ -2,11 +2,13 @@ class NavigationItem {
   final int id;
   final String imageUrl;
   final String navigationPath;
+  final String name;
 
   NavigationItem({
     required this.id,
     required this.imageUrl,
     required this.navigationPath,
+    required this.name,
   });
 }
 
@@ -17,31 +19,37 @@ class NavigationItem {
       id: 1,
       imageUrl: 'assets/images/dashboard/itr-logo.png',
       navigationPath: '/all-receivables',
+      name:'ITR'
     ),
     NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/gstr-logo.png',
       navigationPath: '/debit-page',
+      name: 'GSTR'
     ),
     NavigationItem(
       id: 3,
       imageUrl: 'assets/images/dashboard/accounts-logo.png',
       navigationPath: '/all-banks',
+      name: 'Accounts'
     ),
     NavigationItem(
       id: 4,
       imageUrl: 'assets/images/dashboard/incom-tax-logo.png',
       navigationPath: '/receipt-page',
+      name: 'Income Tax'
     ),
     NavigationItem(
       id: 5,
       imageUrl: 'assets/images/dashboard/bill-logo.png',
       navigationPath: '/e-way-login',
+      name: 'Bill'
     ),
     NavigationItem(
       id: 6,
       imageUrl: 'assets/images/dashboard/gstlink-logo.png',
       navigationPath: '/sales-monthly',
+      name: 'GST Link'
     ),
   ];
 
@@ -50,18 +58,41 @@ class NavigationItem {
     NavigationItem(
       id: 1,
       imageUrl: 'assets/images/dashboard/pdf-logo.png',
-      navigationPath: '/all-payable',
+      navigationPath: '/pdf/base',
+      name: 'PDF'
     ),
+
     NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/ocr-logo.png',
-      navigationPath: '/user-payable',
+      navigationPath: '/ocr',
+      name: 'OCR'
     ),
     NavigationItem(
       id: 3,
       imageUrl: 'assets/images/dashboard/startup-logo.png',
       navigationPath: '/balance-sheet',
+      name: 'Startup'
     ),
   ];
+
+
+  final List<NavigationItem> calculatorsList = [
+  NavigationItem(
+      id: 1,
+      imageUrl: 'assets/images/dashboard/hra.svg',
+      navigationPath: '/calculate/hra',
+      name: 'HRA'),
+  NavigationItem(
+      id: 2,
+      imageUrl: 'assets/images/dashboard/it-cal.svg',
+      navigationPath: '/calculate/income-tax',
+      name: 'Income Tax'),
+  NavigationItem(
+      id: 3,
+      imageUrl: 'assets/images/dashboard/calc.svg',
+      navigationPath: '/calculate/PersonalLoanCal',
+      name: 'Finance Tax'),
+];
 
   

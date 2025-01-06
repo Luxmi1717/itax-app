@@ -25,7 +25,7 @@ class _PDFToolsScreenState extends State<PDFToolsScreen> {
     ),
     PDFMenuItem(
       title: 'Convert Image To PDF',
-      path: '/pdf/convert',
+      path: '/image-to-pdf',
       icon: const Icon(
         Icons.image_outlined,
       ),
