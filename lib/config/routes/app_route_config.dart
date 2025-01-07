@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/routes/app_route_constants.dart';
 import 'package:itax/models/calculator/hrpCalculator.dart';
+import 'package:itax/presentation/screens/accounts/account-dashboard-screen.dart';
+import 'package:itax/presentation/screens/accounts/accounts-bottom-bar.dart';
+import 'package:itax/presentation/screens/accounts/parties/add-party-screen.dart';
 import 'package:itax/presentation/screens/auth/otp-verification-screen.dart';
 import 'package:itax/presentation/screens/auth/sign_in_screen.dart';
 import 'package:itax/presentation/screens/auth/signup_screen.dart';
@@ -471,6 +474,38 @@ class MyAppRouter {
     //   path: '/pdf-merge',
     //   builder: (context, state) => const MergePDFScreen()
     // ),
+
+
+
+//---------------------- PDF Screens routes End ---------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------- Accounts Screens routes Start ---------------------
+
+  GoRoute(
+      path: '/account-dashboard',
+      builder: (context, state) => const AccountsBottomBar(),
+    ),
+    GoRoute(
+      path: '/party-create',
+      builder: (context, state) => const AddPartiesPage(),
+    ),
+
+
+
 
   ]
   );

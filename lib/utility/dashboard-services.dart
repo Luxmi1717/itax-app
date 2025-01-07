@@ -30,7 +30,7 @@ class NavigationItem {
     NavigationItem(
       id: 3,
       imageUrl: 'assets/images/dashboard/accounts-logo.png',
-      navigationPath: '/all-banks',
+      navigationPath: '/account-dashboard',
       name: 'Accounts'
     ),
     NavigationItem(
