@@ -3,7 +3,6 @@ import 'dart:io';
 // import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:alh_pdf_view/alh_pdf_view.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:file_picker/file_picker.dart';

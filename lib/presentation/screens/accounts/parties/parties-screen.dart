@@ -32,7 +32,7 @@ class CustomAppBarParties extends StatelessWidget implements PreferredSizeWidget
       ),
       child: Column(
         children: [
-          SizedBox(height: 20.h),
+          SizedBox(height: 30.h),
           Row(
             children: [
               IconButton(
@@ -145,7 +145,7 @@ class CustomAppBarParties extends StatelessWidget implements PreferredSizeWidget
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(200.h);
+  Size get preferredSize => Size.fromHeight(215.h);
 }
 
 class PartiesPage extends StatefulWidget {
@@ -191,6 +191,7 @@ class _BankCashScreenState extends State<PartiesPage>
         children: [
           Column(
             children: [
+              
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 15.h),
                 child: Row(
@@ -288,30 +289,39 @@ class CustomerContentWidget extends StatelessWidget {
             leadingText: 'Monu Pathak',
             trailingText: '₹ 11,200',
             onTap: () {
+              GoRouter.of(context).push('/customer-details-accounts');
             },
           ),
           CustomPartiesTile(
             leadingText: 'Sanjay Enterprises',
             trailingText: '₹ 3,33,200',
             onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
             },
           ),
           CustomPartiesTile(
             leadingText: 'Amit Kumar Singh',
             trailingText: '₹ 11,200',
             onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
             },
           ),
           CustomPartiesTile(
             leadingText: 'Amir Faisal',
             trailingText: '₹ 3,33,200',
             onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
             },
           ),
           CustomPartiesTile(
             leadingText: 'Pawan Kumar',
             trailingText: '₹ 3,33,200',
             onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
             },
           ),
         ],
@@ -331,27 +341,42 @@ class SupplierContentWidget extends StatelessWidget {
           CustomPartiesTile(
             leadingText: 'Monu Pathak',
             trailingText: '₹ 11,200',
-            onTap: () {},
+            onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
+            },
           ),
           CustomPartiesTile(
             leadingText: 'Sanjay Enterprises',
             trailingText: '₹ 3,33,200',
-            onTap: () {},
+            onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
+            },
           ),
           CustomPartiesTile(
             leadingText: 'Amit Kumar Singh',
             trailingText: '₹ 11,200',
-            onTap: () {},
+            onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
+            },
           ),
           CustomPartiesTile(
             leadingText: 'Amir Faisal',
             trailingText: '₹ 3,33,200',
-            onTap: () {},
+            onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
+            },
           ),
           CustomPartiesTile(
             leadingText: 'Pawan Kumar',
             trailingText: '₹ 3,33,200',
-            onTap: () {},
+            onTap: () {
+                            GoRouter.of(context).push('/customer-details-accounts');
+
+            },
           ),
 
         ],

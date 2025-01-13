@@ -42,7 +42,9 @@ class NavigationItem {
     NavigationItem(
       id: 5,
       imageUrl: 'assets/images/dashboard/bill-logo.png',
-      navigationPath: '/e-way-login',
+      // navigationPath: '/e-way-login',
+      navigationPath: '/pick-media-ocr',
+      
       name: 'Bill'
     ),
     NavigationItem(

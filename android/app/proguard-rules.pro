@@ -4,3 +4,5 @@
 -dontwarn com.google.errorprone.annotations.CheckReturnValue
 -dontwarn com.google.errorprone.annotations.Immutable
 -dontwarn com.google.errorprone.annotations.RestrictedApi
+-keep public class com.itextpdf.**
+-keep public class org.apache.**

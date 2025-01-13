@@ -11,7 +11,9 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leadingWidth: 80.w,
         leading: Padding(
           padding: EdgeInsets.only(left: 7.w),
@@ -152,7 +154,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                   SizedBox(height: 14.h),
                   GridView.count(
                     crossAxisCount: 3,
                     shrinkWrap: true,

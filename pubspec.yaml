@@ -71,6 +71,10 @@ dependencies:
   flutter_pdfview: ^1.4.0
   easy_pdf_viewer: ^1.0.8
   alh_pdf_view: ^2.3.0
+  hl_image_picker: ^1.2.16
+  pdf_manipulator: ^0.5.9
+  pick_or_save: ^2.2.4
+  flutter_image_compress: ^2.4.0
   
 dev_dependencies:
   flutter_test:
@@ -99,6 +103,9 @@ flutter:
     - assets/images/
     - assets/images/dashboard/
     - assets/itax-icons/accounts-icons/
+    - assets/itax-icons/accounts-icons/items-icons/
+    - assets/itax-icons/accounts-icons/reports-icons/
+    - assets/images/tools/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
