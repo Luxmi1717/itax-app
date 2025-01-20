@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/auth_state.dart';
-import 'package:itax/models/forgot_password_state.dart';
-import 'package:itax/presentation/screens/bottom-navigation/dashboard-navigation.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
@@ -331,22 +329,21 @@ class ForgotPasswordStep1 extends StatelessWidget {
                     ),
                   );
                 } else if (state is AuthOTPSentSuccess) {
-                  _showForgotPasswordStep2(context);
+                  
+                  // Navigator.pop(context);
+                  _showForgotPasswordStep2(context);                  
                 }
               },
               builder: (context, state) {
                 return BlueButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      context
-                          .read<AuthCubit>()
-                          .generateForgotPasswordOTP(
-                              phoneController.text.trim());
-                              Navigator.pop(context);
+                      context.read<AuthCubit>().generateForgotPasswordOTP(
+                          phoneController.text.trim());
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text(
+                        const SnackBar(
+                          content: Text(
                               "Please enter a valid mobile number or email."),
                         ),
                       );
@@ -355,8 +352,8 @@ class ForgotPasswordStep1 extends StatelessWidget {
                   title: 'Send OTP',
                 );
               },
-             
             ),
+
              // BlueButton(
             //   title: 'Send OTP',
             //   onPressed: () {
@@ -440,6 +437,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
                     ),
                   );
                 } else if (state is AuthSuccess) {
+                  context.read<AuthCubit>().emit(AuthPasswordResetPending());
                   Navigator.pop(context);
                    _showForgotPasswordStep3(context);
                   
@@ -459,7 +457,7 @@ class ForgotPasswordStep2 extends StatelessWidget {
                         otpController.text);
                       
                   
-                      authCubit.verifyOTP(otpController.text);
+                      
                     
                   },
                   title: 'Verify',

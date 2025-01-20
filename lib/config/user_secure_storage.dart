@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:itax/models/new_user_model.dart';
+import 'package:itax/new_models/new_user_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserSecureStorage {

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../models/aadhaar_model.dart';
+import '../models/profile-models/aadhaar_model.dart';
 
 class AadhaarModelAdapter extends TypeAdapter<AadhaarModel> {
   @override

@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import '../models/pan_details_model.dart';
 
 class PanDetailsRepository {
-  final baseUrl = 'https://api.itaxeasy.com';
+  // final baseUrl = 'https://api.itaxeasy.com';
+  final baseUrl = 'http://10.0.2.2:8080';
 
   Future<PanDetails> getPanDetails(String token, String pan) async {
     final url = '$baseUrl/pan/get-pan-details?pan=$pan';

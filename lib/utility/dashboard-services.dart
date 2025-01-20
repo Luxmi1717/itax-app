@@ -88,7 +88,7 @@ class NavigationItem {
   NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/it-cal.svg',
-      navigationPath: '/calculate/income-tax',
+      navigationPath: '/income-tax-calculator',
       name: 'Income Tax'),
   NavigationItem(
       id: 3,

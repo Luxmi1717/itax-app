@@ -1,7 +1,7 @@
 
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:itax/models/business_profile_model.dart';
+import 'package:itax/models/profile-models/business_profile_model.dart';
 import 'package:itax/repositories/business_profile_repository.dart';
 
 
@@ -12,7 +12,7 @@ class BusinessProfileInitialState extends BusinessProfileState {}
 class BusinessProfileLoadingState extends BusinessProfileState {}
 
 class BusinessProfileLoadedState extends BusinessProfileState {
-  final BusinessProfile businessProfile;
+  final BusinessProfileModel businessProfile;
 
   BusinessProfileLoadedState({required this.businessProfile});
 }
@@ -58,7 +58,7 @@ class BusinessProfileCubit extends Cubit<BusinessProfileState> {
   }
 
   Future<void> updateBussinessProfile(
-      String bearerToken, BusinessProfile businesProfile) async {
+      String bearerToken, BusinessProfileModel businesProfile) async {
     emit(BusinessProfileUpdatingState());
     try {
       print('check');

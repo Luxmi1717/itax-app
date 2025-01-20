@@ -38,7 +38,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/logo.png',
+                  'assets/images/itaxlogo.png',
                   height: 32,
                 ),
                 const SizedBox(height: 32),

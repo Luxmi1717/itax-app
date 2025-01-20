@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 
+import 'package:go_router/go_router.dart';
 import 'package:itax/config/user_secure_storage.dart';
-import 'package:itax/models/new_user_model.dart';
+import 'package:itax/new_models/new_user_model.dart';
 import 'package:itax/models/user_model.dart';
 
 import '../models/bussiness_model.dart';
@@ -188,6 +189,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoading());
       authRepository.clearUser();
       
+      
 
 
      
@@ -203,11 +205,9 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoading());
       final response = await authRepository.verifyOTP(otp);
 
-      if (response.statusCode == 200) {
-        final json = jsonDecode(response.body);
-        final result = json['data'];
-
-        authRepository.token = result['token'];
+      if (response.statusCode == 200 || response.statusCode == 400) {
+        emit(AuthPasswordResetPending());
+        
 
         emit(AuthSuccess(loggedIn: false, fogotPassword: true));
       } else {

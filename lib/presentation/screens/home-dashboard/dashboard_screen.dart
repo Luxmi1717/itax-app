@@ -18,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
         leading: Padding(
           padding: EdgeInsets.only(left: 7.w),
           child: Image.asset(
-              'assets/images/itaxlogo.png'), // Replace with your logo asset
+              'assets/images/itaxlogo.png'),
         ),
         actions: [
           IconButton(
@@ -37,8 +37,7 @@ class DashboardScreen extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: CircleAvatar(
               backgroundImage: AssetImage(
-                  'assets/user_profile.png'), // Replace with your user profile asset
-            ),
+                  'assets/user_profile.png'),             ),
           ),
         ],
       ),
@@ -156,6 +155,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                    SizedBox(height: 14.h),
                   GridView.count(
+                    mainAxisSpacing: 4.h,
                     crossAxisCount: 3,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -185,17 +185,18 @@ class DashboardScreen extends StatelessWidget {
                             ),
                             SizedBox(
                                 height:
-                                    8), // Space between the image and the text
+                                    6.h), 
                             Text(
                               dashboardServicesList[index]
-                                  .name, // Replace with your text property
+                                  .name, 
                               style: TextStyle(
-                                fontSize: 15.sp, // Adjust font size as needed
+                                fontSize: 15.sp, 
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black, // Text color
+                                color: Colors.black, 
                               ),
                               textAlign: TextAlign.center,
                             ),
+                            
                           ],
                         ),
                       );
@@ -244,6 +245,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 1.h),
                   GridView.count(
+                    
                     crossAxisCount: 3,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -271,7 +273,7 @@ class DashboardScreen extends StatelessWidget {
                             ),
                             SizedBox(
                                 height:
-                                    8), // Space between the image and the text
+                                    6.h), 
                             Text(
                               dashboardToolsList[index].name,
                               style: TextStyle(
@@ -438,7 +440,7 @@ class DashboardScreen extends StatelessWidget {
                               height: 80.h,
                               width: 90.w,
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 6.h),
                             Text(
                               calculatorsList[index].name,
                               style: TextStyle(

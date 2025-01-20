@@ -4,12 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hl_image_picker/hl_image_picker.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/providers/providers_new/business-profile-provider.dart';
+import 'package:itax/providers/providers_new/salaried-profile-provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+import 'package:mime/mime.dart';
 
 class OCRPickMediaPage extends StatefulWidget {
-  const OCRPickMediaPage({super.key, this.title});
+  const OCRPickMediaPage({super.key, this.title, required this.ifAadhaar, required this.ifBusiness});
+
+  final bool ifAadhaar;
 
   final String? title;
+  
+  final bool ifBusiness;
 
   @override
   State<OCRPickMediaPage> createState() => _MyHomePageState();
@@ -29,10 +37,14 @@ class _MyHomePageState extends State<OCRPickMediaPage> {
   List<CropAspectRatioPreset>? _aspectRatioPresets;
   final double _compressQuality = 0.9;
   final CroppingStyle _croppingStyle = CroppingStyle.normal;
+  bool isLoading = false;
+ 
+
 
   Future<void> _requestCameraPermission() async {
     PermissionStatus status = await Permission.camera.request();
-    PermissionStatus status2 = await Permission.storage.request();
+      
+
 
     if (status.isGranted) {
       _openCamera();
@@ -83,9 +95,19 @@ class _MyHomePageState extends State<OCRPickMediaPage> {
           croppingStyle: _croppingStyle,
         ),
       );
-      setState(() {
-        _selectedImages = images;
-      });
+      if (images != null) {
+        setState(() {
+          _selectedImages = images;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+      print('Error opening picker: $e');
+  
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -107,9 +129,21 @@ class _MyHomePageState extends State<OCRPickMediaPage> {
           croppingStyle: _croppingStyle,
         ),
       );
-      setState(() {
-        _selectedImages = [image];
-      });
+     if (image != null) {
+        if (mounted) {
+          setState(() {
+            _selectedImages = [image];
+          });
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+      print('Error opening camera: $e');
+
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -138,9 +172,62 @@ class _MyHomePageState extends State<OCRPickMediaPage> {
     }
   }
 
-  _onOCRPressed() {
-    debugPrint('OCR processing started');
+ void _onOCRPressed() async {
+  print('OCR Pressed');
+    if (_selectedImages.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select an image first!')),
+      );
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      if (widget.ifAadhaar) {
+         String? mimeType = lookupMimeType(_selectedImages[0].path);
+
+        print('File MIME type: $mimeType');
+        print('fuhction started');
+        await Provider.of<SalariedAadhaarPANProvider>(context, listen: false)
+            .ocrAadhaarOrPan(File(_selectedImages[0].path), widget.ifAadhaar);
+
+        final salariedProvider =
+            Provider.of<SalariedAadhaarPANProvider>(context, listen: false);
+        print('Aadhaar Number: ${salariedProvider.aadhaar.aadhaarNumber}');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(
+                  'Details extracted successfully: ${salariedProvider.aadhaar.aadhaarNumber}')),
+        );
+      } else {
+        await Provider.of<BusinessProfileProvider>(context, listen: false)
+            .ocrAadhaarOrPan(File(_selectedImages[0].path), widget.ifAadhaar);
+
+        final businessProvider =
+            Provider.of<BusinessProfileProvider>(context, listen: false);
+        print('Aadhaar Number: ${businessProvider.aadhaar.aadhaarNumber}');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text(
+                  'Details extracted successfully: ${businessProvider.aadhaar.aadhaarNumber}')),
+        );
+      }
+    } catch (e) {
+      print('Error extracting details: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Failed to extract details. Please try again.')),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
+
 
   ButtonStyle _buttonStyle() {
     return ElevatedButton.styleFrom(
@@ -160,8 +247,13 @@ class _MyHomePageState extends State<OCRPickMediaPage> {
     );
   }
 
+
+  
+
   @override
   Widget build(BuildContext context) {
+   
+
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
@@ -246,6 +338,8 @@ class _MyHomePageState extends State<OCRPickMediaPage> {
                       ElevatedButton(
                         onPressed:
                             _selectedImages.isNotEmpty ? _onOCRPressed : null,
+                            
+                            
                         style: _ocrButtonStyle(),
                         child: Center(
                           child: Text(

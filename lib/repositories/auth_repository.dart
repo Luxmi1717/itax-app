@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:itax/config/user_secure_storage.dart';
-import 'package:itax/models/new_user_model.dart';
+import 'package:itax/new_models/new_user_model.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -9,7 +9,8 @@ import '../models/bussiness_model.dart';
 
 class AuthRepository {
   //final baseUrl = 'https://node.itaxeasy.com';
-  // final baseUrl = 'http://10.0.2.2:8080';
+  // final baseUrl = 'https://10.12.46.11:8080';
+  // final baseUrl = 'http://localhost:8080';
   final baseUrl = 'https://api.itaxeasy.com';
 
   String otpId = '';
@@ -228,6 +229,9 @@ class AuthRepository {
       }),
       headers: {'Content-Type': 'application/json'},
     );
+    print(response.statusCode);
+    
+   
     print('otp ${response.body}');
 
     return response;

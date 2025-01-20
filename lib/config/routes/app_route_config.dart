@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/routes/app_route_constants.dart';
 import 'package:itax/models/calculator/hrpCalculator.dart';
@@ -11,7 +12,11 @@ import 'package:itax/presentation/screens/accounts/items/item-details-screen.dar
 import 'package:itax/presentation/screens/accounts/items/items-all-screen.dart';
 import 'package:itax/presentation/screens/accounts/parties/add-party-screen.dart';
 import 'package:itax/presentation/screens/accounts/reports/reports-main-screen.dart';
+import 'package:itax/presentation/screens/auth/business-owner-flow/aadhar-details-business.dart';
+import 'package:itax/presentation/screens/auth/business-owner-flow/pan-details-business.dart';
 import 'package:itax/presentation/screens/auth/otp-verification-screen.dart';
+import 'package:itax/presentation/screens/auth/salaried-flow/aadhar-details.dart';
+import 'package:itax/presentation/screens/auth/salaried-flow/pan-details-page.dart';
 import 'package:itax/presentation/screens/auth/sign_in_screen.dart';
 import 'package:itax/presentation/screens/auth/signup_screen.dart';
 import 'package:itax/presentation/screens/bank-and-cash-pages/add-new-bank-screen.dart';
@@ -29,6 +34,7 @@ import 'package:itax/presentation/screens/calculators/financial-calculators/inve
 import 'package:itax/presentation/screens/calculators/financial-calculators/investment-calculators/rd-calculator.dart';
 import 'package:itax/presentation/screens/calculators/financial-calculators/investment-calculators/sip-calculator.dart';
 import 'package:itax/presentation/screens/calculators/financial-calculators/loan-calculators/loan-page-template.dart';
+import 'package:itax/presentation/screens/calculators/incom-tax-calculator.dart';
 import 'package:itax/presentation/screens/calculators/interest-calculators/compound-interest-calculator.dart';
 import 'package:itax/presentation/screens/calculators/interest-calculators/simple-interest-calculator.dart';
 import 'package:itax/presentation/screens/calculators/other-calculators/gst-calculator.dart';
@@ -45,12 +51,13 @@ import 'package:itax/presentation/screens/more-screens/gsp-setup-page.dart';
 import 'package:itax/presentation/screens/more-screens/manage-user-page.dart';
 import 'package:itax/presentation/screens/more-screens/more-screen.dart';
 import 'package:itax/presentation/screens/more-screens/my-companies-page.dart';
-import 'package:itax/presentation/screens/ocr/aadhaar-ocr-screen.dart';
-import 'package:itax/presentation/screens/ocr/invoice-ocr-screen.dart';
-import 'package:itax/presentation/screens/ocr/main-ocr-screen.dart';
-import 'package:itax/presentation/screens/ocr/pan-ocr-screen.dart';
+import 'package:itax/presentation/older_screens/ocr/aadhaar-ocr-screen.dart';
+import 'package:itax/presentation/older_screens/ocr/invoice-ocr-screen.dart';
+import 'package:itax/presentation/older_screens/ocr/main-ocr-screen.dart';
+import 'package:itax/presentation/older_screens/ocr/pan-ocr-screen.dart';
 import 'package:itax/presentation/screens/payables/all-payables-page.dart';
 import 'package:itax/presentation/screens/payables/user-payable-page.dart';
+import 'package:itax/presentation/screens/tools-screens/image-tools-screens.dart/compress-image-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/compress-pdf-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/image-to-pdf-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/pdf-merge-screen.dart';
@@ -66,10 +73,12 @@ import 'package:itax/presentation/screens/reports/trial-balance-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-day-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-monthly-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-person.dart';
+import 'package:itax/presentation/screens/tools-screens/pdf-screens/rotate-pdf-screen.dart';
+import 'package:itax/presentation/screens/tools-screens/pdf-screens/split-pdf-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/tools-base-view.dart';
 
 class MyAppRouter {
-  GoRouter router = GoRouter(initialLocation: '/login', routes: [
+  GoRouter router = GoRouter(initialLocation: '/home', routes: [
     GoRoute(
       name: MyAppRouteConstants.homeRouteName,
       path: '/home',
@@ -372,12 +381,12 @@ class MyAppRouter {
     ),
     GoRoute(
       path: '/calculate/hra',
-      builder: (context, state) =>  HRPCalc(),
+      builder: (context, state) =>  const HRPCalc(),
     ),
     
      GoRoute(
       path: '/calculate/hra',
-      builder: (context, state) => HRPCalc(),
+      builder: (context, state) => const HRPCalc(),
     ),
     GoRoute(
       path: '/calculate/PersonalLoanCal/GSTCalc',
@@ -440,6 +449,10 @@ class MyAppRouter {
 
 
     ),
+    GoRoute(
+      path: '/income-tax-calculator',
+      builder: (context, state) => IncomeTaxCalculatorScreen(),
+    ),
 
 
 
@@ -479,11 +492,27 @@ class MyAppRouter {
       builder: (context, state) => const ImageToPDFScreen()
     ),
     GoRoute(
-      path: '/pdf-compress',
-      builder: (context, state) => const CompressPdfScreen()
+      path: '/pdf-merge',
+      builder: (context, state) => const PdfMergerPage()
 
 
     ) ,
+    GoRoute(
+        path: '/pdf-compress', builder: (context, state) => const CompressPdfScreen()),
+    
+     GoRoute(
+        path: '/pdf-split',
+        builder: (context, state) => const SplitPDFScreen()),
+
+      GoRoute(
+        path: '/pdf-rotate',
+        builder: (context, state) =>  RotatePdfPage()),
+        
+
+        // GoRoute(
+        // path: '/image-shrink',
+         // builder: (context, state) => const CompressImageScreen()),
+
     // GoRoute(
     //   path: '/pdf-merge',
     //   builder: (context, state) => const MergePDFScreen()
@@ -541,10 +570,43 @@ class MyAppRouter {
       path: '/reports-main',
       builder: (context, state) => const ReportsBasePage(),
     ),
+   
+
+
+
+
+
+//---------------------- Business and Salary Profile Screens routes Start ---------------------
     GoRoute(
-      path: '/pick-media-ocr',
-      builder: (context, state) => const OCRPickMediaPage(),
+      path: '/business-profile-aadhaar',
+      builder: (context, state) =>  BusinessAadhaarPage(),
     ),
+    GoRoute(
+      path: '/business-profile-pan',
+      builder: (context, state) =>  BusinessPanPage(),
+    ),
+    GoRoute(
+      path: '/salaried-profile-aadhaar',
+      builder: (context, state) =>  AadhaarPage(),
+    ),
+    GoRoute(
+      path: '/salaried-profile-pan',
+      builder: (context, state) =>  PanPage(),
+    ),
+    GoRoute(
+      path: '/ocr-testing',
+      builder: (context, state) =>  OCRPickMediaPage(ifAadhaar: true, ifBusiness: false,),
+    ),
+    // GoRoute(
+    //   path: '/business-profile-aadhaar',
+    //   builder: (context, state) => const OCRPickMediaPage(),
+    // ),
+    // GoRoute(
+    //   path: '/business-profile-aadhaar',
+    //   builder: (context, state) => const OCRPickMediaPage(),
+    // ),
+
+
 
 
 

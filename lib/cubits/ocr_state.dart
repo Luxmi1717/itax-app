@@ -1,6 +1,6 @@
-import '../models/aadhaar_model.dart';
+import '../models/profile-models/aadhaar_model.dart';
 import '../models/invoice_model.dart';
-import '../models/pan_model.dart';
+import '../models/profile-models/pan_model.dart';
 
 abstract class OCRState {}
 

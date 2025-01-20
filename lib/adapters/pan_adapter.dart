@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../models/pan_model.dart';
+import '../models/profile-models/pan_model.dart';
 
 class PanModelAdapter extends TypeAdapter<PanModel> {
   @override

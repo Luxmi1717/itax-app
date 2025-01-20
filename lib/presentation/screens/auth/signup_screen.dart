@@ -243,7 +243,8 @@ import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/auth_state.dart';
-import 'package:itax/models/new_user_model.dart';
+import 'package:itax/new_models/new_user_model.dart';
+import 'package:itax/presentation/screens/auth/salary-or-business.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
 
@@ -453,6 +454,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           );
                           context.read<AuthCubit>().signUp(user);
                           context.go('/otp-verification');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SalaryOrBusinessScreen(),
+                            ),
+                          );
                         } else if (!isChecked) {
                           _showSnackBar(
                               'Please agree to the terms and conditions');

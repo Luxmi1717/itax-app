@@ -8,9 +8,9 @@ import 'package:http_parser/http_parser.dart';
 import 'package:path/path.dart' as path;
 import 'package:permission_handler/permission_handler.dart';
 
-import '../models/aadhaar_model.dart';
+import '../models/profile-models/aadhaar_model.dart';
 import '../models/invoice_model.dart';
-import '../models/pan_model.dart';
+import '../models/profile-models/pan_model.dart';
 
 class OCRRepository {
   // static const String _baseUrl = 'https://itaxeasy.com';

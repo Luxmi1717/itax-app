@@ -13,6 +13,7 @@ class AuthOTPSentSuccess extends AuthState {
 }
 
 class AuthOTPVerificationPending extends AuthState {}
+class AuthPasswordResetPending extends AuthState {}
 
 class AuthSuccess extends AuthState {
   bool loggedIn = false;

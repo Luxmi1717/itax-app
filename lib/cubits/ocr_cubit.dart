@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itax/repositories/ocr_repository.dart';
 
-import '../models/aadhaar_model.dart';
-import '../models/pan_model.dart';
+import '../models/profile-models/aadhaar_model.dart';
+import '../models/profile-models/pan_model.dart';
 import 'ocr_state.dart';
 
 class OCRCubit extends Cubit<OCRState> {

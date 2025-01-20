@@ -21,7 +21,7 @@ class ProfitLossReportPage extends StatelessWidget {
         ),
         leading: Padding(
           padding:  EdgeInsets.all(8.w),
-          child: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+          child: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
         ),
         
         actions: [
@@ -31,7 +31,7 @@ class ProfitLossReportPage extends StatelessWidget {
             },
             child: Padding(
               padding:  EdgeInsets.symmetric(horizontal: 15.w,),
-              child: Icon(Icons.more_horiz, color: Colors.white, ),
+              child: const Icon(Icons.more_horiz, color: Colors.white, ),
             ),
           ),
         ],
@@ -65,7 +65,7 @@ class ProfitLossReportPage extends StatelessWidget {
              SizedBox(height: 20.h),
              Padding(padding: 
              EdgeInsets.symmetric(horizontal: 20.w),
-             child: Column(children: [
+             child: const Column(children: [
               TileTypeOne(leadingText: 'Sales Accounts', trailingText: '₹ 11,10,200'),
               TileTypeOne(leadingText: 'Purchase Accounts', trailingText: '₹ 7,05,200'),
               TileTypeOne(leadingText: 'Direct Income', trailingText: ' ₹ 90,500'),
@@ -87,7 +87,7 @@ class ProfitLossReportPage extends StatelessWidget {
              ),
              Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-              child: Column(
+              child: const Column(
                 children: [
                   TileTypeOne(
                       leadingText: 'Other Income',

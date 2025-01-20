@@ -224,7 +224,6 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-// Widget for Change Password content
 class ChangePasswordContent extends StatelessWidget {
   const ChangePasswordContent({super.key});
 

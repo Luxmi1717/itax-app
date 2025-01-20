@@ -3,16 +3,16 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:itax/models/business_profile_model.dart';
+import 'package:itax/models/profile-models/business_profile_model.dart';
 
 class BusinessProfileRepository {
   // final baseUrl = 'https://node.itaxeasy.com';
-  // final baseUrl = 'http://10.0.2.2:8080';
-  final baseUrl = 'https://api.itaxeasy.com';
+  final baseUrl = 'http://10.0.2.2:8080';
+  // final baseUrl = 'https://api.itaxeasy.com';
 
   BusinessProfileRepository();
 
-  Future<BusinessProfile> fetchBusinessProfile(String bearerToken) async {
+  Future<BusinessProfileModel> fetchBusinessProfile(String bearerToken) async {
     final response = await http.get(
       Uri.parse('$baseUrl/business/profile'),
       headers: {
@@ -23,13 +23,13 @@ class BusinessProfileRepository {
     if (response.statusCode == 200) {
       final Map<String, dynamic> json =
           jsonDecode(response.body)['data']['profile'];
-      return BusinessProfile.fromJson(json);
+      return BusinessProfileModel.fromJson(json);
     } else {
       throw Exception('Failed to load business profile');
     }
   }
 
-  Future<BusinessProfile> fetchBusinessProfileFromApi(
+  Future<BusinessProfileModel> fetchBusinessProfileFromApi(
       String bearerToken, String gstin) async {
     final response = await http.get(
       Uri.parse('$baseUrl/gst/search/gstin/$gstin'),
@@ -40,14 +40,14 @@ class BusinessProfileRepository {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(response.body)['data'];
-      return BusinessProfile.fromJson(json);
+      return BusinessProfileModel.fromJson(json);
     } else {
       throw Exception('Failed to load business profile');
     }
   }
 
-  Future<BusinessProfile> createOrUpdateBusinessProfile(
-      String bearerToken, BusinessProfile businessProfile) async {
+  Future<BusinessProfileModel> createOrUpdateBusinessProfile(
+      String bearerToken, BusinessProfileModel businessProfile) async {
     final jsonBody = businessProfile.toJson();
     final response = await http.post(Uri.parse('$baseUrl/users/update-business-profile'),
       headers: {
@@ -63,6 +63,6 @@ print(response.statusCode);
     }
 
     final Map<String, dynamic> json = jsonDecode(response.body);
-    return BusinessProfile.fromJson(json);
+    return BusinessProfileModel.fromJson(json);
   }
 }
