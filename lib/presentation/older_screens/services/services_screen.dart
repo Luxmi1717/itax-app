@@ -1,4 +1,6 @@
-import 'package:itaxeasy/utility/size_utils.dart';
+import 'package:itax/config_old/Appcolor.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
 
 import '/models/menu_item_model.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +24,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  void initState() {
+    super.initState();
+  }
 
-    final width = size.width;
+  @override
+  Widget build(BuildContext context) {
+
     int? selectedIndex;
     var height = MediaQuery.of(context).size.height;
 
@@ -92,7 +97,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
 }
 PreferredSizeWidget _buildAppBar(BuildContext context) {
   return CustomAppBar(
-    leadingWidth: 38.h,
     centerTitle: true,
     title: AppbarTitle(
       text: "Services",

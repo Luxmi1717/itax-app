@@ -1,11 +1,9 @@
-
-//import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:itax/models/itr_taxpaid_model.dart';
 import 'package:itax/presentation/older_widgets/widgets/back_button.dart';
 import 'package:itax/presentation/older_widgets/widgets/form_widgets.dart';
-import 'package:itax/providers/providers_old/itr_provider.dart';
+import 'package:itax/providers/providers_old/itr_provider%20copy.dart';
 import 'package:itax/providers/providers_old/manually_itr_form16.dart';
 import 'package:itax/utility/tax_calculators.dart';
 import 'package:provider/provider.dart';
@@ -71,13 +69,12 @@ class _ItrTaxesPaidState extends State<ItrTaxesPaid>with SingleTickerProviderSta
           Provider.of<ITRProvider>(context, listen: false).financialYear;
 
       setState(() {
-        financialYear = fyYear == FinancialYear.fy2022_2023
+        financialYear = fyYear == FinancialYear
             ? 'FY 2023-2024'
             : 'FY 2024-2025';
       });
     });
   }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery

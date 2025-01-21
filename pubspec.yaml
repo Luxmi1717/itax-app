@@ -112,6 +112,7 @@ flutter:
     - assets/itax-icons/accounts-icons/items-icons/
     - assets/itax-icons/accounts-icons/reports-icons/
     - assets/images/tools/
+    - assets/old_images/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

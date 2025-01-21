@@ -1,16 +1,15 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:itax/config_old/image_constant.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
 import 'package:itax/providers/services-old/mca_api.dart';
-import 'package:itaxeasy/providers/mca_api.dart';
-import 'package:itaxeasy/utility/size_utils.dart';
+import 'package:itax/utility/size_utils.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../config/image_constant.dart';
-import '../../../widgets/app_bar/appbar_leading_iconbutton.dart';
-import '../../../widgets/app_bar/appbar_title.dart';
-import '../../../widgets/app_bar/custom_app_bar.dart';
 
 class CompanyDetailView extends StatefulWidget {
   const CompanyDetailView({super.key});

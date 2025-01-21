@@ -11,7 +11,7 @@ import 'package:itax/presentation/older_screens/gst/gstr1/gst9c_credut_debit_reg
 import 'package:itax/presentation/older_screens/gst/gstr1/gstb_credut_debit_unRegisted/b_credut_debit_unRegisted_model_page.dart';
 
 
-import 'package:itax/lib/presentation/older_screens/gst/gstr1/gst4a-4b-6b/model_4a_4b_gstr1.dart' as MM;
+import 'package:itax/presentation/older_screens/gst/gstr1/gst4a-4b-6b/model_4a_4b_gstr1.dart' as MM;
 
 class RecordProvider extends ChangeNotifier {
   final List<Model_of_record_details> _dataList = [];

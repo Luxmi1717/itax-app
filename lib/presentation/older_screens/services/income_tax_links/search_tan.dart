@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:itax/config_old/image_constant.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
+import 'package:itax/presentation/older_widgets/widgets/primary_button.dart';
 import 'package:itax/presentation/screens/calculators/widgets/blue-text-feild-widget.dart';
 import 'package:itax/presentation/screens/calculators/widgets/text-decoration-widget.dart';
 import 'package:itax/providers/services-old/services_incometax_links.dart';
 import 'package:itax/providers/services-old/utils/utils.dart';
 import 'package:itax/utility/size_utils.dart';
-import 'package:itaxeasy/providers/services_incometax_links.dart';
-import 'package:itaxeasy/utility/size_utils.dart';
 
 import 'package:provider/provider.dart';
 
-import '../../../config/image_constant.dart';
-import '../../../data/utils/utils.dart';
-import '../../../widgets/app_bar/appbar_leading_iconbutton.dart';
-import '../../../widgets/app_bar/appbar_title.dart';
-import '../../../widgets/app_bar/custom_app_bar.dart';
-import '../../../widgets/form_widgets.dart';
-import '../../../widgets/primary_button.dart';
-import '../../../widgets/text_decoration.dart';
+
 
 class SearchTanPage extends StatefulWidget {
   const SearchTanPage({super.key});

@@ -94,46 +94,46 @@ class _GSTLoginState extends State<GSTLogin> with TickerProviderStateMixin {
                     height: 20,
                   ),
 
-                  Consumer<GstSection>(
-                      builder: (BuildContext context, pro, child) {
-                    return StyledTextField(
-                      label: 'GSTN',
-                      controller:pro.passwordController,
-                      hintText: 'Enter GSTN',
-                      maxLines: 1,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Portal Number';
-                        }
-                        return null;
-                      },
-                    );
+                  // Consumer<GstSection>(
+                  //   builder: (BuildContext context, pro, child) {
+                  //     return StyledTextField(
+                  //       label: 'GSTN',
+                  //       controller: pro
+                  //           .passwordController, // Ensure this is a TextEditingController
+                  //       hintText: 'Enter GSTN',
+                  //       maxLines: 1,
+                  //       validator: (value) {
+                  //         if (value == null || value.isEmpty) {
+                  //           return 'Please enter GSTN.';
+                  //         }
+                  //         return null;
+                  //       },
+                  //     );
+                  //   },
+                  // ),
 
-
-
-                  }),
                   const SizedBox(
                     height: 22,
                   ),
 
-                  Consumer<GstSection>(
-                      builder: (BuildContext context, pro, child) {
-                    return StyledTextField(
-                      label: 'Gst Portal UserName',
-                      controller:pro.passwordController,
-                      hintText: 'Enter Gst Portal  Number',
-                      maxLines: 1,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please Portal Number';
-                        }
-                        return null;
-                      },
-                    );
+                  // Consumer<GstSection>(
+                  //     builder: (BuildContext context, pro, child) {
+                  //   return StyledTextField(
+                  //     label: 'Gst Portal UserName',
+                  //     controller:pro.passwordController,
+                  //     hintText: 'Enter Gst Portal  Number',
+                  //     maxLines: 1,
+                  //     validator: (value) {
+                  //       if (value == null || value.isEmpty) {
+                  //         return 'Please Portal Number';
+                  //       }
+                  //       return null;
+                  //     },
+                  //   );
 
 
 
-                  }),
+                  // }),
                   const SizedBox(
                     height: 22,
                   ),
@@ -163,18 +163,18 @@ class _GSTLoginState extends State<GSTLogin> with TickerProviderStateMixin {
                     height: 22,
                   ),
 
-                  StyledTextField(
-                    label: 'UserName',
-                    controller:userId,
-                    hintText: 'Enter item User Id',
-                    maxLines: 1,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter User Id';
-                      }
-                      return null;
-                    },
-                  ),
+                  // StyledTextField(
+                  //   label: 'UserName',
+                  //   controller:userId,
+                  //   hintText: 'Enter item User Id',
+                  //   maxLines: 1,
+                  //   validator: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please enter User Id';
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                   const SizedBox(
                     height: 22,
                   ),
@@ -406,3 +406,4 @@ PreferredSizeWidget _buildAppBar(BuildContext context) {
 
   );
 }
+

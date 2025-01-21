@@ -5,8 +5,10 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:itax/config_old/image_constant.dart';
 import 'package:itax/config_old/theme/theme_helper.dart';
 import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
 import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
 import 'package:itax/utility/size_utils.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PdfViewScreens extends StatelessWidget {
   final String urlPath;
@@ -37,7 +39,7 @@ class PdfViewScreens extends StatelessWidget {
       ),
     floatingActionButton: FloatingActionButton(
     onPressed: () async {
-    await Share.shareFiles([urlPath], text: 'Check out this PDF:', subject: 'My goal details',);
+    await Share.share(urlPath);
 
     },
       backgroundColor: appTheme.blue800Af,

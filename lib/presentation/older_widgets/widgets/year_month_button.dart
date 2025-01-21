@@ -1,3 +1,4 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter/material.dart';
 
 class YearButton extends StatelessWidget {
@@ -12,45 +13,46 @@ class YearButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+   var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
-   
-    double buttonWidth = width * 0.3;
+    double buttonWidth = width * 0.6; // Adjust width of the toggle
     double buttonHeight = height * 0.06;
 
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: 1.0), 
+    return Center(
       child: Container(
+        width: buttonWidth,
         height: buttonHeight,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), 
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 8,
-              offset: const Offset(0, 4), 
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 5,
+              offset: const Offset(0, 2),
             ),
           ],
         ),
-        child: LiteRollingSwitch(
-          width: buttonWidth,
-          value: value,
-          textOn: 'Month',
-          textOff: 'Years',
-          textOnColor: Colors.white,
-          textOffColor: Colors.white,
-          colorOn: const Color.fromARGB(255, 33, 150, 243),
-          colorOff: const Color.fromARGB(255, 87, 161, 222),
-          iconOn: Icons.calendar_month, 
-          iconOff: Icons.calendar_month_outlined, 
-          textSize: 12.0, 
-          onChanged: onChanged2,
-          onTap: () {},
-          onDoubleTap: () {},
-          onSwipe: () {},
+        child: AnimatedToggleSwitch<String>.dual(
+          current: value ? 'Years' : 'Months', // Current toggle value
+          first: 'Months', // First option
+          second: 'Years', // Second option
+          height: buttonHeight,
+          borderWidth: 1.5,
+          textBuilder: (value) => Center(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: value == 'Years' ? Colors.white : Colors.blue,
+              ),
+            ),
+          ),
+          onChanged: (newValue) {
+            onChanged2(newValue == 'Years');
+          },
+          iconBuilder: (value) => Icon(Icons.calendar_today),
         ),
       ),
     );

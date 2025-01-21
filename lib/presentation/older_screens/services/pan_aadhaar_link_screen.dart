@@ -2,18 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:itax/config_old/image_constant.dart';
 import 'package:itax/cubits/pan_aadhaar_cubit.dart';
 import 'package:itax/cubits/pan_aadhaar_state.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
 import 'package:itax/presentation/screens/itr-section/widgets/form-widgets.dart';
-import 'package:itaxeasy/utility/size_utils.dart';
-import 'package:itaxeasy/widgets/app_bar/appbar_leading_iconbutton.dart';
-import 'package:itaxeasy/widgets/form_widgets.dart';
-
-import '../../config/image_constant.dart';
-import '../../cubits/pan_aadhaar_cubit.dart';
-import '../../cubits/pan_aadhaar_state.dart';
-import '../../widgets/app_bar/appbar_title.dart';
-import '../../widgets/app_bar/custom_app_bar.dart';
+import 'package:itax/utility/size_utils.dart';
 
 class PanAadhaarLinkScreen extends StatefulWidget {
   const PanAadhaarLinkScreen({super.key});

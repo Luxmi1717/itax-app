@@ -3,6 +3,7 @@ import 'package:itax/presentation/older_screens/itr_section/BusinessandProfessio
 import 'package:itax/presentation/older_screens/itr_section/house_property_calculator.dart';
 import 'package:itax/presentation/older_screens/itr_section/profile_sction_itr.dart';
 import 'package:itax/presentation/older_screens/itr_section/selerry_less_sd.dart';
+import 'package:itax/presentation/older_widgets/widgets/OtherSources.dart';
 import 'package:itax/presentation/older_widgets/widgets/back_button.dart';
 import 'package:itax/presentation/older_widgets/widgets/form_widgets.dart';
 import 'package:itax/providers/providers_old/manually_itr_form16.dart';

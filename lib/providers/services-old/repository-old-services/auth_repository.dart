@@ -4,6 +4,8 @@ import 'package:itax/models/bank/upi_verification.dart';
 import 'package:itax/models/bussiness_profile.dart';
 import 'package:itax/models/calculator/cagrcalculator.dart';
 import 'package:itax/models/calculator/postofficemis.dart';
+import 'package:itax/models/gst/cash_ledger.dart';
+import 'package:itax/models/gst/gst_api.dart';
 import 'package:itax/models/gst/gstr4CPM.dart';
 import 'package:itax/models/gstservice_model/TrachgstModel.dart';
 import 'package:itax/models/gstservice_model/gstin_model.dart';
@@ -64,6 +66,60 @@ class AuthRepository {
       rethrow;
     }
   }
+   Future<GstOpt> GstOTP(dynamic data) async {
+    try {
+      final respone = await _apiServices.postApiResponse(AppUrl.GstOtp, data);
+      print(respone);
+
+      return GstOpt.fromJson(respone);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+  
+  Future<GstOptVerify> GstOTPVerifiy(dynamic data) async {
+    try {
+      final respone =
+          await _apiServices.postApiResponse(AppUrl.GstOtpVerify, data);
+      print(respone);
+
+      return GstOptVerify.fromJson(respone);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<CashResponse> CashRepository(int year, int month, String gstin) async {
+    var cashURL =
+        'https://api.itaxeasy.com/taxes/get-cash-itc-balence?year=$year&month=$month&gstin=$gstin';
+    try {
+      final respone = await _apiServices.GetApiResponse(cashURL);
+      print(respone);
+
+      return CashResponse.fromJson(respone);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<CashResponse> LiablilityRepository(
+      String form, String to, String gstin) async {
+    var cashURL =
+        'https://api.itaxeasy.com//taxes/get-itc-chash-ledgers?gstin=$gstin&from=$form&to=$to';
+    try {
+      final respone = await _apiServices.GetApiResponse(cashURL);
+      print(respone);
+
+      return CashResponse.fromJson(respone);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+
 
   Future<GstinServiceModel> GSTINServicesRepo(String data) async {
     try {

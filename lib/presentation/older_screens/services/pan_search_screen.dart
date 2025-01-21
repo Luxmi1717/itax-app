@@ -1,13 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:itax/config_old/image_constant.dart';
 import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/pan_details_cubit.dart';
 import 'package:itax/cubits/pan_details_state.dart';
 import 'package:itax/models/pan_details_model.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_leading_iconbutton.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
+import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
+import 'package:itax/presentation/older_widgets/widgets/back_button.dart';
 import 'package:itax/presentation/screens/calculators/widgets/blue-text-feild-widget.dart';
 import 'package:itax/presentation/screens/itr-section/widgets/form-widgets.dart';
-import 'package:itaxeasy/utility/size_utils.dart';
-import 'package:itaxeasy/widgets/back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:itax/presentation/widgets/custom_text_input.dart';
+import 'package:itax/utility/size_utils.dart';
 
 
 class PanSearchScreen extends StatefulWidget {
@@ -141,9 +146,17 @@ class _PanSearchScreenState extends State<PanSearchScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    BlueTextField(
+                    CustomTextInput(
                       controller: panController,
                       hintText: 'PAN No',
+                      ifPasswordField: false,
+                      validator: (value) {
+                        if (value != null && value.isNotEmpty) {
+                          return null;
+                        }
+
+                        return 'Please Enter PAN No';
+                      },
                     ),
                     const SizedBox(height: 16),
                     NeomorphicButton(

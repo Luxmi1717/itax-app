@@ -15,16 +15,16 @@ class NavigationItem {
 
   // First list with 6 elements
   final List<NavigationItem> dashboardServicesList = [
-    NavigationItem(
+    NavigationItem(      
       id: 1,
       imageUrl: 'assets/images/dashboard/itr-logo.png',
-      navigationPath: '/all-receivables',
+      navigationPath: '/itr',
       name:'ITR'
     ),
     NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/gstr-logo.png',
-      navigationPath: '/debit-page',
+      navigationPath: '/gst',
       name: 'GSTR'
     ),
     NavigationItem(
@@ -50,7 +50,7 @@ class NavigationItem {
     NavigationItem(
       id: 6,
       imageUrl: 'assets/images/dashboard/gstlink-logo.png',
-      navigationPath: '/sales-monthly',
+      navigationPath: '/services',
       name: 'GST Link'
     ),
   ];

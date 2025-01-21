@@ -3,6 +3,30 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/routes/app_route_constants.dart';
 import 'package:itax/models/calculator/hrpCalculator.dart';
+import 'package:itax/presentation/older_screens/gst/login_gst_page.dart';
+import 'package:itax/presentation/older_screens/gst/return_deshboard.dart';
+import 'package:itax/presentation/older_screens/itr_section/challan_entry/challen_screan.dart';
+import 'package:itax/presentation/older_screens/itr_section/file_itr.dart';
+import 'package:itax/presentation/older_screens/itr_section/itr_home_screen.dart';
+import 'package:itax/presentation/older_screens/itr_section/itr_screen.dart';
+import 'package:itax/presentation/older_screens/itr_section/view_form_16.dart';
+import 'package:itax/presentation/older_screens/services/bank/bank_verfication.dart';
+import 'package:itax/presentation/older_screens/services/bank/ifce_code_page.dart';
+import 'package:itax/presentation/older_screens/services/bank/upi_validation.dart';
+import 'package:itax/presentation/older_screens/services/gst_link/gst_front_page.dart';
+import 'package:itax/presentation/older_screens/services/gst_link/gstin_search.dart';
+import 'package:itax/presentation/older_screens/services/gst_link/serch_by_pan.dart';
+import 'package:itax/presentation/older_screens/services/gst_link/track_gst_return.dart';
+import 'package:itax/presentation/older_screens/services/income_tax_links/income_tax_link_front_page.dart';
+import 'package:itax/presentation/older_screens/services/income_tax_links/search_tan.dart';
+import 'package:itax/presentation/older_screens/services/income_tax_links/verify_pan_details.dart';
+import 'package:itax/presentation/older_screens/services/mca/company_search.dart';
+import 'package:itax/presentation/older_screens/services/pan_aadhaar_link_screen.dart';
+import 'package:itax/presentation/older_screens/services/pan_search_screen.dart';
+import 'package:itax/presentation/older_screens/services/post_Office/pin_by_city.dart';
+import 'package:itax/presentation/older_screens/services/post_Office/pincode_information.dart';
+import 'package:itax/presentation/older_screens/services/post_Office/post_office_front_page.dart';
+import 'package:itax/presentation/older_screens/services/services_screen.dart';
 import 'package:itax/presentation/screens/accounts/account-dashboard-screen.dart';
 import 'package:itax/presentation/screens/accounts/accounts-bottom-bar.dart';
 import 'package:itax/presentation/screens/accounts/add-new-company-screen.dart';
@@ -605,6 +629,159 @@ class MyAppRouter {
     //   path: '/business-profile-aadhaar',
     //   builder: (context, state) => const OCRPickMediaPage(),
     // ),
+
+
+
+
+    //---------------------- Business and Salary Profile Screens routes End ---------------------
+
+
+    //---------------------- ITR Screens routes Start ---------------------
+
+    GoRoute(
+      path: '/itr',
+      builder: (context, state) => const ITRHomeScreen(),
+    ),
+    GoRoute(
+      path: '/file-itr',
+      builder: (context, state) => const ITRScreen(),
+    ),
+    GoRoute(
+      path: '/file-itr/upload',
+      builder: (context, state) => const FileITRScreen(),
+    ),
+    GoRoute(
+      path: '/file-itr/file-Manually',
+      builder: (context, state) => const Manually_File(),
+    ),
+    GoRoute(
+      path: '/file-itr/challan-Entry',
+      builder: (context, state) => const ChallanEntryScrean(),
+    ),
+
+
+
+    //---------------------- ITR Screens routes End ---------------------
+
+
+
+    //---------------------- GST Screens routes Start ---------------------
+
+     GoRoute(
+      path: '/gst',
+      builder: (context, state) => const GSTLogin(),
+    ),
+
+    GoRoute(
+      path: '/gst_dashboard',
+      builder: (context, state) => const ReturnDeshboard(),
+    ),
+
+
+    //---------------------- GST Screens routes End ---------------------
+
+
+
+    //---------------------- Old Service Screens routes Start ---------------------
+
+
+
+
+
+
+
+  GoRoute(
+      path: '/services',
+      builder: (context, state) => const ServicesScreen(),
+    ),
+    GoRoute(
+      path: '/services/pan-search',
+      builder: (context, state) => const PanSearchScreen(),
+    ),
+    GoRoute(
+      path: '/services/pan-aadhaar-link',
+      builder: (context, state) => const PanAadhaarLinkScreen(),
+    ),
+    GoRoute(
+      path: '/services/MCA',
+      builder: (context, state) => const CompanySearch(),
+    ),
+    GoRoute(
+      path: '/services/MCA/companyId',
+      builder: (context, state) => const CompanySearch(),
+    ),
+   
+    GoRoute(
+      path: '/services/gstin',
+      builder: (context, state) => const GstLink(),
+    ),
+    GoRoute(
+      path: '/services/pan_Search',
+      builder: (context, state) => const PanSearchPage(),
+    ),
+    GoRoute(
+      path: '/services/track_gstReturn',
+      builder: (context, state) => const TrackGSTReturnPage(),
+    ),
+    GoRoute(
+      path: '/services/pan_details',
+      builder: (context, state) => const PanVerifyDetails(),
+    ),
+    GoRoute(
+      path: '/services/pan_aadaar_status',
+      builder: (context, state) => const PanAadhaarLinkScreen(),
+    ),
+    GoRoute(
+      path: '/services/Search_tan',
+      builder: (context, state) => const SearchTanPage(),
+    ),
+
+    GoRoute(
+      path: '/services/bank_account',
+      builder: (context, state) => const BankVerfiction(),
+    ),
+    GoRoute(
+      path: '/services/upi_validation',
+      builder: (context, state) => const UPIValidation(),
+    ),
+    GoRoute(
+      path: '/services/pincode_information',
+      builder: (context, state) => const PineCodeInformationPage(),
+    ),
+    GoRoute(
+      path: '/services/pin_by_city',
+      builder: (context, state) => const PinbyCityPage(),
+    ),
+    GoRoute(
+      path: '/services/IFSC',
+      builder: (context, state) => const IFCSCode(),
+    ),
+
+    GoRoute(
+      path: '/services/MCA/gst',
+      builder: (context, state) => const GSTLinks(),
+    ),
+    GoRoute(
+      path: '/services/MCA/IncomeTaxLinks',
+      builder: (context, state) => const IncomeTaxLinks(),
+    ),
+
+    GoRoute(
+      path: '/services/MCA/postofficelink',
+      builder: (context, state) => const PostOffiecLinks(),
+    ),
+
+
+
+
+
+
+    //---------------------- Old Service Screens routes Start ---------------------
+
+
+
+
+
 
 
 
