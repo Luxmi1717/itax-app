@@ -5,9 +5,8 @@ import 'package:itax/config_old/image_constant.dart';
 import 'package:itax/models/menu_item_model.dart';
 import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_leading_iconbutton.dart';
 import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
-import 'package:itax/utility/size_utils.dart';
+// import 'package:itax/utility/size_utils.dart';
 
-import '../../../older_widgets/widgets/app_bar/appbar_title.dart';
 
 
 
@@ -116,22 +115,17 @@ class _GSTLinksState extends State<GSTLinks> {
 }
 PreferredSizeWidget _buildAppBar(BuildContext context) {
   return CustomAppBar(
-    leadingWidth: 38.h,
-    leading: AppbarLeadingIconbutton(
-      onTap: (){
+    leadingWidth: 38,
+    leading: InkWell(
+      onTap: () {
         Navigator.pop(context);
       },
-      imagePath: ImageConstant.imgGoBack,
-      margin: EdgeInsets.only(
-        left: 13.h,
-        top: 15.v,
-        bottom: 15.v,
-      ),
+      child: Icon(Icons.arrow_back_ios,color: AppColor.theamColor,),
     ),
+   
+    
     centerTitle: true,
-    title: AppbarTitle(
-      text: "Search by GSTIN",
-    ),
+    title: Text('GST Link',style: TextStyle(color: AppColor.theamColor),),
   );
 }
 

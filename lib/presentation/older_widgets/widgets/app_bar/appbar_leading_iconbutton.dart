@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:itax/utility/size_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../custom_icon_button.dart';
 import '../custom_image_view.dart';
@@ -29,8 +29,8 @@ class AppbarLeadingIconbutton extends StatelessWidget {
       child: Padding(
         padding: margin ?? EdgeInsets.zero,
         child: CustomIconButton(
-          height: 25.adaptSize,
-          width: 25.adaptSize,
+          height: 12.h,
+          width: 12.w,
           child: CustomImageView(
             imagePath: imagePath,
           ),

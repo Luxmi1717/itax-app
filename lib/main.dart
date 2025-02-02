@@ -25,6 +25,25 @@ import 'package:itax/models/itr_model.dart';
 import 'package:itax/models/profile-models/pan_model.dart';
 import 'package:itax/providers/providers_new/business-profile-provider.dart';
 import 'package:itax/providers/providers_new/salaried-profile-provider.dart';
+import 'package:itax/providers/providers_old/bank_api.dart';
+import 'package:itax/providers/providers_old/bill_create_provider.dart';
+import 'package:itax/providers/providers_old/bussiness_data.dart';
+import 'package:itax/providers/providers_old/bussiness_profile.dart';
+import 'package:itax/providers/providers_old/form_16_calculation.dart';
+import 'package:itax/providers/providers_old/gst_api.dart';
+import 'package:itax/providers/providers_old/gst_calculation_outward.dart';
+import 'package:itax/providers/providers_old/gst_onlinelist_add.dart';
+import 'package:itax/providers/providers_old/gstr1_json_pro.dart';
+import 'package:itax/providers/providers_old/gstr3b_provider.dart';
+import 'package:itax/providers/providers_old/gstr4_cmp_80.dart';
+import 'package:itax/providers/providers_old/invoice_summary_provider.dart';
+import 'package:itax/providers/providers_old/itr_provider%20copy.dart';
+import 'package:itax/providers/providers_old/manually_itr_form16.dart';
+import 'package:itax/providers/providers_old/mca_api.dart';
+import 'package:itax/providers/providers_old/rate_percent_calculation.dart';
+import 'package:itax/providers/providers_old/services_gst_links.dart';
+import 'package:itax/providers/providers_old/services_incometax_links.dart';
+import 'package:itax/providers/providers_old/services_post_office_link.dart';
 import 'package:itax/repositories/auth_repository.dart';
 import 'package:itax/repositories/blog_repository.dart';
 import 'package:itax/repositories/business_profile_repository.dart';
@@ -83,6 +102,78 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => BusinessProfileProvider(),
         ),
+        ChangeNotifierProvider<ITRProvider>(
+          create: (context) => ITRProvider(),
+        ),
+        ChangeNotifierProvider<From16Calculation>(
+          create: (context) => From16Calculation(),
+        ),
+        ChangeNotifierProvider<ManualITRCalculation>(
+          create: (context) => ManualITRCalculation(),
+        ),
+        ChangeNotifierProvider<ManuallyITRTaxPaid>(
+          create: (context) => ManuallyITRTaxPaid(),
+        ),
+        ChangeNotifierProvider<ItrManuallyTCSDetails>(
+          create: (context) => ItrManuallyTCSDetails(),
+        ),
+        ChangeNotifierProvider<itrManuallyProfileSection>(
+          create: (context) => itrManuallyProfileSection(),
+        ),
+        ChangeNotifierProvider<itrManuallyTDSNonSalary>(
+          create: (context) => itrManuallyTDSNonSalary(),
+        ),
+        ChangeNotifierProvider<itrManuallyTDSonSalary>(
+          create: (context) => itrManuallyTDSonSalary(),
+        ),
+        ChangeNotifierProvider<GSTR3BCardNo2>(
+          create: (context) => GSTR3BCardNo2(),
+        ),
+        ChangeNotifierProvider<GSTR3B>(
+          create: (context) => GSTR3B(),
+        ),
+        ChangeNotifierProvider<mca>(
+          create: (context) => mca(),
+        ),
+        ChangeNotifierProvider<BankApi>(
+          create: (context) => BankApi(),
+        ),
+        
+        ChangeNotifierProvider<itrManullyRefandSection>(
+            create: (_) => itrManullyRefandSection(ManuallyITRTaxPaid())),
+        ChangeNotifierProvider<BussinessProfile>(
+          create: (context) => BussinessProfile(),
+        ),
+         ChangeNotifierProvider<ITRProvider>(
+          create: (context) => ITRProvider(),
+        ),
+     
+      
+        ChangeNotifierProvider<GstSection>(create: (_) => GstSection()),
+        ChangeNotifierProvider<GstCalculation>(create: (_) => GstCalculation()),
+        ChangeNotifierProvider<RecordProvider>(create: (_) => RecordProvider()),
+        ChangeNotifierProvider<MyDataModel>(create: (_) => MyDataModel()),
+        ChangeNotifierProvider<GSTR3B>(create: (_) => GSTR3B()),
+        ChangeNotifierProvider<gstinLink>(create: (_) => gstinLink()),
+        ChangeNotifierProvider<PanSearch>(create: (_) => PanSearch()),
+        ChangeNotifierProvider<PanVerify>(create: (_) => PanVerify()),
+        ChangeNotifierProvider<SearchTan>(create: (_) => SearchTan()),
+        ChangeNotifierProvider<PincodeByCity>(create: (_) => PincodeByCity()),
+        ChangeNotifierProvider<PostOfficebyCity>(
+            create: (_) => PostOfficebyCity()),
+        ChangeNotifierProvider<PincodeByInfo>(create: (_) => PincodeByInfo()),
+        ChangeNotifierProvider<GSTINTrackReturn>(
+            create: (_) => GSTINTrackReturn()),
+        ChangeNotifierProvider<Gstr4CMP>(create: (_) => Gstr4CMP()),
+        ChangeNotifierProvider(create: (_) => BillCreateNotifier()),
+        ChangeNotifierProvider<InvoiceSummaryProvider>(
+          create: (context) => InvoiceSummaryProvider(),
+        ),
+        ChangeNotifierProvider<GstBussinessData>(
+            create: (_) => GstBussinessData()),
+        ChangeNotifierProvider<RatePercentCalculation>(
+            create: (_) => RatePercentCalculation()),
+
       ],
       child: MultiBlocProvider(
         providers: [

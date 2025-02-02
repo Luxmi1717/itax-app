@@ -93,13 +93,12 @@ import 'package:itax/presentation/screens/receivables-and-payables-screens/recei
 import 'package:itax/presentation/screens/receivables-and-payables-screens/receivables-page.dart';
 import 'package:itax/presentation/screens/reports/report-balance-sheet-page.dart';
 import 'package:itax/presentation/screens/reports/report-profit-loss-screen.dart';
-import 'package:itax/presentation/screens/reports/trial-balance-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-day-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-monthly-page.dart';
 import 'package:itax/presentation/screens/sales-purchase-screens/sales-person.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/rotate-pdf-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/split-pdf-screen.dart';
-import 'package:itax/presentation/screens/tools-screens/tools-base-view.dart';
+import 'package:itax/presentation/screens/tools-screens/pdf-base-view.dart';
 
 class MyAppRouter {
   GoRouter router = GoRouter(initialLocation: '/home', routes: [
@@ -108,6 +107,8 @@ class MyAppRouter {
       path: '/home',
       pageBuilder: (context, state) {
         return const MaterialPage(child: BottomNavBarDashBoard());
+        // return  MaterialPage(child: RateInterestPage());
+
       },
     ),
     GoRoute(

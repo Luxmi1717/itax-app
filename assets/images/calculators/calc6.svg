@@ -1,0 +1,19 @@
+<svg width="99" height="67" viewBox="0 0 99 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="99" height="66.1548" rx="8" fill="#F1FFF3"/>
+<mask id="path-2-inside-1_1_15644" fill="white">
+<rect x="26.5859" y="13" width="33" height="39" rx="2"/>
+</mask>
+<rect x="26.5859" y="13" width="33" height="39" rx="2" stroke="#E11900" stroke-width="6" mask="url(#path-2-inside-1_1_15644)"/>
+<rect x="28.5" y="26.5" width="28" height="23" stroke="#E11900" stroke-width="3"/>
+<mask id="path-4-inside-2_1_15644" fill="white">
+<rect x="27" y="26" width="18" height="15" rx="2"/>
+</mask>
+<rect x="27" y="26" width="18" height="15" rx="2" fill="#F1FFF3" stroke="#E11900" stroke-width="6" mask="url(#path-4-inside-2_1_15644)"/>
+<rect x="28.5" y="38.5" width="15" height="11" fill="#F1FFF3" stroke="#E11900" stroke-width="3"/>
+<rect x="43.5" y="38.5" width="15" height="11" fill="#F1FFF3" stroke="#E11900" stroke-width="3"/>
+<rect x="43.5" y="27.5" width="14" height="11" fill="#F1FFF3" stroke="#E11900" stroke-width="3"/>
+<path d="M53.5859 36C53.5859 35.4477 54.0337 35 54.5859 35H68.5859C69.1382 35 69.5859 35.4477 69.5859 36V48.7C69.5859 48.8657 69.4516 49 69.2859 49H53.8859C53.7203 49 53.5859 48.8657 53.5859 48.7V36Z" fill="#3C7CDD"/>
+<path d="M61.8112 52.9932C61.7018 53.0469 61.5738 53.0478 61.4637 52.9957L53.8574 49.3935C53.4731 49.2115 53.6005 48.635 54.0257 48.632L69.1866 48.5247C69.6118 48.5217 69.7474 49.0963 69.3657 49.2837L61.8112 52.9932Z" fill="#3C7CDD"/>
+<rect x="58.7695" y="45.5703" width="10.2488" height="2" rx="1" transform="rotate(-37.6009 58.7695 45.5703)" fill="#F1FFF3"/>
+<rect x="58.1172" y="41.0273" width="5.73832" height="2.33676" rx="1" transform="rotate(51.4909 58.1172 41.0273)" fill="#F1FFF3"/>
+</svg>

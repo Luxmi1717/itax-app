@@ -172,6 +172,10 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoading());
 
       await authRepository.loadUser();
+      print('loadloggedinuser function started');
+      print(authRepository.token);
+      print(authRepository.user!.firstName);
+
 
       emit(AuthSuccess(loggedIn: authRepository.token != ''));
     } catch (e) {
@@ -181,8 +185,13 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   UserModel getLoggedInUser() {
+       print('getLoggedInUser function started');
     return UserModel(data: authRepository.user, token: authRepository.token);
+       
+
   }
+
+
 
   Future<void> logout() async {
     try {
@@ -198,6 +207,8 @@ class AuthCubit extends Cubit<AuthState> {
       AuthError(message: 'Could not logout');
     }
   }
+
+
 
   Future<void> verifyForgotPasswordOTP(String otp) async {
     OTP = otp;

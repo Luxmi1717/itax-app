@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/presentation/screens/profile/profile-screen.dart';
+import 'package:itax/presentation/widgets/dashboard-diamond-container.dart';
 import 'package:itax/utility/dashboard-services.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -22,23 +24,36 @@ class DashboardScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.qr_code_scanner),
+            icon:  Icon(Icons.qr_code_scanner,
+              size: 27.sp,
+            ),
             onPressed: () {
               // Handle QR scan action
             },
           ),
           IconButton(
-            icon: const Icon(Icons.notifications),
+            icon:  Icon(Icons.notifications, size: 27.sp,),
             onPressed: () {
               // Handle notifications action
             },
           ),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage(
-                  'assets/user_profile.png'),             ),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const ProfilePage();
+              }));
+            },
+            child:  Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.w),
+              child: CircleAvatar(
+                radius: 17.r,
+                backgroundImage: AssetImage(
+                  
+                    'assets/user_profile.png'),             ),
+            ),
           ),
+          SizedBox(width: 5.w),
+          
         ],
       ),
       body: SingleChildScrollView(
@@ -52,7 +67,10 @@ class DashboardScreen extends StatelessWidget {
                   SizedBox(
                     height: 55.h,
                     child: TextField(
+
                       decoration: InputDecoration(
+                        filled: true,
+                        fillColor: const Color.fromARGB(255, 239, 239, 239),
                         hintText: 'Search...',
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
@@ -61,7 +79,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 15.h),
                   Container(
                     padding: EdgeInsets.symmetric(
                       horizontal: 20.w,
@@ -74,7 +92,7 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         Image.asset(
                           'assets/images/dashboard/dashboard2.png', // Replace with your logo asset
-                          height: 130.h,
+                          height: 120.h,
                           width: 100.w,
                         ),
                         Spacer(),
@@ -94,7 +112,7 @@ class DashboardScreen extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.white, fontSize: 12.sp),
                             ),
-                            SizedBox(height: 20.h),
+                            SizedBox(height: 15.h),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 10.w, vertical: 5.h),
@@ -118,14 +136,14 @@ class DashboardScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 4.h),
             Divider(
               color: const Color.fromARGB(255, 226, 225, 225),
               thickness: 6,
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 8.h),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
               child: Column(
                 children: [
                   Row(
@@ -137,13 +155,14 @@ class DashboardScreen extends StatelessWidget {
                           color: mainBlueColor,
                         ),
                       ),
-                      Text(
-                        'Services',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: mainBlueColor),
-                      ),
+                      // Text(
+                      //   'Services',
+                      //   style: TextStyle(
+                      //       fontSize: 20.sp,
+                      //       fontWeight: FontWeight.bold,
+                      //       color: mainBlueColor),
+                      // ),
+                      DashboardDiamondContainer(text: 'Services'),
                       Expanded(
                         child: Container(
                           margin: EdgeInsets.only(left: 4.w),
@@ -153,7 +172,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                   SizedBox(height: 14.h),
+                   SizedBox(height: 16.h),
                   GridView.count(
                     mainAxisSpacing: 4.h,
                     crossAxisCount: 3,
@@ -171,7 +190,7 @@ class DashboardScreen extends StatelessWidget {
                           children: [
                             Container(
                               margin: EdgeInsets.symmetric(
-                                  horizontal: 3.w, vertical: 3.h),
+                                  horizontal: 3.w, vertical: 1.h),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 image: DecorationImage(
@@ -183,6 +202,7 @@ class DashboardScreen extends StatelessWidget {
                               height: 80.h,
                               width: 90.w,
                             ),
+                            
                             SizedBox(
                                 height:
                                     6.h), 
@@ -205,12 +225,12 @@ class DashboardScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 35.h),
+            SizedBox(height: 15.h),
             Divider(
               color: const Color.fromARGB(255, 226, 225, 225),
               thickness: 6,
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 15.h),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
               child: Column(
@@ -224,15 +244,9 @@ class DashboardScreen extends StatelessWidget {
                           color: mainBlueColor,
                         ),
                       ),
-                      Text(
-                        'Tools',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: mainBlueColor),
-                      ),
+                      DashboardDiamondContainer(text: 'View'),
                       SizedBox(
-                        height: 20.h,
+                        height: 15.h,
                       ),
                       Expanded(
                         child: Container(
@@ -243,7 +257,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 1.h),
+                  SizedBox(height: 15.h),
                   GridView.count(
                     
                     crossAxisCount: 3,
@@ -259,7 +273,8 @@ class DashboardScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              margin: EdgeInsets.all(3.w),
+                             margin: EdgeInsets.symmetric(
+                                  horizontal: 3.w, vertical: 1.h),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 image: DecorationImage(
@@ -295,7 +310,7 @@ class DashboardScreen extends StatelessWidget {
                         margin: EdgeInsets.all(10.w),
                         padding: EdgeInsets.symmetric(
                             horizontal: 10.w, vertical: 5.h),
-                        width: 140.w,
+                        width: 130.w,
                         height: 40.h,
                         decoration: BoxDecoration(
                           color: mainBlueColor.withOpacity(0.1),
@@ -315,68 +330,86 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20.h),
-                  Container(
-                    width: double.infinity,
-                    color: const Color.fromARGB(255, 240, 240, 240),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 25.w, vertical: 25.h),
-                      decoration: BoxDecoration(
-            color: const Color.fromRGBO(221, 30, 99, 1), // Using the color
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Fill your ITR for free',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 5.h),
-                                Text(
-                                  'Fill your Income Tax returns \nfor free in just minutes \n- Completely Free!',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                                SizedBox(height: 10.h),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10.w, vertical: 5.h),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: whiteColor),
-                                  ),
-                                  child: Text(
-                                    'Apply Now',
-                                    style: TextStyle(
-                                      color: whiteColor,
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Image.asset(
-                              'assets/images/dashboard/banner-logo.png', // Replace with your logo asset
-                              height: 120.h,
-                              width: 120.w),
-                        ],
-                      ),
-                    ),
+                  SizedBox(height: 10.h),
+//                   Container(
+//   decoration: BoxDecoration(
+//     color: Color.fromARGB(255, 240, 240, 240),
+//     borderRadius: const BorderRadius.only(
+//       topLeft: Radius.elliptical(30, 40),
+//       topRight: Radius.elliptical(30, 40),
+//       bottomLeft: Radius.elliptical(30, 40),
+//       bottomRight: Radius.elliptical(30, 40),
+//     ),
+//   ),
+//   width: double.infinity,
+//   child: Container(
+//     padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 20.h),
+//     decoration: BoxDecoration(
+//       color: const Color.fromRGBO(221, 30, 99, 1),
+//       borderRadius: const BorderRadius.only(
+//         topLeft: Radius.elliptical(30, 40),
+//         topRight: Radius.elliptical(30, 40),
+//         bottomLeft: Radius.elliptical(30, 40),
+//         bottomRight: Radius.elliptical(30, 40),
+//       ),
+//     ),
+//     child: Row(
+//       children: [
+//         Expanded(
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Text(
+//                 'Fill your ITR for free',
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 18.sp,
+//                   fontWeight: FontWeight.bold,
+//                 ),
+//               ),
+//               SizedBox(height: 5.h),
+//               Text(
+//                 'Fill your Income Tax returns \nfor free in just minutes \n- Completely Free!',
+//                 style: TextStyle(
+//                   color: Colors.white,
+//                   fontSize: 10.sp,
+//                 ),
+//               ),
+//               SizedBox(height: 10.h),
+//               Container(
+//                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(8),
+//                   border: Border.all(color: whiteColor),
+//                 ),
+//                 child: Text(
+//                   'Apply Now',
+//                   style: TextStyle(
+//                     color: whiteColor,
+//                     fontSize: 16.sp,
+//                     fontWeight: FontWeight.bold,
+//                   ),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//         Image.asset(
+//           'assets/images/dashboard/banner-logo.png',
+//           height: 120.h,
+//           width: 120.w,
+//         ),
+//       ],
+//     ),
+//   ),
+// ),
+
+                  SvgPicture.asset(
+                    'assets/images/itr-banner.svg',
+                    height: 150.h,
+                    width: 160.w,
                   ),
-                  SizedBox(height: 20.h),
+    SizedBox(height: 15.h),
                 ],
               ),
             ),
@@ -393,13 +426,7 @@ class DashboardScreen extends StatelessWidget {
                           color: mainBlueColor,
                         ),
                       ),
-                      Text(
-                        'Calculators',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            fontWeight: FontWeight.bold,
-                            color: mainBlueColor),
-                      ),
+                      DashboardDiamondContainer(text: 'Calculators'),
                       Expanded(
                         child: Container(
                           margin: EdgeInsets.only(left: 4.w),
@@ -424,7 +451,7 @@ class DashboardScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              margin: EdgeInsets.all(3.w),
+                              margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
                               decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 238, 238, 238),
                                 borderRadius: BorderRadius.circular(12),
@@ -432,8 +459,8 @@ class DashboardScreen extends StatelessWidget {
                               child: Center(
                                 child: SvgPicture.asset(
                                   calculatorsList[index].imageUrl,
-                                  height: 70.h,
-                                  width: 70.w,
+                                  height: 50.h,
+                                  width: 50.w,
                                   // color: const Color.fromARGB(255, 122, 122, 122),
                                 ),
                               ),
@@ -444,7 +471,7 @@ class DashboardScreen extends StatelessWidget {
                             Text(
                               calculatorsList[index].name,
                               style: TextStyle(
-                                fontSize: 15.sp,
+                                fontSize: 16.sp,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               ),

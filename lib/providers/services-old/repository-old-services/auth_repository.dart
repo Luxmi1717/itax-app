@@ -107,7 +107,7 @@ class AuthRepository {
   Future<CashResponse> LiablilityRepository(
       String form, String to, String gstin) async {
     var cashURL =
-        'https://api.itaxeasy.com//taxes/get-itc-chash-ledgers?gstin=$gstin&from=$form&to=$to';
+        'https://api.itaxeasy.com/taxes/get-itc-chash-ledgers?gstin=$gstin&from=$form&to=$to';
     try {
       final respone = await _apiServices.GetApiResponse(cashURL);
       print(respone);

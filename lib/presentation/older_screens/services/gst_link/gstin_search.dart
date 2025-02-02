@@ -7,7 +7,6 @@ import 'package:itax/presentation/older_widgets/widgets/form_widgets.dart';
 import 'package:itax/presentation/older_widgets/widgets/primary_button.dart';
 import 'package:itax/presentation/older_widgets/widgets/text_decoration.dart';
 import 'package:itax/providers/services-old/utils/utils.dart';
-import 'package:itax/utility/size_utils.dart';
 
 import 'package:provider/provider.dart';
 
@@ -106,22 +105,30 @@ class _GstLinkState extends State<GstLink> {
   }
 }
 PreferredSizeWidget _buildAppBar(BuildContext context) {
-  return CustomAppBar(
-    leadingWidth: 38.h,
-    leading: AppbarLeadingIconbutton(
-      onTap: (){
+  return AppBar(
+    elevation: 0,
+    toolbarHeight: 34,
+    automaticallyImplyLeading: false,
+    backgroundColor: Colors.transparent,
+    leadingWidth: 0,
+    leading: Padding(padding: const EdgeInsets.only(left: 10),child: InkWell(
+      onTap: () {
         Navigator.pop(context);
       },
-      imagePath: ImageConstant.imgGoBack,
-      margin: EdgeInsets.only(
-        left: 13.h,
-        top: 15.v,
-        bottom: 15.v,
+      child: const Icon(
+        Icons.arrow_back_ios,
+        color: Colors.black,
+      ),
+    ),),
+    title: Text(
+      'GST Link',
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
       ),
     ),
+    
     centerTitle: true,
-    title: AppbarTitle(
-      text: "Search by gstin",
-    ),
   );
 }

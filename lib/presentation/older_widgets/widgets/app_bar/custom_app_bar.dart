@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:itax/utility/size_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 // ignore: must_be_immutable
@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      toolbarHeight: height ?? 56.v,
+      toolbarHeight: height ?? 25.h,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
       leadingWidth: leadingWidth ?? 0,
@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size(
-        SizeUtils.width,
-        height ?? 56.v,
+        double.infinity,
+        height ?? 34.h,
       );
 }

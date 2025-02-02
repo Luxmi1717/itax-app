@@ -4,10 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/cubits/auth_cubit.dart';
+import 'package:itax/cubits/auth_state.dart';
 import 'package:itax/presentation/screens/profile/profile-sliders.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AuthCubit>().loadLoggedInUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,125 +29,164 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: whiteColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () => GoRouter.of(context).pop(), // Navigate back
+          onPressed: () => GoRouter.of(context).pop(),
         ),
         title: const Text('Profile'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.grey[200],
-                  ),
-                 
-                  padding:  EdgeInsets.symmetric(horizontal: 100.w, vertical: 20.h),
-                
-                  child:
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Stack(
-                              children: [
-                                CircleAvatar(
-                                  radius: 65.r,
-                                  backgroundImage: const AssetImage(
-                                      'assets/dummy_profile.png'), // Replace with your image
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.grey,
-                                    ),
-                                    child: IconButton(
-                                      icon: const Icon(Icons.camera_alt, color: Colors.white),
-                                      onPressed: () {
-                                        // Add camera functionality here
-                                      },
+      body: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is AuthSuccess) {
+            final user = context.read<AuthCubit>().getLoggedInUser().data;
+            if (user == null) {
+              return const Center(child: Text("User data not available."));
+            }
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey[200],
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 100.w, vertical: 20.h),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Stack(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 65.r,
+                                    backgroundImage: const AssetImage(
+                                        'assets/dummy_profile.png'),
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    right: 0,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey,
+                                      ),
+                                      child: IconButton(
+                                        icon: const Icon(Icons.camera_alt,
+                                            color: Colors.white),
+                                        onPressed: () {},
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        
-                        const SizedBox(height: 10),
-                        // User Name
-                        const Center(
-                          child: Text(
-                            'John Doe', // Dummy value
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
+                            const SizedBox(height: 10),
+                            Center(
+                              child: Text(
+                                '${user.firstName} ${user.lastName}',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            // Personal Info Section
-            sectionHeader('Personal Info'),
-            infoSection([
-              {'label': 'Name', 'value': 'John Doe', 'action': const ChangeEmail()},
-              {'label': 'Mobile Number', 'value': '+1234567890', 'action': const ChangeMobileNo()},
-              {'label': 'Email', 'value': 'johndoe@example.com', 'action': const ChangeEmail()},
-              {'label': 'Date of Birth', 'value': '01 Jan 2000', 'action': null},
-              {'label': 'PAN Number', 'value': 'ABCDE1234F', 'action': const AddPANNumber()},
-              {'label': 'Aadhar Number', 'value': '1234 5678 9012', 'action': const AddAadharNumber()},
-            ], context),
-
-            // Business Info Section
-            sectionHeader('Business Info'),
-            infoSection([
-              {'label': 'Business Name', 'value': 'John Enterprises', 'action': const AddBusinessName()},
-              {'label': 'Business Address', 'value': '123 Main Street, City', 'action': const AddAddress()},
-              {'label': 'GST Number', 'value': '22AAAAA0000A1Z5', 'action': const AddGSTNumber()},
-              {'label': 'PAN Number', 'value': 'ABCDE1234F', 'action': const AddPANNumber()},
-              {
-                'label': 'Bank Details',
-                'value': 'HDFC Bank, Account: 1234567890',
-                'action': const AddBankDetails(),
-
-              },
-            ], context),
-
-            // Other Section
-            sectionHeader('Other'),
-            otherOptions(context, [
-              // Define actions for each option with unique content
-              {
-                'label': 'Change Password',
-                'action': () => openBottomSheet(
-                      context,
-                      const ChangePassword(), // Opens Change Password content
-                    ),
-              },
-              {
-                'label': 'Logout',
-                'action': () => openBottomSheet(
-                      context,
-                      const LogoutConfirmationContent(), // Opens Logout confirmation
-                    ),
-              },
-            ]),
-          ],
-        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  sectionHeader('Personal Info'),
+                  infoSection([
+                    {
+                      'label': 'Name',
+                      'value': '${user.firstName} ${user.lastName}',
+                      'action': const ChangeEmail()
+                    },
+                    {
+                      'label': 'Mobile Number',
+                      'value': user.phone,
+                      'action': const ChangeMobileNo()
+                    },
+                    {
+                      'label': 'Email',
+                      'value': user.email,
+                      'action': const ChangeEmail()
+                    },
+                    {
+                      'label': 'Date of Birth',
+                      'value': user.dob,
+                      'action': null
+                    },
+                    {
+                      'label': 'PAN Number',
+                      'value': user.pan,
+                      'action': const AddPANNumber()
+                    },
+                    {
+                      'label': 'Aadhar Number',
+                      'value': user.aadhaar,
+                      'action': const AddAadharNumber()
+                    },
+                  ], context),
+                  sectionHeader('Business Info'),
+                  infoSection([
+                    {
+                      'label': 'Business Name',
+                      'value': user.userType,
+                      'action': const AddBusinessName()
+                    },
+                    {
+                      'label': 'Business Address',
+                      'value': '123 Main Street, City',
+                      'action': const AddAddress()
+                    },
+                    {
+                      'label': 'GST Number',
+                      'value': '22AAAAA0000A1Z5',
+                      'action': const AddGSTNumber()
+                    },
+                    {
+                      'label': 'PAN Number',
+                      'value': user.pan,
+                      'action': const AddPANNumber()
+                    },
+                    {
+                      'label': 'Bank Details',
+                      'value': 'HDFC Bank, Account: 1234567890',
+                      'action': const AddBankDetails()
+                    },
+                  ], context),
+                  sectionHeader('Other'),
+                  otherOptions(context, [
+                    {
+                      'label': 'Change Password',
+                      'action': () =>
+                          openBottomSheet(context, const ChangePassword())
+                    },
+                    {
+                      'label': 'Logout',
+                      'action': () => openBottomSheet(
+                          context, const LogoutConfirmationContent())
+                    },
+                  ]),
+                ],
+              ),
+            );
+          } else if (state is AuthError) {
+            return Center(child: Text(state.message));
+          } else {
+            return const Center(child: Text("Something went wrong."));
+          }
+        },
       ),
     );
   }
+}
+
 
   // Method to render section headers
   Widget sectionHeader(String title) {
@@ -222,7 +273,6 @@ class ProfilePage extends StatelessWidget {
       },
     );
   }
-}
 
 class ChangePasswordContent extends StatelessWidget {
   const ChangePasswordContent({super.key});
@@ -276,7 +326,7 @@ class LogoutConfirmationContent extends StatelessWidget {
               context.read<AuthCubit>().logout();
 
 
-                context.go('/login'); // Navigate to login screen
+                context.push('/login'); 
                 
               },
               child: const Text('Yes'),

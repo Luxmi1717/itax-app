@@ -37,7 +37,7 @@ class _IfceDetailViewState extends State<IfceDetailView> {
               padding:
               const EdgeInsetsDirectional.all(12),
               width: double.infinity,
-              height: SizeUtils.height*0.4,
+              height: MediaQuery.of(context).size.height *0.4,
               decoration: BoxDecoration(
                 color: appTheme.blue800Af.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(6),

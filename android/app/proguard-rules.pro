@@ -6,3 +6,7 @@
 -dontwarn com.google.errorprone.annotations.RestrictedApi
 -keep public class com.itextpdf.**
 -keep public class org.apache.**
+-keep class org.apache.xml.** { *; }
+-keep class org.slf4j.** { *; }
+-dontwarn org.apache.xml.**
+-dontwarn org.slf4j.**

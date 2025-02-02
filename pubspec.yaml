@@ -55,7 +55,6 @@ dependencies:
   path: any
   http_parser: any
   flutter_screenutil: ^5.9.3
-  syncfusion_flutter_charts: ^28.1.36
   flutter_bloc: ^8.1.6
   flutter_share: ^2.0.0
   modal_progress_hud_nsn: ^0.5.1
@@ -69,7 +68,7 @@ dependencies:
   platform: ^3.1.6
   image_picker: ^1.1.2
   flutter_pdfview: ^1.4.0
-  easy_pdf_viewer: ^1.0.8
+
   alh_pdf_view: ^2.3.0
   hl_image_picker: ^1.2.16
   pdf_manipulator: ^0.5.9
@@ -81,6 +80,7 @@ dependencies:
   cached_network_image: ^3.4.1
   flutter_contacts: ^1.1.9+2
   share_plus: ^10.1.4
+  morphable_shape: ^2.0.0
   
 dev_dependencies:
   flutter_test:
@@ -112,7 +112,8 @@ flutter:
     - assets/itax-icons/accounts-icons/items-icons/
     - assets/itax-icons/accounts-icons/reports-icons/
     - assets/images/tools/
-    - assets/old_images/
+    - assets/images/calculators/
+
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

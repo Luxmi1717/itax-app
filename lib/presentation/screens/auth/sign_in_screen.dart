@@ -25,235 +25,261 @@ class _SignInScreenState extends State<SignInScreen> {
     final TextEditingController emailOrPhoneController =
         TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    return Scaffold(
-      appBar: GradientAppBar(
-        leadingWidget: Padding(
-          padding: EdgeInsets.all(12.0),
-          child: Text(
-            'Login',
-            style: TextStyle(color: Colors.white, fontSize: 24.sp),
-          ),
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: AppGradients.mainGradient,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(80),
-                  topRight: Radius.circular(30),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              // color: Colors.transparent
+              gradient: AppGradients.mainGradient,
+            ),
+          ),
+          leading: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 17.w),
+            child: Text(
+              'Login',
+              style: TextStyle(color: Colors.white, fontSize: 20.sp, fontWeight: FontWeight.bold),
+            ),
+
+          ),
+          leadingWidth: 140.w,
+        ),
+        // GradientAppBar(
+        //   leadingWidget: Padding(
+        //     padding: EdgeInsets.all(12.0),
+        //     child: Text(
+        //       'Login',
+        //       style: TextStyle(color: Colors.white, fontSize: 24.sp),
+        //     ),
+        //   ),
+        // ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                padding:  EdgeInsets.symmetric(horizontal:  18.w, vertical: 22.h),
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                  color: Colors.white,
                 ),
-                color: Colors.white,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Welcome Back',
-                      style: TextStyle(
-                          color: mainBlueColor,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Hello there, Login to continue',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 40.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/login-image.png',
-                          width: 150.w,
-                          height: 150.h,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 40.h),
-                    CustomTextInput(
-                      controller: emailOrPhoneController,
-                      hintText: 'Email or Phone Number',
-                      ifPasswordField: false,
-                      validator: (value) {
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    CustomTextInput(
-                      controller: passwordController,
-                      hintText: 'Password',
-                      ifPasswordField: true,
-                      validator: (value) {
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Checkbox(value: false, onChanged: (value) {}),
-                            const Text('Remember me'),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            _showForgotPasswordFlow(context);
-                          },
-                          child: const Text(
-                            'Forgot Password?',
-                            style: TextStyle(color: mainBlueColor),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                     BlocConsumer<AuthCubit, AuthState>(
-                      listener: (context, state) {
-                        if (state is AuthError) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(state.message),
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.error,
-                            ),
-                          );
-                        } else if (state is AuthSuccess) {
-                          GoRouter.of(context).push('/home');
-                          final user =
-                              context.read<AuthCubit>().getLoggedInUser();
-                         
-                          // context.push('/otp-verification');
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   const SnackBar(
-                          //     content: Text('OTP Sent to your email.'),
-                          //   ),
-                          // );
-                        }
-                      },
-                      builder: (context, state) {
-                        return BlueButton(
-                          onPressed: () {
-                            // if (_formKey.currentState!.validate()) {
-                              print('login button pressed');
-                              context.read<AuthCubit>().generateOTP(
-                                  emailOrPhoneController.text.trim(),
-                                  passwordController.text.trim());
-                            // }
-                          },
-                          title: 'Login',
-                        );
-                      },
-                    ),
-                    // BlueButton(
-                    //   title: 'Login',
-                    //   onPressed: () async {
-                    //     Navigator.of(context).push(MaterialPageRoute(
-                    //         builder: (context) => BottomNavBarDashBoard()));
-                       
-                    //   },
-                    // ),
-                    SizedBox(height: 20.h),
-                     Padding(
-                       padding:  EdgeInsets.symmetric(horizontal: 40.h),
-                       child: Row(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                       Text(
+                        'Welcome Back',
+                        style: TextStyle(
+                            color: mainBlueColor,
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Welcome Back! Access Your Dashboard Securely',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 40.h),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 4.w),
-                              height: 1,
-                              color: blackColor,
-                            ),
+                          Image.asset(
+                            'assets/images/login-image.png',
+                            width: 170.w,
+                            height: 150.h,
                           ),
-                          SizedBox(width: 8.w,),
-                          Center(child: Text('or login with')),
-                          SizedBox(width: 8.w,),
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 4.w),
-                              height: 1,
-                              color: blackColor,
+                        ],
+                      ),
+                      SizedBox(height: 40.h),
+                      CustomTextInput(
+                        controller: emailOrPhoneController,
+                        hintText: 'Email or Phone Number',
+                        ifPasswordField: false,
+                        validator: (value) {
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                      CustomTextInput(
+                        controller: passwordController,
+                        hintText: 'Password',
+                        ifPasswordField: true,
+                        validator: (value) {
+                          return null;
+                        },
+                      ),
+                       SizedBox(height: 4.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(value: false, onChanged: (value) {}),
+                               Text('Remember me', style: TextStyle(fontSize: 14.sp) ,),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              _showForgotPasswordFlow(context);
+                            },
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(color: mainBlueColor),
                             ),
                           ),
                         ],
-                                           ),
-                     ),
-                    SizedBox(height: 10.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 100.w,
-                          height: 70.h,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/images/google-logo.png',
-                              width: 40.w,
-                              height: 40.h,
+                      ),
+                       SizedBox(height: 22.h),
+                       BlocConsumer<AuthCubit, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthError) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(state.message),
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.error,
+                              ),
+                            );
+                          } else if (state is AuthSuccess) {
+                            GoRouter.of(context).push('/home');
+                            final user =
+                                context.read<AuthCubit>().getLoggedInUser();
+                           
+                            // context.push('/otp-verification');
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(
+                            //     content: Text('OTP Sent to your email.'),
+                            //   ),
+                            // );
+                          }
+                        },
+                        builder: (context, state) {
+                          return BlueButton(
+                            onPressed: () {
+                              // if (_formKey.currentState!.validate()) {
+                                print('login button pressed');
+                                context.read<AuthCubit>().generateOTP(
+                                    emailOrPhoneController.text.trim(),
+                                    passwordController.text.trim());
+                              // }
+                            },
+                            title: 'Login',
+                          );
+                        },
+                      ),
+                      // BlueButton(
+                      //   title: 'Login',
+                      //   onPressed: () async {
+                      //     Navigator.of(context).push(MaterialPageRoute(
+                      //         builder: (context) => BottomNavBarDashBoard()));
+                         
+                      //   },
+                      // ),
+                      SizedBox(height: 40.h),
+                       Padding(
+                         padding:  EdgeInsets.symmetric(horizontal: 40.h),
+                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                margin: EdgeInsets.only(right: 4.w),
+                                height: 1,
+                                color: blackColor,
+                              ),
+                            ),
+                            SizedBox(width: 8.w,),
+                            Center(child: Text('or login with', style: TextStyle(color: const Color.fromARGB(255, 50, 50, 50), fontSize: 16.sp),),),
+                            SizedBox(width: 8.w,),
+                            Expanded(
+                              child: Container(
+                                margin: EdgeInsets.only(right: 4.w),
+                                height: 1,
+                                color: blackColor,
+                              ),
+                            ),
+                          ],
+                                             ),
+                       ),
+                      SizedBox(height: 10.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Don't have an account?",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 14.sp),
                             ),
                           ),
-                        ),
-                        const SizedBox(width: 20),
-                        Container(
-                          height: 70.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'assets/images/facebook-logo.png',
-                              width: 40.w,
-                              height: 40.h,
+                          InkWell(
+                            onTap: () {
+                              GoRouter.of(context).push('/signup');
+                            },
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                  color: mainBlueColor, fontSize: 18.sp),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Don't have an account?",
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 18.sp),
+                        ],
+                      ),
+                      SizedBox(height: 20.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 140.w,
+                            height: 60.h,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/google-logo.png',
+                                width: 40.w,
+                                height: 40.h,
+                              ),
+                            ),
                           ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            GoRouter.of(context).push('/signup');
-                          },
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(
-                                color: mainBlueColor, fontSize: 18.sp),
+                           SizedBox(width: 20.w),
+                          Container(
+                            height: 60.h,
+                            width: 140.w,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Image.asset(
+                                'assets/images/facebook-logo.png',
+                                width: 40.w,
+                                height: 40.h,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

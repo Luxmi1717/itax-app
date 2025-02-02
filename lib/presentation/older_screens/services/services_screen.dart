@@ -1,11 +1,11 @@
 import 'package:itax/config_old/Appcolor.dart';
-import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
-import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
+// import 'package:itax/presentation/older_widgets/widgets/app_bar/appbar_title.dart';
+// import 'package:itax/presentation/older_widgets/widgets/app_bar/custom_app_bar.dart';
 
 import '/models/menu_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
+ 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({super.key});
 
@@ -36,8 +36,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        appBar:_buildAppBar(context),
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text('Services'),
+          centerTitle: true,
+        ),
+        // _buildAppBar(context),
         body: SizedBox(
           height: height/1.1,
           child: GridView.builder(
@@ -95,11 +100,12 @@ class _ServicesScreenState extends State<ServicesScreen> {
     );
   }
 }
-PreferredSizeWidget _buildAppBar(BuildContext context) {
-  return CustomAppBar(
-    centerTitle: true,
-    title: AppbarTitle(
-      text: "Services",
-    ),
-  );
-}
+// PreferredSizeWidget _buildAppBar(BuildContext context) {
+//   return AppBar()
+//    CustomAppBar(
+//     centerTitle: true,
+//     // title: AppbarTitle(
+//     //   text: "Services",
+//     // ),
+//   );
+// }

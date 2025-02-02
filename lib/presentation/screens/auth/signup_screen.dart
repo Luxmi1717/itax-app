@@ -236,6 +236,7 @@
 //   }
 // }
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -327,163 +328,230 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: AppGradients.mainGradient,
-          ),
-        ),
-        leading: InkWell(
-          onTap: () {
-            GoRouter.of(context).push('/login');
-          },
-          child: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.white,
-          ),
-        ),
-        title: Text(
-          'Sign Up',
-          style: TextStyle(color: Colors.white, fontSize: 19.sp),
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: AppGradients.mainGradient,
       ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Welcome to us',
-                  style: TextStyle(
-                    color: mainBlueColor,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: AppGradients.mainGradient,
+            ),
+          ),
+          leading: InkWell(
+            onTap: () {
+              GoRouter.of(context).push('/login');
+            },
+            child: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.white,
+            ),
+          ),
+          title: Text(
+            'Sign Up',
+            style: TextStyle(color: Colors.white, fontSize: 19.sp),
+          ),
+        ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Expanded(
+
+                child: Container(
+                    padding:
+                      EdgeInsets.symmetric(horizontal: 18.w, vertical: 22.h),
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Welcome to us',
+                            style: TextStyle(
+                              color: mainBlueColor,
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const Text(
+                            'Hello there, Create New Account',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                           SizedBox(height: 40.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/signup.png',
+                                
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 40.h),
+                          CustomTextInput(
+                            controller: firstNameController,
+                            hintText: 'First Name',
+                            ifPasswordField: false,
+                            validator: (value) =>
+                                  value!.isEmpty ? 'Value Can\'t be null' : null
+                                    
+                                   
+                        
+                            
+                          ),
+                          SizedBox(height: 20.h),
+                          CustomTextInput(
+                            controller: lastNameController,
+                            hintText: 'Last Name',
+                            ifPasswordField: false,
+                            validator: (value) =>
+                                value!.isEmpty ? 'Last Name is required' : null,
+                          ),
+                          SizedBox(height: 20.h),
+                          CustomTextInput(
+                            controller: emailController,
+                            hintText: 'Email',
+                            ifPasswordField: false,
+                            validator: _validateEmail,
+                          ),
+                          SizedBox(height: 20.h),
+                          CustomTextInput(
+                            controller: phoneNumberController,
+                            hintText: 'Phone Number',
+                            ifPasswordField: false,
+                            validator: _validatePhoneNumber,
+                          ),
+                          SizedBox(height: 20.h),
+                          CustomTextInput(
+                            controller: passwordController,
+                            hintText: 'Password',
+                            ifPasswordField: true,
+                            validator: _validatePassword,
+                          ),
+                          SizedBox(height: 20.h),
+                          CustomTextInput(
+                            controller: confirmPasswordController,
+                            hintText: 'Confirm Password',
+                            ifPasswordField: true,
+                            validator: _validateConfirmPassword,
+                          ),
+                          SizedBox(height: 12.h),
+                          Row(
+                          crossAxisAlignment:
+                              CrossAxisAlignment.start, // Aligns text properly
+                          children: [
+                            Checkbox(
+                              value: isChecked,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Expanded(
+                              // Allows text to wrap within available space
+                              child: RichText(
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14.sp,
+                                  ),
+                                  children: [
+                                    const TextSpan(
+                                      text:
+                                          'By creating an account you agree to our ',
+                                    ),
+                                    TextSpan(
+                                      text: 'Terms and Conditions',
+                                      style: TextStyle(
+                                        color: mainBlueColor,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          GoRouter.of(context)
+                                              .push('/terms-and-conditions');
+                                        },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                         SizedBox(height: 24.h),
+
+                          BlocConsumer<AuthCubit, AuthState>(
+                            listener: (context, state) {
+                              if (state is AuthError) {
+                                _showSnackBar(state.message);
+                              } else if (state is AuthOTPSentSuccess) {
+                                context.go('/otp-verification');
+                              }
+                            },
+                            builder: (context, state) {
+                              return BlueButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate() && isChecked) {
+                                    final user = NewUserModel(
+                                      firstName: firstNameController.text.trim(),
+                                      lastName: lastNameController.text.trim(),
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim(),
+                                      phone: phoneNumberController.text.trim(),
+                                      address: '',
+                                      aadhaar: '',
+                                      pan: '',
+                                      pin: '',
+                                    );
+                                    context.read<AuthCubit>().signUp(user);
+                                    // context.go('/otp-verification');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SalaryOrBusinessScreen(),
+                                      ),
+                                    );
+                                  } else if (!isChecked) {
+                                    _showSnackBar(
+                                        'Please agree to the terms and conditions');
+                                  }
+                                },
+                                title: 'Send OTP ',
+                              );
+                            },
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                               Text('Have an account?', style: TextStyle(color: Colors.black, fontSize: 16.sp)),
+                              TextButton(
+                                onPressed: () {
+                                  GoRouter.of(context).push('/login');
+                                },
+                                child:  Text('Login',
+                                    style: TextStyle(color: mainBlueColor, fontSize: 16.sp)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                const Text(
-                  'Hello there, Create New Account',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: 30.h),
-                CustomTextInput(
-                  controller: firstNameController,
-                  hintText: 'First Name',
-                  ifPasswordField: false,
-                  validator: (value) =>
-                        value!.isEmpty ? 'Value Can\'t be null' : null
-                          
-                         
-
-                  
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: lastNameController,
-                  hintText: 'Last Name',
-                  ifPasswordField: false,
-                  validator: (value) =>
-                      value!.isEmpty ? 'Last Name is required' : null,
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: emailController,
-                  hintText: 'Email',
-                  ifPasswordField: false,
-                  validator: _validateEmail,
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: phoneNumberController,
-                  hintText: 'Phone Number',
-                  ifPasswordField: false,
-                  validator: _validatePhoneNumber,
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: passwordController,
-                  hintText: 'Password',
-                  ifPasswordField: true,
-                  validator: _validatePassword,
-                ),
-                SizedBox(height: 20.h),
-                CustomTextInput(
-                  controller: confirmPasswordController,
-                  hintText: 'Confirm Password',
-                  ifPasswordField: true,
-                  validator: _validateConfirmPassword,
-                ),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
-                    ),
-                    const Text('I agree to the terms and conditions'),
-                  ],
-                ),
-                BlocConsumer<AuthCubit, AuthState>(
-                  listener: (context, state) {
-                    if (state is AuthError) {
-                      _showSnackBar(state.message);
-                    } else if (state is AuthOTPSentSuccess) {
-                      context.go('/otp-verification');
-                    }
-                  },
-                  builder: (context, state) {
-                    return BlueButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate() && isChecked) {
-                          final user = NewUserModel(
-                            firstName: firstNameController.text.trim(),
-                            lastName: lastNameController.text.trim(),
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                            phone: phoneNumberController.text.trim(),
-                            address: '',
-                            aadhaar: '',
-                            pan: '',
-                            pin: '',
-                          );
-                          context.read<AuthCubit>().signUp(user);
-                          context.go('/otp-verification');
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SalaryOrBusinessScreen(),
-                            ),
-                          );
-                        } else if (!isChecked) {
-                          _showSnackBar(
-                              'Please agree to the terms and conditions');
-                        }
-                      },
-                      title: 'Sign up',
-                    );
-                  },
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('Already have an account?'),
-                    TextButton(
-                      onPressed: () {
-                        GoRouter.of(context).push('/login');
-                      },
-                      child: const Text('Login',
-                          style: TextStyle(color: mainBlueColor)),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+              
+            ],
           ),
         ),
       ),

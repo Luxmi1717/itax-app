@@ -274,6 +274,7 @@ class AuthRepository {
   }
 
   Future<void> loadUser() async {
+       print('load user repository function started');
     final userData = await UserSecureStorage.getUser();
     if (userData == null) {
       return;

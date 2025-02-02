@@ -1,26 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/colors.dart';
+import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/presentation/screens/profile/profile-sliders.dart';
 
-class UserProfilePage extends StatelessWidget {
+class UserProfilePage extends StatefulWidget {
   const UserProfilePage({super.key});
 
   @override
+  State<UserProfilePage> createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AuthCubit>().loadLoggedInUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthCubit>().getLoggedInUser().data;
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
-      flexibleSpace: Container(
-        decoration: const BoxDecoration(
-          gradient: AppGradients.mainGradient,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: AppGradients.mainGradient,
+          ),
         ),
-      ),
-      leading: IconButton(icon: const Icon(Icons.arrow_back_ios, color: Colors.white,), onPressed: (){
-        GoRouter.of(context).go('/dashboard');
-      },),
-        title:  Text('User Profile', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold, color: Colors.white)),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            GoRouter.of(context).go('/dashboard');
+          },
+        ),
+        title: Text('User Profile',
+            style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -40,7 +64,6 @@ class UserProfilePage extends StatelessWidget {
                   child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      
                       SizedBox(height: 10),
                       // User Name
                       Center(
@@ -62,32 +85,28 @@ class UserProfilePage extends StatelessWidget {
             infoSection([
               {
                 'label': 'Full Name',
-                'value': 'John Doe',
+                'value': user!.firstName + user!.lastName,
                 'action': const ChangeEmail()
               },
-              {
-                'label': 'Date of Birth',
-                'value': '01 Jan 2000',
-                'action': null
-              },
+              {'label': 'Date of Birth', 'value': user.dob, 'action': null},
               {
                 'label': 'Phone Number',
-                'value': '+1234567890',
+                'value': user.phone,
                 'action': const ChangeMobileNo()
               },
               {
                 'label': 'Father\'s Name',
-                'value': 'Robert Doe',
+                'value': user.fatherName,
                 'action': null
               },
               {
                 'label': 'PAN Number',
-                'value': 'ABCDE1234F',
+                'value': user.pan,
                 'action': const AddPANNumber()
               },
               {
                 'label': 'Aadhar Number',
-                'value': '1234 5678 9012',
+                'value': user.aadhaar,
                 'action': const AddAadharNumber()
               },
             ], context),

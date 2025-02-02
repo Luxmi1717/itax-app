@@ -14,6 +14,9 @@ class SalaryOrBusinessScreen extends StatelessWidget {
           gradient: AppGradients.mainGradient,
         ),
       ),
+      leading: Padding(padding: EdgeInsets.all(1.w),
+      child: Icon(Icons.arrow_back_ios_new, color: Colors.white,),
+      ),
     title: Text('Choose your work type', style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold, color: Colors.white)),
        
       ),

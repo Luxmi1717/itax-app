@@ -3,6 +3,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:itax/config/user_secure_storage.dart';
 import 'package:itax/config_old/image_constant.dart';
@@ -22,7 +23,6 @@ import 'package:itax/presentation/older_widgets/widgets/text_input.dart';
 import 'package:itax/providers/providers_old/bussiness_data.dart';
 import 'package:itax/providers/providers_old/gst_api.dart';
 import 'package:itax/providers/providers_old/gst_calculation_outward.dart';
-import 'package:itax/utility/size_utils.dart';
 
 import 'package:provider/provider.dart';
 
@@ -259,43 +259,233 @@ class _ReturnDeshboardState extends State<ReturnDeshboard> {
 
 
               const SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // SizedBox(
-                  //
-                  //   width: MediaQuery.of(context).size.width*0.3,
-                  //   child: CustomDropdownButton2(
-                  //     hint: 'FYear',
-                  //     dropdownItems: items,
-                  //
-                  //     value: selectedValue,
-                  //     onChanged: (value) async{
-                  //       await UserSecureStorage.saveFYear(value.toString());
-                  //
-                  //       setState(()  {
-                  //         selectedValue = value;
-                  //
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
-                  SizedBox(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width*0.6,
-                    child: DropdownButton2(
-                      hint: const Text('FYear'),
-                      //  dropdownItems: items,
-                      value: selectedValue,
-                      onChanged: (value) async{
-                        await UserSecureStorage.saveFYear(value.toString());
-
-                        setState(()  {
-                          selectedValue = value;
-
-                        });
-                      },
-                      items: items
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // SizedBox(
+                    //
+                    //   width: MediaQuery.of(context).size.width*0.3,
+                    //   child: CustomDropdownButton2(
+                    //     hint: 'FYear',
+                    //     dropdownItems: items,
+                    //
+                    //     value: selectedValue,
+                    //     onChanged: (value) async{
+                    //       await UserSecureStorage.saveFYear(value.toString());
+                    //
+                    //       setState(()  {
+                    //         selectedValue = value;
+                    //
+                    //       });
+                    //     },
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width*0.4,
+                      child: DropdownButton2(
+                        hint: const Text('FYear'),
+                        //  dropdownItems: items,
+                        value: selectedValue,
+                        onChanged: (value) async{
+                          await UserSecureStorage.saveFYear(value.toString());
+                
+                          setState(()  {
+                            selectedValue = value;
+                
+                          });
+                        },
+                        items: items
+                            .map((item) => DropdownMenuItem(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ))
+                            .toList(),
+                      ),
+                    ),
+                
+                    // SizedBox(
+                    //   width: MediaQuery.of(context).size.width*0.29,
+                    //   child: DropdownButton2(
+                    //     hint: 'Quarter',
+                    //     items: months,
+                    //     value: selectedValue2,
+                    //     onChanged: (value) {
+                    //       setState(() {
+                    //         selectedValue2 = value;
+                    //         if(selectRC=='Composition') {
+                    //           setState(() {
+                    //              isVisible = false;
+                    //              isVisible2 = false;
+                    //              isVisible3 = false;
+                    //              isVisible4 = false;
+                    //           });
+                    //           if (selectedValue2 == "(Jul-Sep)" ||
+                    //               selectedValue2 == '(Oct-Dec)' ||
+                    //               selectedValue2 == '(Jan-Mar)') {
+                    //             isVisiblec = false;
+                    //           } else {
+                    //             isVisiblec = true;
+                    //
+                    //           }
+                    //           if (selectedValue2 ==
+                    //               "(Jul-Sep)") {
+                    //             isVisiblec2 = true;
+                    //
+                    //           } else {
+                    //             isVisiblec2 = false;
+                    //           }
+                    //           if (selectedValue2 ==
+                    //               "(Oct-Dec)") {
+                    //             isVisiblec3 = true;
+                    //
+                    //           } else {
+                    //             isVisiblec3 = false;
+                    //
+                    //           }
+                    //           if (selectedValue2 ==
+                    //               "(Jan-Mar)") {
+                    //             isVisiblec4 = true;
+                    //
+                    //           } else {
+                    //             isVisiblec4 = false;
+                    //           }
+                    //         }else{
+                    //           setState(() {
+                    //              isVisiblec = false;
+                    //              isVisiblec2 = false;
+                    //              isVisiblec3 = false;
+                    //              isVisiblec4 = false;
+                    //              isVisible = true;
+                    //           });
+                    //
+                    //             if (selectedValue2 == "(Jul-Sep)" ||
+                    //                 selectedValue2 == '(Oct-Dec)' ||
+                    //                 selectedValue2 == '(Jan-Mar)') {
+                    //               isVisible = false;
+                    //             } else {
+                    //               isVisible = true;
+                    //
+                    //             }
+                    //             if (selectedValue2 ==
+                    //                 "(Jul-Sep)") {
+                    //               isVisible2 = true;
+                    //             } else {
+                    //               isVisible2 = false;
+                    //             }
+                    //             if (selectedValue2 ==
+                    //                 "(Oct-Dec)") {
+                    //               isVisible3 = true;
+                    //             } else {
+                    //               isVisible3 = false;
+                    //             }
+                    //             if (selectedValue2 ==
+                    //                 "(Jan-Mar)") {
+                    //               isVisible4 = true;
+                    //             } else {
+                    //               isVisible4 = false;
+                    //             }
+                    //
+                    //
+                    //         }
+                    //       });
+                    //     },
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width*0.4,
+                      child: DropdownButton2(
+                        hint: const Text('Quarter'),
+                        //  dropdownItems: items,
+                        value: selectedValue2,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedValue2 = value;
+                            if(selectRC=='Composition') {
+                              setState(() {
+                                isVisible = false;
+                                isVisible2 = false;
+                                isVisible3 = false;
+                                isVisible4 = false;
+                              });
+                              if (selectedValue2 == "(Jul-Sep)" ||
+                                  selectedValue2 == '(Oct-Dec)' ||
+                                  selectedValue2 == '(Jan-Mar)') {
+                                isVisiblec = false;
+                              } else {
+                                isVisiblec = true;
+                
+                              }
+                              if (selectedValue2 ==
+                                  "(Jul-Sep)") {
+                                isVisiblec2 = true;
+                
+                              } else {
+                                isVisiblec2 = false;
+                              }
+                              if (selectedValue2 ==
+                                  "(Oct-Dec)") {
+                                isVisiblec3 = true;
+                
+                              } else {
+                                isVisiblec3 = false;
+                
+                              }
+                              if (selectedValue2 ==
+                                  "(Jan-Mar)") {
+                                isVisiblec4 = true;
+                
+                              } else {
+                                isVisiblec4 = false;
+                              }
+                            }else{
+                              setState(() {
+                                isVisiblec = false;
+                                isVisiblec2 = false;
+                                isVisiblec3 = false;
+                                isVisiblec4 = false;
+                                isVisible = true;
+                              });
+                
+                              if (selectedValue2 == "(Jul-Sep)" ||
+                                  selectedValue2 == '(Oct-Dec)' ||
+                                  selectedValue2 == '(Jan-Mar)') {
+                                isVisible = false;
+                              } else {
+                                isVisible = true;
+                
+                              }
+                              if (selectedValue2 ==
+                                  "(Jul-Sep)") {
+                                isVisible2 = true;
+                              } else {
+                                isVisible2 = false;
+                              }
+                              if (selectedValue2 ==
+                                  "(Oct-Dec)") {
+                                isVisible3 = true;
+                              } else {
+                                isVisible3 = false;
+                              }
+                              if (selectedValue2 ==
+                                  "(Jan-Mar)") {
+                                isVisible4 = true;
+                              } else {
+                                isVisible4 = false;
+                              }
+                
+                
+                            }
+                          });
+                        },  items: months
                           .map((item) => DropdownMenuItem(
                         value: item,
                         child: Text(
@@ -306,578 +496,391 @@ class _ReturnDeshboardState extends State<ReturnDeshboard> {
                         ),
                       ))
                           .toList(),
+                      ),
                     ),
-                  ),
-
-                  // SizedBox(
-                  //   width: MediaQuery.of(context).size.width*0.29,
-                  //   child: DropdownButton2(
-                  //     hint: 'Quarter',
-                  //     items: months,
-                  //     value: selectedValue2,
-                  //     onChanged: (value) {
-                  //       setState(() {
-                  //         selectedValue2 = value;
-                  //         if(selectRC=='Composition') {
-                  //           setState(() {
-                  //              isVisible = false;
-                  //              isVisible2 = false;
-                  //              isVisible3 = false;
-                  //              isVisible4 = false;
-                  //           });
-                  //           if (selectedValue2 == "(Jul-Sep)" ||
-                  //               selectedValue2 == '(Oct-Dec)' ||
-                  //               selectedValue2 == '(Jan-Mar)') {
-                  //             isVisiblec = false;
-                  //           } else {
-                  //             isVisiblec = true;
-                  //
-                  //           }
-                  //           if (selectedValue2 ==
-                  //               "(Jul-Sep)") {
-                  //             isVisiblec2 = true;
-                  //
-                  //           } else {
-                  //             isVisiblec2 = false;
-                  //           }
-                  //           if (selectedValue2 ==
-                  //               "(Oct-Dec)") {
-                  //             isVisiblec3 = true;
-                  //
-                  //           } else {
-                  //             isVisiblec3 = false;
-                  //
-                  //           }
-                  //           if (selectedValue2 ==
-                  //               "(Jan-Mar)") {
-                  //             isVisiblec4 = true;
-                  //
-                  //           } else {
-                  //             isVisiblec4 = false;
-                  //           }
-                  //         }else{
-                  //           setState(() {
-                  //              isVisiblec = false;
-                  //              isVisiblec2 = false;
-                  //              isVisiblec3 = false;
-                  //              isVisiblec4 = false;
-                  //              isVisible = true;
-                  //           });
-                  //
-                  //             if (selectedValue2 == "(Jul-Sep)" ||
-                  //                 selectedValue2 == '(Oct-Dec)' ||
-                  //                 selectedValue2 == '(Jan-Mar)') {
-                  //               isVisible = false;
-                  //             } else {
-                  //               isVisible = true;
-                  //
-                  //             }
-                  //             if (selectedValue2 ==
-                  //                 "(Jul-Sep)") {
-                  //               isVisible2 = true;
-                  //             } else {
-                  //               isVisible2 = false;
-                  //             }
-                  //             if (selectedValue2 ==
-                  //                 "(Oct-Dec)") {
-                  //               isVisible3 = true;
-                  //             } else {
-                  //               isVisible3 = false;
-                  //             }
-                  //             if (selectedValue2 ==
-                  //                 "(Jan-Mar)") {
-                  //               isVisible4 = true;
-                  //             } else {
-                  //               isVisible4 = false;
-                  //             }
-                  //
-                  //
-                  //         }
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
-                  SizedBox(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width*0.6,
-                    child: DropdownButton2(
-                      hint: const Text('Quarter'),
-                      //  dropdownItems: items,
-                      value: selectedValue2,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedValue2 = value;
-                          if(selectRC=='Composition') {
-                            setState(() {
-                              isVisible = false;
-                              isVisible2 = false;
-                              isVisible3 = false;
-                              isVisible4 = false;
-                            });
-                            if (selectedValue2 == "(Jul-Sep)" ||
-                                selectedValue2 == '(Oct-Dec)' ||
-                                selectedValue2 == '(Jan-Mar)') {
-                              isVisiblec = false;
-                            } else {
-                              isVisiblec = true;
-
-                            }
-                            if (selectedValue2 ==
-                                "(Jul-Sep)") {
-                              isVisiblec2 = true;
-
-                            } else {
-                              isVisiblec2 = false;
-                            }
-                            if (selectedValue2 ==
-                                "(Oct-Dec)") {
-                              isVisiblec3 = true;
-
-                            } else {
-                              isVisiblec3 = false;
-
-                            }
-                            if (selectedValue2 ==
-                                "(Jan-Mar)") {
-                              isVisiblec4 = true;
-
-                            } else {
-                              isVisiblec4 = false;
-                            }
-                          }else{
-                            setState(() {
-                              isVisiblec = false;
-                              isVisiblec2 = false;
-                              isVisiblec3 = false;
-                              isVisiblec4 = false;
-                              isVisible = true;
-                            });
-
-                            if (selectedValue2 == "(Jul-Sep)" ||
-                                selectedValue2 == '(Oct-Dec)' ||
-                                selectedValue2 == '(Jan-Mar)') {
-                              isVisible = false;
-                            } else {
-                              isVisible = true;
-
-                            }
-                            if (selectedValue2 ==
-                                "(Jul-Sep)") {
-                              isVisible2 = true;
-                            } else {
-                              isVisible2 = false;
-                            }
-                            if (selectedValue2 ==
-                                "(Oct-Dec)") {
-                              isVisible3 = true;
-                            } else {
-                              isVisible3 = false;
-                            }
-                            if (selectedValue2 ==
-                                "(Jan-Mar)") {
-                              isVisible4 = true;
-                            } else {
-                              isVisible4 = false;
-                            }
-
-
-                          }
-                        });
-                      },  items: months
-                        .map((item) => DropdownMenuItem(
-                      value: item,
-                      child: Text(
-                        item,
-                        style: const TextStyle(
-                          fontSize: 14,
+                
+                    Column(
+                      children: [
+                        Visibility(
+                          visible: isVisible,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     hint: 'Period',
+                          //     dropdownItems: periodical,
+                          //
+                          //     value: selectedValue3,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         selectedValue3 = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value: selectedValue3,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue3= value;
+                                });
+                              },  items: periodical
+                                .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                                .toList(),
+                            ),
+                          ),
                         ),
-                      ),
-                    ))
-                        .toList(),
+                        Visibility(
+                          visible: isVisible2,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     hint: 'Period',
+                          //     dropdownItems: periodical2,
+                          //     value: selectedValue4,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         selectedValue4 = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value: selectedValue4,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue4 = value;
+                                });
+                              },  items: periodical2
+                                .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                                .toList(),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: isVisible3,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     icon: const Icon(Icons.arrow_drop_down_sharp,size: 30,
+                          //       color: Colors.deepPurple,
+                          //     ),
+                          //     hint: 'Period',
+                          //     dropdownItems: periodical3,
+                          //     value: selectedValue5,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         selectedValue5 = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value: selectedValue5,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue5 = value;
+                                });
+                              },  items: periodical3
+                                .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                                .toList(),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: isVisible4,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     icon: const Icon(Icons.arrow_drop_down_sharp,size: 12,
+                          //       color: Colors.deepPurple,
+                          //     ),
+                          //     hint: 'Period',
+                          //     dropdownItems: periodical4,
+                          //     value: selectedValue6,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         selectedValue6 = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value: selectedValue6,
+                              onChanged: (value) async {
+                                await UserSecureStorage.savePeriod(value.toString());
+                                setState(() {
+                                  selectedValue6 = value;
+                                });
+                              },
+                              items: periodical4
+                                  .map((item) => DropdownMenuItem(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ))
+                                  .toList(),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: isVisiblec,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     hint: 'Period',
+                          //     dropdownItems: Composition1,
+                          //
+                          //     value:CompositionA,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         CompositionA = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.4,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value:CompositionA,
+                              onChanged: (value) async {
+                                await UserSecureStorage.savePeriod(value.toString());
+                                setState(() {
+                                  CompositionA = value;
+                                });
+                              },
+                              items: Composition1
+                                  .map((item) => DropdownMenuItem(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ))
+                                  .toList(),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: isVisiblec2,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     hint: 'Period',
+                          //     dropdownItems: Composition2,
+                          //
+                          //     value:CompositionB,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         CompositionA = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.6,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value:CompositionB,
+                              onChanged: (value) async {
+                                await UserSecureStorage.savePeriod(value.toString());
+                                setState(() {
+                                  CompositionA = value;
+                                });
+                              },
+                              items: Composition2
+                                  .map((item) => DropdownMenuItem(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ))
+                                  .toList(),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: isVisiblec3,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child:
+                          //   CustomDropdownButton2(
+                          //     hint: 'Period',
+                          //     dropdownItems: Composition3,
+                          //
+                          //     value:CompositionC,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         CompositionC = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.6,
+                            child: DropdownButton2(
+                              hint: const Text('Select'),
+                              //  dropdownItems: items,
+                              value: CompositionC,
+                              onChanged: (value)async {
+                                await UserSecureStorage.savePeriod(value.toString());
+                                setState(() {
+                                  CompositionC = value;
+                                });
+                              },  items: Composition3
+                                .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                                .toList(),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: isVisiblec4,
+                
+                          child:
+                          // SizedBox(
+                          //
+                          //   width: MediaQuery.of(context).size.width*0.29,
+                          //   child: CustomDropdownButton2(
+                          //     hint: 'Period',
+                          //     dropdownItems: Composition4,
+                          //
+                          //     value:CompositionD,
+                          //     onChanged: (value) async {
+                          //       await UserSecureStorage.savePeriod(value.toString());
+                          //       setState(() {
+                          //         CompositionD = value;
+                          //       });
+                          //     },
+                          //   ),
+                          // ),
+                          SizedBox(
+                            height: 50,
+                            width: MediaQuery.of(context).size.width*0.5,
+                            child: DropdownButton2(
+                              hint: const Text('Period'),
+                              //  dropdownItems: items,
+                              value: CompositionD,
+                              onChanged: (value)async {
+                                await UserSecureStorage.savePeriod(value.toString());
+                                setState(() {
+                                  CompositionD = value;
+                                });
+                              },  items: Composition4
+                                .map((item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                                .toList(),
+                            ),
+                          ),
+                
+                        ),
+                      ],
+                
                     ),
-                  ),
-
-                  Column(
-                    children: [
-                      Visibility(
-                        visible: isVisible,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     hint: 'Period',
-                        //     dropdownItems: periodical,
-                        //
-                        //     value: selectedValue3,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         selectedValue3 = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value: selectedValue3,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue3= value;
-                              });
-                            },  items: periodical
-                              .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ))
-                              .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisible2,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     hint: 'Period',
-                        //     dropdownItems: periodical2,
-                        //     value: selectedValue4,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         selectedValue4 = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value: selectedValue4,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue4 = value;
-                              });
-                            },  items: periodical2
-                              .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ))
-                              .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisible3,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     icon: const Icon(Icons.arrow_drop_down_sharp,size: 30,
-                        //       color: Colors.deepPurple,
-                        //     ),
-                        //     hint: 'Period',
-                        //     dropdownItems: periodical3,
-                        //     value: selectedValue5,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         selectedValue5 = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value: selectedValue5,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue5 = value;
-                              });
-                            },  items: periodical3
-                              .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ))
-                              .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisible4,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     icon: const Icon(Icons.arrow_drop_down_sharp,size: 12,
-                        //       color: Colors.deepPurple,
-                        //     ),
-                        //     hint: 'Period',
-                        //     dropdownItems: periodical4,
-                        //     value: selectedValue6,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         selectedValue6 = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value: selectedValue6,
-                            onChanged: (value) async {
-                              await UserSecureStorage.savePeriod(value.toString());
-                              setState(() {
-                                selectedValue6 = value;
-                              });
-                            },
-                            items: periodical4
-                                .map((item) => DropdownMenuItem(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ))
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisiblec,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     hint: 'Period',
-                        //     dropdownItems: Composition1,
-                        //
-                        //     value:CompositionA,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         CompositionA = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value:CompositionA,
-                            onChanged: (value) async {
-                              await UserSecureStorage.savePeriod(value.toString());
-                              setState(() {
-                                CompositionA = value;
-                              });
-                            },
-                            items: Composition1
-                                .map((item) => DropdownMenuItem(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ))
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisiblec2,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     hint: 'Period',
-                        //     dropdownItems: Composition2,
-                        //
-                        //     value:CompositionB,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         CompositionA = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value:CompositionB,
-                            onChanged: (value) async {
-                              await UserSecureStorage.savePeriod(value.toString());
-                              setState(() {
-                                CompositionA = value;
-                              });
-                            },
-                            items: Composition2
-                                .map((item) => DropdownMenuItem(
-                              value: item,
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ))
-                                .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisiblec3,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child:
-                        //   CustomDropdownButton2(
-                        //     hint: 'Period',
-                        //     dropdownItems: Composition3,
-                        //
-                        //     value:CompositionC,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         CompositionC = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Select'),
-                            //  dropdownItems: items,
-                            value: CompositionC,
-                            onChanged: (value)async {
-                              await UserSecureStorage.savePeriod(value.toString());
-                              setState(() {
-                                CompositionC = value;
-                              });
-                            },  items: Composition3
-                              .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ))
-                              .toList(),
-                          ),
-                        ),
-                      ),
-                      Visibility(
-                        visible: isVisiblec4,
-
-                        child:
-                        // SizedBox(
-                        //
-                        //   width: MediaQuery.of(context).size.width*0.29,
-                        //   child: CustomDropdownButton2(
-                        //     hint: 'Period',
-                        //     dropdownItems: Composition4,
-                        //
-                        //     value:CompositionD,
-                        //     onChanged: (value) async {
-                        //       await UserSecureStorage.savePeriod(value.toString());
-                        //       setState(() {
-                        //         CompositionD = value;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
-                        SizedBox(
-                          height: 50,
-                          width: MediaQuery.of(context).size.width*0.6,
-                          child: DropdownButton2(
-                            hint: const Text('Period'),
-                            //  dropdownItems: items,
-                            value: CompositionD,
-                            onChanged: (value)async {
-                              await UserSecureStorage.savePeriod(value.toString());
-                              setState(() {
-                                CompositionD = value;
-                              });
-                            },  items: Composition4
-                              .map((item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ))
-                              .toList(),
-                          ),
-                        ),
-
-                      ),
-                    ],
-
-                  ),
-
-
-                ],
+                
+                
+                  ],
+                ),
               ),
               const SizedBox(height: 10,),
               Text('Table of  $selectRC',style: const TextStyle(
@@ -1619,7 +1622,7 @@ class _ReturnDeshboardState extends State<ReturnDeshboard> {
              /* Visibility(
                 visible: selectRC=='Regular'? true :false,
                 child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.worizontal,
                   child: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -2706,8 +2709,8 @@ enabled: false,
     return Consumer<GstBussinessData>(builder: (BuildContext context, pro, child){
       return Container(
         padding: EdgeInsets.symmetric(
-          horizontal: 9.h,
-          vertical: 6.v,
+          horizontal: 9.w,
+          vertical: 6.h,
         ),
         decoration: AppDecoration.gradientBlueToBlueAf.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder8,
@@ -2716,11 +2719,11 @@ enabled: false,
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 1.v),
+            SizedBox(height: 1.h),
             Padding(
               padding: EdgeInsets.only(
-                left: 7.h,
-                right: 4.h,
+                left: 7.w,
+                right: 4.w,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -2730,7 +2733,7 @@ enabled: false,
                     style: CustomTextStyles.labelLargeMedium,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 6.h),
+                    padding: EdgeInsets.only(left: 6.w),
                     child: Text(
                       pro.BusinessProfiledata.result!.businessName??'sethi@231',
                       style: theme.textTheme.bodySmall,
@@ -2744,9 +2747,9 @@ enabled: false,
                 ],
               ),
             ),
-            SizedBox(height: 5.v),
+            SizedBox(height: 5.h),
             Padding(
-              padding: EdgeInsets.only(left: 7.h),
+              padding: EdgeInsets.only(left: 7.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -2755,7 +2758,7 @@ enabled: false,
                     style: CustomTextStyles.labelLargeMedium,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 6.h),
+                    padding: EdgeInsets.only(left: 6.w),
                     child: Text(
                       pro.BusinessProfiledata.result!.gstNo ??'23BNJPS3408M1ZP',
                       style: theme.textTheme.bodySmall,
@@ -2767,7 +2770,7 @@ enabled: false,
                     style: CustomTextStyles.labelLargeMedium,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 7.h),
+                    padding: EdgeInsets.only(left: 7.w),
                     child: Text(
                       "Regular",
                       style: theme.textTheme.bodySmall,
@@ -2788,16 +2791,16 @@ enabled: false,
 
 PreferredSizeWidget _buildAppBar(BuildContext context,size) {
   return CustomAppBar(
-    leadingWidth: 38.h,
+    leadingWidth: 38.w,
     leading: AppbarLeadingIconbutton(
       onTap: (){
         Navigator.pop(context);
       },
       imagePath: ImageConstant.imgGoBack,
       margin: EdgeInsets.only(
-        left: 13.h,
-        top: 15.v,
-        bottom: 15.v,
+        left: 13.w,
+        top: 15.h,
+        bottom: 15.h,
       ),
     ),
     centerTitle: true,
@@ -2807,7 +2810,7 @@ PreferredSizeWidget _buildAppBar(BuildContext context,size) {
     actions: [
     Container(
     width: size*0.2,
-    height: 22.h,
+    height: 22.w,
     decoration: BoxDecoration(
       color: appTheme.blue800Af,
       borderRadius: BorderRadius.circular(10),
@@ -2835,16 +2838,16 @@ PreferredSizeWidget _buildAppBar(BuildContext context,size) {
 Widget _buildTableRows(BuildContext context) {
   return Container(
     padding: EdgeInsets.only(
-      left: 7.h,
-      right: 4.h,
+      left: 7.w,
+      right: 4.w,
     ),
     decoration: AppDecoration.gradientBlueToBlueAf,
     child: Column(
       children: [
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 33.h,
-            vertical: 9.v,
+            horizontal: 33.w,
+            vertical: 9.h,
           ),
           decoration: AppDecoration.gradientBlueToBlueAf,
           child: Row(
@@ -2881,19 +2884,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "A",
@@ -2902,18 +2905,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -2923,19 +2926,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -2945,19 +2948,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -2967,19 +2970,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -2991,19 +2994,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "B",
@@ -3012,18 +3015,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3033,19 +3036,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3055,19 +3058,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3077,19 +3080,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3101,19 +3104,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "C",
@@ -3122,18 +3125,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3143,19 +3146,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3165,19 +3168,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3187,19 +3190,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3211,19 +3214,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "D",
@@ -3232,18 +3235,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3253,19 +3256,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3275,19 +3278,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3297,19 +3300,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3322,19 +3325,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "E",
@@ -3343,18 +3346,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3364,19 +3367,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3386,19 +3389,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3408,19 +3411,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3432,19 +3435,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "F",
@@ -3453,18 +3456,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3474,19 +3477,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3496,19 +3499,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3518,19 +3521,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3542,19 +3545,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 9.h,
+            left: 12.w,
+            right: 9.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "G",
@@ -3563,18 +3566,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3584,19 +3587,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3606,19 +3609,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3628,19 +3631,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3652,19 +3655,19 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 5.v),
+        SizedBox(height: 5.h),
         Padding(
           padding: EdgeInsets.only(
-            left: 12.h,
-            right: 8.h,
+            left: 12.w,
+            right: 8.w,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  top: 4.v,
-                  bottom: 5.v,
+                  top: 4.h,
+                  bottom: 5.h,
                 ),
                 child: Text(
                   "H",
@@ -3673,18 +3676,18 @@ Widget _buildTableRows(BuildContext context) {
               ),
               const Spacer(),
               Container(
-                height: 25.v,
-                width: 65.h,
+                height: 25.h,
+                width: 65.w,
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3694,19 +3697,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3716,19 +3719,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3738,19 +3741,19 @@ Widget _buildTableRows(BuildContext context) {
                 ),
               ),
               Container(
-                height: 25.v,
-                width: 65.h,
-                margin: EdgeInsets.only(left: 3.h),
+                height: 25.h,
+                width: 65.w,
+                margin: EdgeInsets.only(left: 3.w),
                 decoration: BoxDecoration(
                   color: appTheme.whiteA700,
                   borderRadius: BorderRadius.circular(
-                    2.h,
+                    2.w,
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: appTheme.black9003f,
-                      spreadRadius: 2.h,
-                      blurRadius: 2.h,
+                      spreadRadius: 2.w,
+                      blurRadius: 2.w,
                       offset: const Offset(
                         0,
                         0,
@@ -3762,7 +3765,7 @@ Widget _buildTableRows(BuildContext context) {
             ],
           ),
         ),
-        SizedBox(height: 13.v),
+        SizedBox(height: 13.h),
       ],
     ),
   );

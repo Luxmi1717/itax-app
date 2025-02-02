@@ -45,7 +45,7 @@ class AppUrl {
       'https://mom.itaxeasy.com/api/calculator/miscellaneous/fixed-deposit';
 
   static var gstr4Url =
-      'https://api.itaxeasy.com//gst/tax-payer/file/gstr-4/23BNJPS3408M1ZP/2020/01';
+      'https://api.itaxeasy.com/gst/tax-payer/file/gstr-4/23BNJPS3408M1ZP/2020/01';
   static var invoicePartyCreate = 'https://api.itaxeasy.com/invoice/parties';
   static var invoicItemCreateURL = 'https://api.itaxeasy.com/invoice/items';
 }
