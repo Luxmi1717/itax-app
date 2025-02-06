@@ -1,9 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/widgets/calculate_button.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/widgets/calculator_item_widget.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/widgets/clear_button.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/widgets/download_popup_widget.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/widgets/input_feild_calculator.dart';
 
 class LoanCalculatorBase extends StatefulWidget {
@@ -55,44 +58,63 @@ void clearFields() {
     });
   }
 
+   Future<void> downloadPDF() async {
+    final pdfFile = await TablePdfApi.generateTablePdf(
+      [
+        {"Loan Amount": "${loanController.text} ₹"},
+        {"Rate of Interest (P.A)": "${interestController.text}%"},
+        {"Loan Tenure": "${tenureController.text} Year"},
+      ],
+      [
+        {"EMI": "${emi.toStringAsFixed(2)} ₹"},
+        {"Total Interest": "${interestAmount.toStringAsFixed(2)} ₹"},
+        {"Total Amount Payble": "${      
+totalPayable.toStringAsFixed(2)} ₹"},
+      ],
+      widget.title,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("PDF saved: ${pdfFile.path}")),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar:  AppBar(
+        title: Text(
+          widget.title,
+          style: TextStyle(fontSize: 18.sp, color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.share, color: Colors.white),
+              onPressed: () {
+                showDownloadPopup(context,
+                    onDownloadPDF: downloadPDF, onDownloadImage: () {});
+              }),
+          if (isCalculated)
+            IconButton(
+                icon: Icon(Icons.download, color: Colors.white),
+                onPressed: () {
+                  showDownloadPopup(context,
+                      onDownloadPDF: downloadPDF, onDownloadImage: () {});
+                }),
+        ],
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppGradients.mainGradient,
           ),
         ),
-        leadingWidth: 350.w,
-        leading: Row(
-          children: [
-            SizedBox(width: 8.w),
-            IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            Text(
-              widget.title,
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.share, color: Colors.white),
-            onPressed: () {},
-          ),
-          SizedBox(width: 8.w),
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),

@@ -5,6 +5,7 @@ import 'package:itax/presentation/screens/home-dashboard/dashboard_screen.dart';
 import 'package:itax/presentation/screens/more-screens/more-screen.dart';
 import 'package:itax/presentation/screens/profile/business-profile-screen.dart';
 import 'package:itax/presentation/screens/profile/user-profile-screen.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/bank_calculators.dart/simple_interest_calculators.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/caculators-base-view.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/loan_calculators.dart/loan_calculator_base.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-base-view.dart';
@@ -22,7 +23,7 @@ class _BottomNavBarDashBoardState extends State<BottomNavBarDashBoard> {
   final List<Widget> _screens = [
     const DashboardScreen(),
     const CalculatorToolsScreen(),
-     LoanCalculatorBase(title: 'simple interest calculator'),
+    SimpleInterestCalculator(),
     const MoreScreen(),
   ];
 

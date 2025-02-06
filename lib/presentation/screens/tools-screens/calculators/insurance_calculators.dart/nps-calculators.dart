@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:itax/config/colors.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/widgets/calculate_button.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/widgets/calculator_item_widget.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/widgets/clear_button.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/widgets/download_popup_widget.dart';
 import 'package:itax/presentation/screens/tools-screens/calculators/widgets/input_feild_calculator.dart';
 
 class NPSCalculator extends StatefulWidget {
@@ -70,49 +72,63 @@ class _NPSCalculatorState extends State<NPSCalculator> {
     );
   }
 
+   Future<void> downloadPDF() async {
+    final pdfFile = await TablePdfApi.generateTablePdf(
+      [
+        {"Monthly Investment": "${monthlyInvestmentController.text} ₹"},
+        {"Expected Return (P.A)": "${expectedReturnController.text}%"},
+        {"Your Age": "${ageController.text} Years"},
+     
+      ],
+      [
+        {"Total Investment": "${totalInvestment.toStringAsFixed(2)} ₹"},
+        {"Total Earned": "${interestEarned.toStringAsFixed(2)} ₹"},
+        {"Maturity Amount": "${maturityAmount.toStringAsFixed(2)} ₹"},
+         {"Min Annuity  Investment": "${minAnnualInvestment.toStringAsFixed(2)} ₹"},
+      ],
+      'NPS Calculator',
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("PDF saved: ${pdfFile.path}")),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        title: Text(
+          "NPS Calculator",
+          style: TextStyle(fontSize: 18.sp, color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.share, color: Colors.white),
+              onPressed: () {
+                showDownloadPopup(context,
+                    onDownloadPDF: downloadPDF, onDownloadImage: () {});
+              }),
+          if (isCalculated)
+            IconButton(
+                icon: Icon(Icons.download, color: Colors.white),
+                onPressed: () {
+                  showDownloadPopup(context,
+                      onDownloadPDF: downloadPDF, onDownloadImage: () {});
+                }),
+        ],
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: AppGradients.mainGradient,
           ),
         ),
-        leadingWidth: 350.w,
-        leading: Row(
-          children: [
-            SizedBox(width: 8.w),
-            IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            Text(
-              'NPS Calculator',
-              style: TextStyle(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w500,
-                color: Colors.white,
-              ),
-            ),
-          ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        actions: [
-          if (showDownloadButton)
-            IconButton(
-              icon: Icon(Icons.download, color: Colors.white),
-              onPressed: downloadResults,
-            ),
-            IconButton(
-            icon: Icon(Icons.share, color: Colors.white),
-            onPressed: downloadResults,
-          ),
-
-          SizedBox(width: 8.w),
-        ],
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),

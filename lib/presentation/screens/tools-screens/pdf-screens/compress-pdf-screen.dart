@@ -23,7 +23,7 @@ class _CompressPdfScreenState extends State<CompressPdfScreen> {
   double imageScale = 0.5;
   bool _isBusy = false;
 
-  /// Compress the selected PDF
+
   Future<String?> _pdfCompressor(PDFCompressorParams params) async {
     String? result;
     try {

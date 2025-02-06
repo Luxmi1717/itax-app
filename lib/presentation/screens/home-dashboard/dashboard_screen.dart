@@ -19,12 +19,12 @@ class DashboardScreen extends StatelessWidget {
         leadingWidth: 80.w,
         leading: Padding(
           padding: EdgeInsets.only(left: 7.w),
-          child: Image.asset(
-              'assets/images/itaxlogo.png'),
+          child: Image.asset('assets/images/itaxlogo.png'),
         ),
         actions: [
           IconButton(
-            icon:  Icon(Icons.qr_code_scanner,
+            icon: Icon(
+              Icons.qr_code_scanner,
               size: 27.sp,
             ),
             onPressed: () {
@@ -32,7 +32,10 @@ class DashboardScreen extends StatelessWidget {
             },
           ),
           IconButton(
-            icon:  Icon(Icons.notifications, size: 27.sp,),
+            icon: Icon(
+              Icons.notifications,
+              size: 27.sp,
+            ),
             onPressed: () {
               // Handle notifications action
             },
@@ -43,17 +46,15 @@ class DashboardScreen extends StatelessWidget {
                 return const ProfilePage();
               }));
             },
-            child:  Padding(
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: CircleAvatar(
                 radius: 17.r,
-                backgroundImage: AssetImage(
-                  
-                    'assets/user_profile.png'),             ),
+                backgroundImage: AssetImage('assets/user_profile.png'),
+              ),
             ),
           ),
           SizedBox(width: 5.w),
-          
         ],
       ),
       body: SingleChildScrollView(
@@ -67,7 +68,6 @@ class DashboardScreen extends StatelessWidget {
                   SizedBox(
                     height: 55.h,
                     child: TextField(
-
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: const Color.fromARGB(255, 239, 239, 239),
@@ -172,7 +172,7 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                   SizedBox(height: 16.h),
+                  SizedBox(height: 16.h),
                   GridView.count(
                     mainAxisSpacing: 4.h,
                     crossAxisCount: 3,
@@ -202,21 +202,16 @@ class DashboardScreen extends StatelessWidget {
                               height: 80.h,
                               width: 90.w,
                             ),
-                            
-                            SizedBox(
-                                height:
-                                    6.h), 
+                            SizedBox(height: 6.h),
                             Text(
-                              dashboardServicesList[index]
-                                  .name, 
+                              dashboardServicesList[index].name,
                               style: TextStyle(
-                                fontSize: 15.sp, 
+                                fontSize: 15.sp,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.black, 
+                                color: Colors.black,
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            
                           ],
                         ),
                       );
@@ -259,7 +254,6 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 15.h),
                   GridView.count(
-                    
                     crossAxisCount: 3,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -273,7 +267,7 @@ class DashboardScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                             margin: EdgeInsets.symmetric(
+                              margin: EdgeInsets.symmetric(
                                   horizontal: 3.w, vertical: 1.h),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
@@ -286,9 +280,7 @@ class DashboardScreen extends StatelessWidget {
                               height: 80.h,
                               width: 90.w,
                             ),
-                            SizedBox(
-                                height:
-                                    6.h), 
+                            SizedBox(height: 6.h),
                             Text(
                               dashboardToolsList[index].name,
                               style: TextStyle(
@@ -409,7 +401,7 @@ class DashboardScreen extends StatelessWidget {
                     height: 150.h,
                     width: 160.w,
                   ),
-    SizedBox(height: 15.h),
+                  SizedBox(height: 15.h),
                 ],
               ),
             ),
@@ -451,31 +443,38 @@ class DashboardScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              margin: EdgeInsets.symmetric(horizontal: 3.w, vertical: 1.h),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 3.w, vertical: 1.h),
                               decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 238, 238, 238),
                                 borderRadius: BorderRadius.circular(12),
                               ),
+                              height: 56.h,
+                              width: 90.w,
                               child: Center(
                                 child: SvgPicture.asset(
                                   calculatorsList[index].imageUrl,
-                                  height: 50.h,
+                                  height: 56.h,
                                   width: 50.w,
-                                  // color: const Color.fromARGB(255, 122, 122, 122),
                                 ),
                               ),
-                              height: 80.h,
-                              width: 90.w,
                             ),
                             SizedBox(height: 6.h),
-                            Text(
-                              calculatorsList[index].name,
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                            SizedBox(
+                              width: 90.w,
+                              child: Text(
+                                calculatorsList[index].name,
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                                textAlign: TextAlign.center,
+                                softWrap: true,
+                                overflow:
+                                    TextOverflow.ellipsis, // Prevents overflow
+                                maxLines: 2, // Limits text to 2 lines
                               ),
-                              textAlign: TextAlign.center,
                             ),
                           ],
                         ),

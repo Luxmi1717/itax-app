@@ -94,7 +94,7 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter valid inputs.')),
+        const SnackBar(content: Text('Please enter valid inputs.')),
       );
     }
   }
@@ -108,12 +108,12 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
               gradient: AppGradients.mainGradient,
             ),
           ),
-          title: Text(
+          title: const Text(
             'Income Tax Calculator',
             style: TextStyle(color: Colors.white),
           ),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -133,21 +133,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Salary Income (Annual)',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -170,21 +170,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Exempt Allowances',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -207,21 +207,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Interest Income',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -244,21 +244,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Home Loan Interest (Self-Occupied)',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -281,21 +281,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Rental Income',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -318,21 +318,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Home Loan Interest (Let-Out)',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -355,21 +355,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Digital Asset Income',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -392,21 +392,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Other Income',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -437,21 +437,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80C',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -474,21 +474,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80TTA',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -511,21 +511,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80D',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -548,21 +548,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80G',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -585,21 +585,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80E',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -622,21 +622,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80EEA',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -659,21 +659,21 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                     labelText: 'Deduction under 80CCD',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: mainBlueColor,
                         width: 2,
                       ),
@@ -708,9 +708,9 @@ class _IncomeTaxCalculatorScreenState extends State<IncomeTaxCalculatorScreen> {
                       _selectedAgeCategory = value!;
                     });
                   },
-                  decoration: InputDecoration(labelText: 'Age Category'),
+                  decoration: const InputDecoration(labelText: 'Age Category'),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 BlueButton(
                   onPressed: _calculateTax,
                   title: 'Calculate Tax',

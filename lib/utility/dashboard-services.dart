@@ -31,13 +31,13 @@ class NavigationItem {
       id: 3,
       imageUrl: 'assets/images/dashboard/accounts-logo.png',
       navigationPath: '/account-dashboard',
-      name: 'Accounts'
+      name: 'Bill-Shill'
     ),
     NavigationItem(
       id: 4,
       imageUrl: 'assets/images/dashboard/incom-tax-logo.png',
-      navigationPath: '/receipt-page',
-      name: 'Income Tax'
+      navigationPath: '/services',
+      name: 'Easy Services'
     ),
     NavigationItem(
       id: 5,
@@ -45,13 +45,13 @@ class NavigationItem {
       // navigationPath: '/e-way-login',
       navigationPath: '/pick-media-ocr',
       
-      name: 'Bill'
+      name: 'E Invoice'
     ),
     NavigationItem(
       id: 6,
       imageUrl: 'assets/images/dashboard/gstlink-logo.png',
-      navigationPath: '/services',
-      name: 'GST Link'
+      navigationPath: '',
+      name: 'Invoice'
     ),
   ];
 
@@ -61,7 +61,7 @@ class NavigationItem {
       id: 1,
       imageUrl: 'assets/images/dashboard/pdf-logo.png',
       navigationPath: '/pdf/base',
-      name: 'PDF'
+      name: 'Converter'
     ),
 
     NavigationItem(
@@ -83,18 +83,18 @@ class NavigationItem {
   NavigationItem(
       id: 1,
       imageUrl: 'assets/images/dashboard/hra.svg',
-      navigationPath: '/calculate/hra',
+      navigationPath: 'new-calculator-hra',
       name: 'HRA'),
   NavigationItem(
       id: 2,
       imageUrl: 'assets/images/dashboard/it-cal.svg',
-      navigationPath: '/income-tax-calculator',
-      name: 'Income Tax'),
+      navigationPath: '/new-calculator-tax-advance',
+      name: 'Advance Tax'),
   NavigationItem(
       id: 3,
       imageUrl: 'assets/images/dashboard/calc.svg',
-      navigationPath: '/calculate/PersonalLoanCal',
-      name: 'Finance Tax'),
+      navigationPath: '/new-calculator-tax-new',
+      name: 'Tax Calculator'),
 ];
 
   

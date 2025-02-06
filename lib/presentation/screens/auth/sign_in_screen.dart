@@ -6,7 +6,6 @@ import 'package:itax/config/colors.dart';
 import 'package:itax/cubits/auth_cubit.dart';
 import 'package:itax/cubits/auth_state.dart';
 import 'package:itax/presentation/widgets/blue_button.dart';
-import 'package:itax/presentation/widgets/appbars/custom_appbar.dart';
 import 'package:itax/presentation/widgets/custom_text_input.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';

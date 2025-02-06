@@ -81,6 +81,9 @@ import 'package:itax/presentation/older_screens/ocr/main-ocr-screen.dart';
 import 'package:itax/presentation/older_screens/ocr/pan-ocr-screen.dart';
 import 'package:itax/presentation/screens/payables/all-payables-page.dart';
 import 'package:itax/presentation/screens/payables/user-payable-page.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/income_tax_calculators.dart/advance_tax_calculator.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/income_tax_calculators.dart/hra_calculator.dart';
+import 'package:itax/presentation/screens/tools-screens/calculators/income_tax_calculators.dart/income_tax_calculator.dart';
 import 'package:itax/presentation/screens/tools-screens/image-tools-screens.dart/compress-image-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/compress-pdf-screen.dart';
 import 'package:itax/presentation/screens/tools-screens/pdf-screens/image-to-pdf-screen.dart';
@@ -777,7 +780,19 @@ class MyAppRouter {
 
 
 
-    //---------------------- Old Service Screens routes Start ---------------------
+    //---------------------- New Calculator Screens routes Start ---------------------
+    GoRoute(
+      path: '/new-calculator-hra',
+      builder: (context, state) => const HRACalculator(),
+    ),
+    GoRoute(
+      path: '/new-calculator-tax-advance',
+      builder: (context, state) =>  AdvancedTaxCalculator(),
+    ),
+    GoRoute(
+      path: '/new-calculator-tax-new',
+      builder: (context, state) => const TaxCalculator(),
+    ),
 
 
 
